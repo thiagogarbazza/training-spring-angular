@@ -1,18 +1,20 @@
 .RECIPEPREFIX +=
 .DEFAULT_GOAL := clean
 
-VARIABLE := "src/make/"
+SCRIPTS_DIR := "src/make/"
 
 clean:
-  ./${VARIABLE}clean.sh
+  mvn clean
 
 dependency-tree:
-  mvn dependency:tree
+  ./${SCRIPTS_DIR}dependency-tree.sh
+
+build:
+  mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify
 
 quality-check:
-  mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify
   mvn sonar:sonar
 
 fechar-versao:
-  
-  
+  mvn -B release:clean release:prepare
+
