@@ -20,11 +20,11 @@ INSERT INTO cliente.tbl_cliente
 
 INSERT INTO documento.tbl_grupo_documento
   (id,                                 situacao, codigo,   nome,                    criador,          criacao,                 modificador,    modificacao) VALUES
-  ('3ff86184807c46c78a68f9776d1e3cf3', 2,        'GRP001', 'Grupo de documento 001', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 100),
-  ('9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP002', 'Grupo de documento 002', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 200),
-  ('8d175e3c58584cb2ab63061c0e47d951', 1,        'GRP003', 'Grupo de documento 003', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 300),
-  ('7928c551d1cf49fa964afe2f09d28313', 1,        'GRP004', 'Grupo de documento 004', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, null            , null),
-  ('ef03744eaaa84d778d83c636577d4206', 1,        'GRP005', 'Grupo de documento 005', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, null            , null);
+  ('3ff86184807c46c78a68f9776d1e3cf3', 2,        'GRP01', 'Grupo de documento 001', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 100),
+  ('9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02', 'Grupo de documento 002', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 200),
+  ('8d175e3c58584cb2ab63061c0e47d951', 1,        'GRP03', 'Grupo de documento 003', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 300),
+  ('7928c551d1cf49fa964afe2f09d28313', 1,        'GRP04', 'Grupo de documento 004', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, null            , null),
+  ('ef03744eaaa84d778d83c636577d4206', 1,        'GRP05', 'Grupo de documento 005', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, null            , null);
 
 INSERT INTO documento.his_situacao_grupo_documento
   (id,                                 grupo_documento_id,                 situacao, criador,          criacao) VALUES
@@ -39,6 +39,13 @@ INSERT INTO documento.his_situacao_grupo_documento
 --├───────── Ddocumentos                                                                                                                              ─────────┤
 --└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
+INSERT INTO documento.tbl_documento
+  (id,                                 grupo_documento_id,                 situacao, codigo,        periodicidade, tipo_dispensa, impacto_dispensa, vigencia_inicio,         vigencia_fim, nome,                     criador,          criacao,                 modificador,    modificacao) VALUES
+  ('b07795e0900844a1b99e1ce7925051a5', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC01', 1,             0,             null,             CURRENT_TIMESTAMP - 360, null,         'Documento 001 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 100),
+  ('4f7d4c136f7e4fd39179be78335698d8', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC02', 1,             0,             null,             CURRENT_TIMESTAMP - 360, null,         'Documento 002 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 200),
+  ('edfc8516d5ae478dbd763da8243ba2d7', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC03', 1,             0,             null,             CURRENT_TIMESTAMP - 360, null,         'Documento 003 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, 'thiagogarbazza', CURRENT_TIMESTAMP - 300),
+  ('e8a589e6ca7c4bf0af53d46a92d1aea7', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC04', 1,             0,             null,             CURRENT_TIMESTAMP - 360, null,         'Documento 004 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, null            , null),
+  ('5b9b7b2434404e3a9c73e78bc006abae', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC05', 1,             0,             null,             CURRENT_TIMESTAMP - 360, null,         'Documento 005 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP - 360, null            , null);
 
 
 --┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -50,3 +57,9 @@ INSERT INTO documento.his_situacao_grupo_documento
 --┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 --├───────── Ddocumentos processados                                                                                                                  ─────────┤
 --└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+

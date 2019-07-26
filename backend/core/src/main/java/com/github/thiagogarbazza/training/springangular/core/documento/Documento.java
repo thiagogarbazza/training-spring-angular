@@ -52,7 +52,7 @@ public class Documento extends AbstractObjectPersistenteCriacaoEModificacaoAudit
   @ManyToOne
   @JoinColumn(name = "grupo_documento_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tbl_documento_from_tbl_grupo_documento"))
   private GrupoDocumento grupoDocumento;
-  @Column(name = "impacto_dispensa", nullable = false, columnDefinition = "tinyint")
+  @Column(name = "impacto_dispensa", nullable = true, columnDefinition = "tinyint")
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private ImpactoDispensa impactoDispensa;
   @Column(name = "nome", nullable = false, length = 200)
