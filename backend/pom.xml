@@ -6,21 +6,28 @@
 
   <parent>
     <groupId>com.github.thiagogarbazza.training-spring-angular</groupId>
-    <artifactId>training-spring-angular</artifactId>
+    <artifactId>project-name-parent</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>backend</artifactId>
+  <artifactId>project-name-backend</artifactId>
+  <name>ProjectName » backend</name>
   <packaging>pom</packaging>
 
   <modules>
-    <module>core</module>
-    <module>rest</module>
-    <module>util</module>
     <module>util-test</module>
+    <module>util</module>
+    <module>adapter</module>
+    <module>core</module>
+    <module>relatorio</module>
+    <module>rest</module>
+    <module>batch</module>
   </modules>
 
+  <properties>
+    <project.main.basedir>..</project.main.basedir> <!--Apontar para a raiz do projeto-->
+  </properties>
 
   <dependencies>
     <dependency>

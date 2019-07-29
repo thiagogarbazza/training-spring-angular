@@ -6,17 +6,22 @@
 
   <parent>
     <groupId>com.github.thiagogarbazza.training-spring-angular</groupId>
-    <artifactId>backend</artifactId>
+    <artifactId>project-name-backend</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>core</artifactId>
+  <artifactId>project-name-core</artifactId>
+  <name>ProjectName » core</name>
+
+  <properties>
+    <project.main.basedir>../..</project.main.basedir> <!--Apontar para a raiz do projeto-->
+  </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.github.thiagogarbazza.training-spring-angular</groupId>
-      <artifactId>util</artifactId>
+      <artifactId>project-name-util</artifactId>
       <version>0.1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>

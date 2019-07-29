@@ -3,23 +3,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
+
   <parent>
     <groupId>com.github.thiagogarbazza.training-spring-angular</groupId>
-    <artifactId>backend</artifactId>
+    <artifactId>project-name-backend</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>rest</artifactId>
+  <artifactId>project-name-rest</artifactId>
+  <name>ProjectName » rest</name>
+
+  <properties>
+    <project.main.basedir>../..</project.main.basedir> <!--Apontar para a raiz do projeto-->
+  </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.github.thiagogarbazza.training-spring-angular</groupId>
-      <artifactId>core</artifactId>
+      <artifactId>project-name-core</artifactId>
       <version>0.1.0-SNAPSHOT</version>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>

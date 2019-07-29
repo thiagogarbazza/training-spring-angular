@@ -18,3 +18,7 @@ quality-check:
 fechar-versao:
   mvn -B release:clean release:prepare
 
+gerar-esperado
+  mvn clean install -B -e -DskipTests=true -pl :project-name-parent,:project-name-backend,:project-name-util,:project-name-core,:project-name-batch,:project-name-batch-comum
+  cd backend/batch/gerar-esperado
+  mvn package assembly:single -B -e -DskipTests=true

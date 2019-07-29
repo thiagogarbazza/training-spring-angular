@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.github.thiagogarbazza.training-spring-angular</groupId>
+    <artifactId>project-name-backend</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
+
+  <artifactId>project-name-batch</artifactId>
+  <packaging>pom</packaging>
+  <name>ProjectName » batch</name>
+
+  <modules>
+    <module>gerar-esperado</module>
+    <module>batch-comum</module>
+  </modules>
+
+  <properties>
+    <project.main.basedir>../..</project.main.basedir> <!--Apontar para a raiz do projeto-->
+
+    <batch.output.directory>${project.build.directory}</batch.output.directory>
+    <batch.execution.main></batch.execution.main>
+    <batch.execution.exit-code.another-instance-is-running>99
+    </batch.execution.exit-code.another-instance-is-running> <!-- (0) Ok, (99) Another instance is running. -->
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>${plugin.maven-assembly.version}</version>
+          <configuration>
+            <finalName>${project.artifactId}</finalName>
+            <outputDirectory>${batch.output.directory}</outputDirectory>
+            <archive>
+              <manifest>
+                <mainClass>${batch.execution.main}</mainClass>
+              </manifest>
+            </archive>
+            <appendAssemblyId>false</appendAssemblyId>
+            <!--<delimiters>
+              <delimiter>${project.resources.delimiter}</delimiter>
+            </delimiters>-->
+            <descriptors>
+              <descriptor>${project.main.basedir}/backend/batch/src/config/assembly.xml</descriptor>
+            </descriptors>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
