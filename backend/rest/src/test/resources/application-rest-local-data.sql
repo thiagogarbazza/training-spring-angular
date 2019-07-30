@@ -1,5 +1,6 @@
 --╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 --╠═════════                                                 Banco de dados para execução local                                                       ═════════╣
+--╠════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
 --║                                                                                                                                                            ║
 --╟────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢
 --║  Dicas para criação da base de dados local.                                                                                                                ║
@@ -65,25 +66,32 @@ INSERT INTO documento.his_situacao_grupo_documento
 --└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 INSERT INTO documento.tbl_documento
   (id,                                 grupo_documento_id,                 situacao, codigo,        periodicidade, tipo_dispensa, impacto_dispensa, vigencia_inicio,      vigencia_fim, nome,                     criador,          criacao,                   modificador,      modificacao) VALUES
-  ('b07795e0900844a1b99e1ce7925051a5', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC01', 1,             0,             null,             CURRENT_DATE() - 360, null,         'Documento 001 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP() - 360, 'thiagogarbazza', CURRENT_TIMESTAMP() - 100),
-  ('4f7d4c136f7e4fd39179be78335698d8', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC02', 1,             0,             null,             CURRENT_DATE() - 360, null,         'Documento 002 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP() - 360, 'thiagogarbazza', CURRENT_TIMESTAMP() - 200),
+  ('b07795e0900844a1b99e1ce7925051a5', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC01', 1,             1,             null,             CURRENT_DATE() - 360, null,         'Documento 001 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP() - 360, 'thiagogarbazza', CURRENT_TIMESTAMP() - 100),
+  ('4f7d4c136f7e4fd39179be78335698d8', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC02', 1,             2,             null,             CURRENT_DATE() - 360, null,         'Documento 002 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP() - 360, 'thiagogarbazza', CURRENT_TIMESTAMP() - 200),
   ('edfc8516d5ae478dbd763da8243ba2d7', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC03', 1,             0,             null,             CURRENT_DATE() - 360, null,         'Documento 003 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP() - 360, 'thiagogarbazza', CURRENT_TIMESTAMP() - 300),
   ('e8a589e6ca7c4bf0af53d46a92d1aea7', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC04', 1,             0,             null,             CURRENT_DATE() - 360, null,         'Documento 004 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP() - 360, null            , null),
   ('5b9b7b2434404e3a9c73e78bc006abae', '9c7e6443a5934b098b6df530c3f6ce80', 1,        'GRP02-DOC05', 1,             0,             null,             CURRENT_DATE() - 360, null,         'Documento 005 do GRP02', 'thiagogarbazza', CURRENT_TIMESTAMP() - 360, null            , null);
 
 
 --┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
---├───────── Documentos esperados                                                                                                                     ─────────┤
+--├───────── Documentos dispensados                                                                                                                   ─────────┤
 --└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+INSERT INTO documento_esperado.tbl_documento_dispensado
+  (id,                                 documento_id,                       cliente_id,                         situacao, data_base_inicio,     data_base_fim,        criador,          criacao,                   modificador,      modificacao) VALUES
+  ('378e19cdabb049ecaa2a429b415c949c', 'b07795e0900844a1b99e1ce7925051a5', 'deba2cb2fc074a4fb818648a6b9bd9af', 2,        CURRENT_DATE() - 360, null,                 'thiagogarbazza', CURRENT_TIMESTAMP() - 400, 'thiagogarbazza', CURRENT_TIMESTAMP() - 100),
+  ('78086fbcd95148ea8b07363c450749c8', 'b07795e0900844a1b99e1ce7925051a5', '126c1f8fcb594b07b8fdfe09050415cc', 1,        CURRENT_DATE() - 360, null,                 'thiagogarbazza', CURRENT_TIMESTAMP() - 400, null,             null),
+  ('d4331dd74f4f499a81df9c2f8342cf00', '4f7d4c136f7e4fd39179be78335698d8', '126c1f8fcb594b07b8fdfe09050415cc', 1,        CURRENT_DATE() - 360, CURRENT_DATE() - 360, 'thiagogarbazza', CURRENT_TIMESTAMP() - 400, 'thiagogarbazza', CURRENT_TIMESTAMP() - 100),
+  ('51c9c386c87c4c17bd9189f540f26077', '4f7d4c136f7e4fd39179be78335698d8', 'deba2cb2fc074a4fb818648a6b9bd9af', 1,        CURRENT_DATE() - 360, CURRENT_DATE() - 360, 'thiagogarbazza', CURRENT_TIMESTAMP() - 400, null,             null);
 
-
+INSERT INTO  documento_esperado.his_situacao_documento_dispensado
+  (id,                                 documento_dispensado_id,            situacao, criador,          criacao) VALUES
+  ('554909b1a788424cab5d9006dbc625a4', '378e19cdabb049ecaa2a429b415c949c', 1,        'thiagogarbazza', CURRENT_TIMESTAMP() - 360),
+  ('88d76e83afa3489e973b2b3c66675e19', '378e19cdabb049ecaa2a429b415c949c', 2,        'thiagogarbazza', CURRENT_TIMESTAMP() - 260),
+  ('5380bba0d9104e50a442c8137b26ffae', '78086fbcd95148ea8b07363c450749c8', 1,        'thiagogarbazza', CURRENT_TIMESTAMP() - 360),
+  ('d2a4609b1c6c40b888b5bca2c3e307a8', 'd4331dd74f4f499a81df9c2f8342cf00', 1,        'thiagogarbazza', CURRENT_TIMESTAMP() - 360),
+  ('a7ce44dfab804c959fe33f4322ed289f', '51c9c386c87c4c17bd9189f540f26077', 1,        'thiagogarbazza', CURRENT_TIMESTAMP() - 360);
 
 --┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
---├───────── Documentos processados                                                                                                                   ─────────┤
+--├───────── Documentos esperados                                                                                                                     ─────────┤
 --└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-
-
-
-
-
 

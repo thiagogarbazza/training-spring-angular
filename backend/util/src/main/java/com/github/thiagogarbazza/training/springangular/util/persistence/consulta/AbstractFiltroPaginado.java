@@ -3,6 +3,7 @@ package com.github.thiagogarbazza.training.springangular.util.persistence.consul
 import com.querydsl.core.types.OrderSpecifier;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QPageRequest;
 
@@ -16,12 +17,19 @@ public abstract class AbstractFiltroPaginado<T extends OrderByColumn> {
   private static final int QUANTIDADE_POR_PAGINA_PADRAO = 10;
 
   private Integer numeroPagina;
-  private Collection<OrderBy<T>> orderBys;
+  private T ordenacaoCampo;
+  private OrderByDirection ordenacaoDirecao;
   private Integer quantidadePorPagina;
+
+  protected abstract Collection<OrderSpecifier> orderByDefault();
 
   public void ignorarPaginacao() {
     this.numeroPagina = null;
     this.quantidadePorPagina = Integer.MAX_VALUE;
+  }
+
+  final OrderSpecifier buildOrderByColumn() {
+    return this.ordenacaoCampo.getOrderSpecifier(ordenacaoDirecao);
   }
 
   final int numeroPagina() {
@@ -30,12 +38,8 @@ public abstract class AbstractFiltroPaginado<T extends OrderByColumn> {
       : this.numeroPagina;
   }
 
-  final OrderSpecifier buildOrderByColumn() {
-    return null;
-  }
-
   final boolean possuiOrdenacaoPorCampo() {
-    return false;
+    return ObjectUtils.allNotNull(this.ordenacaoCampo, this.ordenacaoDirecao);
   }
 
   final int quantidadePorPagina() {
@@ -44,7 +48,7 @@ public abstract class AbstractFiltroPaginado<T extends OrderByColumn> {
       : this.quantidadePorPagina;
   }
 
-  public final Pageable getPageable() {
+  final Pageable getPageable() {
     return new QPageRequest(numeroPagina(), quantidadePorPagina());
   }
 

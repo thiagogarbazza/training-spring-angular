@@ -26,6 +26,13 @@
     </dependency>
 
     <dependency>
+      <groupId>com.github.thiagogarbazza.training-spring-angular</groupId>
+      <artifactId>project-name-util-test</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
     </dependency>

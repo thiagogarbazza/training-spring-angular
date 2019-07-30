@@ -35,19 +35,19 @@ public abstract class AbstractSimpleQualifierStrategyManager<Q, S extends Simple
    * @throws UnsupportedOperationException Se qualificador não estiver associado a nehuma estratégia.
    */
   @Override
-  public S strategy(final Q qualifier) {
-    if (!strategies.containsKey(qualifier)) {
-      return defaultStrategy(qualifier);
+  public S strategy(final Q q) {
+    if (!strategies.containsKey(q)) {
+      return defaultStrategy(q);
     }
 
-    return strategies.get(qualifier);
+    return strategies.get(q);
   }
 
   /**
    * Método gancho. Sobrescreva para alterar o comportamento quando uma estratégia não é encontrada.
    */
-  protected S defaultStrategy(final Q qualifier) {
-    throw new UnsupportedOperationException(format("Strategy not registered for qualifier {0}.", qualifier));
+  protected S defaultStrategy(final Q q) {
+    throw new UnsupportedOperationException(format("Strategy not registered for qualifier {0}.", q));
   }
 
   private Map<Q, S> mapBuild(final Collection<S> strategies) {

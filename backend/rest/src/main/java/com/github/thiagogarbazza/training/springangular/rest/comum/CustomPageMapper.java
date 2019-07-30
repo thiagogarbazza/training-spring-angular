@@ -1,16 +1,26 @@
 package com.github.thiagogarbazza.training.springangular.rest.comum;
 
+import com.github.thiagogarbazza.training.springangular.rest.configuration.mapper.AssemblerMapper;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import ma.glasnost.orika.CustomMapper;
+import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.MappingContext;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
-class CustomPageMapper extends CustomMapper<CustomPage, CustomPageResource> {
+class CustomPageMapper extends CustomMapper<CustomPage, CustomPageResource> implements AssemblerMapper {
 
   @Override
-  public void mapAtoB(CustomPage page, CustomPageResource pageResource, MappingContext ctx) {
+  public void configure(final MapperFactory mapperFactory) {
+    mapperFactory.classMap(CustomPage.class, CustomPageResource.class)
+      .customize(this)
+      .byDefault()
+      .register();
+  }
+
+  @Override
+  public void mapAtoB(final CustomPage page, final CustomPageResource pageResource, final MappingContext ctx) {
     pageResource.setHasContent(page.hasContent());
     pageResource.setHasNext(page.hasNext());
     pageResource.setHasPrevious(page.hasPrevious());

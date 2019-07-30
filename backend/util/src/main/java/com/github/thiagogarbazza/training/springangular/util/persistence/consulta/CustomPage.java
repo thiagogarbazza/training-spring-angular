@@ -13,10 +13,11 @@ import java.util.List;
 public class CustomPage<T> extends PageImpl<T> {
 
   @Getter
-  private final SimpleMessages messages = new SimpleMessages();
+  private final SimpleMessages messages;
 
   public CustomPage(List<T> content, Pageable pageable, long total) {
     super(content, pageable, total);
+    this.messages = new SimpleMessages();
 
     if (CollectionUtils.isEmpty(content)) {
       addMessage(new SimpleMessage(SimpleMessageType.INFORMATION, "pagina-vazia", "Não há resultados para os dados de pesquisa."));

@@ -16,5 +16,5 @@ public interface SimpleQualifierStrategyManager<Q, S extends SimpleQualifierStra
    *
    * @throws UnsupportedOperationException Se qualificador não estiver associado a nehuma estratégia.
    */
-  S strategy(Q qualifier);
+  S strategy(Q q);
 }
