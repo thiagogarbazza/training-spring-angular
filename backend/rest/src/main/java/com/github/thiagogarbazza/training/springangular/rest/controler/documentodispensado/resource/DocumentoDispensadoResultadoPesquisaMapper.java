@@ -25,6 +25,7 @@ class DocumentoDispensadoResultadoPesquisaMapper
     final DocumentoDispensadoResultadoPesquisaResource documentoDispensadoResultadoPesquisaResource, final MappingContext context) {
     documentoDispensadoResultadoPesquisaResource.setCodigoCliente(documentoDispensado.getCliente().getCodigo());
     documentoDispensadoResultadoPesquisaResource.setCodigoDocumento(documentoDispensado.getDocumento().getCodigo());
+    documentoDispensadoResultadoPesquisaResource.setCodigoGrupoDocumento(documentoDispensado.getDocumento().getGrupoDocumento().getCodigo());
 
     documentoDispensadoResultadoPesquisaResource.setAcoes(DocumentoDispensadoResultadoPesquisaResource.Acoes.builder()
       .podeAlterar(true)

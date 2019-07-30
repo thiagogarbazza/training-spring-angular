@@ -23,6 +23,7 @@ public class DocumentoDispensadoResultadoPesquisaResource {
   private Acoes acoes;
   private String codigoCliente;
   private String codigoDocumento;
+  private String codigoGrupoDocumento;
   private UUID id;
 
   @Getter

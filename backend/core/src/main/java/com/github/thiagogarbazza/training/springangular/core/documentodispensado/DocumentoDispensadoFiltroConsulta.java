@@ -29,6 +29,7 @@ public class DocumentoDispensadoFiltroConsulta extends AbstractFiltroPaginado<Do
   private LocalDate dataBaseFim;
   private LocalDate dataBaseInicio;
   private Collection<UUID> documentos;
+  private Collection<UUID> grupoDocumentos;
   private Collection<SituacaoDocumentoDispensado> situacoes;
 
   @Override

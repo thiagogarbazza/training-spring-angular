@@ -18,7 +18,7 @@ class DocumentoDispensadoPesquisarService {
   @Autowired
   private MapperFacade mapper;
 
-  public CustomPageResource<DocumentoDispensadoResultadoPesquisaResource> pesquisar(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
+  CustomPageResource<DocumentoDispensadoResultadoPesquisaResource> pesquisar(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
     final CustomPage<DocumentoDispensado> documentoDispensados = documentoDispensadoConsultaService.pesquisarPaginando(filtroConsulta);
 
     final CustomPageResource<DocumentoDispensadoResultadoPesquisaResource> customPageResource = mapper.map(documentoDispensados, CustomPageResource.class);

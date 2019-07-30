@@ -1,7 +1,5 @@
 package com.github.thiagogarbazza.training.springangular.rest.controler.documentodispensado.resource;
 
-import com.github.thiagogarbazza.training.springangular.core.documentodispensado.SituacaoDocumentoDispensado;
-import com.github.thiagogarbazza.training.springangular.rest.comum.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controler.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controler.documento.resource.DocumentoParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controler.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
@@ -23,24 +21,10 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-public class DocumentoDispensadoParaPesquisarResource {
+public class DocumentoDispensadoParaCriarResource {
 
-  private Acoes acoes;
   private DadosFormulario dadosFormulario;
   private DadosParaFormulario dadosParaFormulario;
-  private CustomPageResource<DocumentoDispensadoResultadoPesquisaResource> resultadoPesquisa;
-
-  @Getter
-  @Setter
-  @Builder
-  @ToString
-  @NoArgsConstructor(access = PRIVATE)
-  @AllArgsConstructor(access = PRIVATE)
-  public static class Acoes {
-
-    private boolean podeGerarExcel;
-    private boolean podeIncluir;
-  }
 
   @Getter
   @Setter
@@ -50,12 +34,11 @@ public class DocumentoDispensadoParaPesquisarResource {
   @AllArgsConstructor(access = PRIVATE)
   public static class DadosFormulario {
 
-    private Collection<ClienteParaSelecaoResource> clientes;
+    private ClienteParaSelecaoResource clientes;
     private LocalDate dataBaseFim;
     private LocalDate dataBaseInicio;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private Collection<GrupoDocumentoParaSelecaoResource> grupodocumentos;
-    private Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados;
+    private GrupoDocumentoParaSelecaoResource grupodocumentos;
   }
 
   @Getter
@@ -69,6 +52,5 @@ public class DocumentoDispensadoParaPesquisarResource {
     private Collection<ClienteParaSelecaoResource> clientes;
     private Collection<DocumentoParaSelecaoResource> documentos;
     private Collection<GrupoDocumentoParaSelecaoResource> grupodocumentos;
-    private Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados;
   }
 }

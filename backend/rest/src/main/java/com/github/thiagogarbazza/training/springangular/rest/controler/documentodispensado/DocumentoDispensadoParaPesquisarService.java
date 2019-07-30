@@ -14,6 +14,9 @@ import com.github.thiagogarbazza.training.springangular.rest.comum.CustomPageRes
 import com.github.thiagogarbazza.training.springangular.rest.controler.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controler.documento.resource.DocumentoParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controler.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource;
+import com.github.thiagogarbazza.training.springangular.rest.controler.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource.Acoes;
+import com.github.thiagogarbazza.training.springangular.rest.controler.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource.DadosFormulario;
+import com.github.thiagogarbazza.training.springangular.rest.controler.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource.DadosParaFormulario;
 import com.github.thiagogarbazza.training.springangular.rest.controler.documentodispensado.resource.DocumentoDispensadoResultadoPesquisaResource;
 import com.github.thiagogarbazza.training.springangular.rest.controler.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
 import ma.glasnost.orika.MapperFacade;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+import static com.github.thiagogarbazza.training.springangular.util.persistence.entity.IdentifiableUtil.findIdentifiablesByIds;
 import static java.util.Arrays.asList;
 
 @Component
@@ -38,45 +42,49 @@ class DocumentoDispensadoParaPesquisarService {
   @Autowired
   private MapperFacade mapper;
 
-  public DocumentoDispensadoParaPesquisarResource paraPesquisar(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
-    DocumentoDispensadoParaPesquisarResource.DadosParaFormulario dadosParaFormulario = dadosParaFormularioBuild();
-    DocumentoDispensadoParaPesquisarResource.Acoes acoes = acoesBuild();
-    DocumentoDispensadoParaPesquisarResource.ParametrosDePesquisa parametrosDePesquisa = parametrosDePesquisaBuild(filtroConsulta);
+  DocumentoDispensadoParaPesquisarResource paraPesquisar(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
+    DadosParaFormulario dadosParaFormulario = dadosParaFormularioBuild();
+    Acoes acoes = acoesBuild();
+    DadosFormulario dadosFormulario = dadosFormularioBuild(dadosParaFormulario, filtroConsulta);
     CustomPageResource<DocumentoDispensadoResultadoPesquisaResource> resultadoPesquisa = resultadoPesquisaBuild(filtroConsulta);
 
     return DocumentoDispensadoParaPesquisarResource.builder()
       .acoes(acoes)
       .dadosParaFormulario(dadosParaFormulario)
-      .parametrosDePesquisa(parametrosDePesquisa)
+      .dadosFormulario(dadosFormulario)
       .resultadoPesquisa(resultadoPesquisa)
       .build();
   }
 
-  private DocumentoDispensadoParaPesquisarResource.Acoes acoesBuild() {
-    return DocumentoDispensadoParaPesquisarResource.Acoes.builder()
+  private Acoes acoesBuild() {
+    return Acoes.builder()
       .podeGerarExcel(true)
       .podeIncluir(true)
       .build();
   }
 
-  private DocumentoDispensadoParaPesquisarResource.DadosParaFormulario dadosParaFormularioBuild() {
+  private DadosFormulario dadosFormularioBuild(final DadosParaFormulario dadosParaFormulario, final DocumentoDispensadoFiltroConsulta filtroConsulta) {
+    return DadosFormulario.builder()
+      .clientes(findIdentifiablesByIds(dadosParaFormulario.getClientes(), filtroConsulta.getClientes()))
+      .documentos(findIdentifiablesByIds(dadosParaFormulario.getDocumentos(), filtroConsulta.getDocumentos()))
+      .grupodocumentos(findIdentifiablesByIds(dadosParaFormulario.getGrupodocumentos(), filtroConsulta.getGrupoDocumentos()))
+      .dataBaseInicio(filtroConsulta.getDataBaseInicio())
+      .dataBaseFim(filtroConsulta.getDataBaseFim())
+      .situacaoDocumentoDispensados(filtroConsulta.getSituacoes())
+      .build();
+  }
+
+  private DadosParaFormulario dadosParaFormularioBuild() {
     final Collection<Cliente> clientes = clienteConsultaService.pesquisar();
     final Collection<Documento> documentos = documentoConsultaService.pesquisar(DocumentoFiltroConsulta.builder().build());
     final Collection<GrupoDocumento> grupodocumentos = grupoDocumentoConsultaService.pesquisar(GrupoDocumentoFiltroConsulta.builder().build());
     final Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados = asList(SituacaoDocumentoDispensado.values());
 
-    return DocumentoDispensadoParaPesquisarResource.DadosParaFormulario.builder()
+    return DadosParaFormulario.builder()
       .clientes(mapper.mapAsList(clientes, ClienteParaSelecaoResource.class))
       .documentos(mapper.mapAsList(documentos, DocumentoParaSelecaoResource.class))
       .grupodocumentos(mapper.mapAsList(grupodocumentos, GrupoDocumentoParaSelecaoResource.class))
       .situacaoDocumentoDispensados(situacaoDocumentoDispensados)
-      .build();
-  }
-
-  private DocumentoDispensadoParaPesquisarResource.ParametrosDePesquisa parametrosDePesquisaBuild(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
-    return DocumentoDispensadoParaPesquisarResource.ParametrosDePesquisa.builder()
-      .dataBaseInicio(filtroConsulta.getDataBaseInicio())
-      .dataBaseFim(filtroConsulta.getDataBaseFim())
       .build();
   }
 

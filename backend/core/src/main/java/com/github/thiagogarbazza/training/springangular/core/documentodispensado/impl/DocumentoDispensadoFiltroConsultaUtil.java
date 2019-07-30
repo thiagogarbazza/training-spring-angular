@@ -24,6 +24,10 @@ class DocumentoDispensadoFiltroConsultaUtil {
       conditions.and(documentoDispensado.documento.id.in(filtroConsulta.getDocumentos()));
     }
 
+    if (CollectionUtils.isNotEmpty(filtroConsulta.getGrupoDocumentos())) {
+      conditions.and(documentoDispensado.documento.grupoDocumento.id.in(filtroConsulta.getGrupoDocumentos()));
+    }
+
     if (CollectionUtils.isNotEmpty(filtroConsulta.getSituacoes())) {
       conditions.and(documentoDispensado.situacao.in(filtroConsulta.getSituacoes()));
     }
