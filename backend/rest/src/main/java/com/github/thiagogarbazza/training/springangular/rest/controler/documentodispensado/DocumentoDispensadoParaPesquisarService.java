@@ -67,7 +67,7 @@ class DocumentoDispensadoParaPesquisarService {
     return DadosFormulario.builder()
       .clientes(findIdentifiablesByIds(dadosParaFormulario.getClientes(), filtroConsulta.getClientes()))
       .documentos(findIdentifiablesByIds(dadosParaFormulario.getDocumentos(), filtroConsulta.getDocumentos()))
-      .grupodocumentos(findIdentifiablesByIds(dadosParaFormulario.getGrupodocumentos(), filtroConsulta.getGrupoDocumentos()))
+      .grupoDocumentos(findIdentifiablesByIds(dadosParaFormulario.getGrupoDocumentos(), filtroConsulta.getGrupoDocumentos()))
       .dataBaseInicio(filtroConsulta.getDataBaseInicio())
       .dataBaseFim(filtroConsulta.getDataBaseFim())
       .situacaoDocumentoDispensados(filtroConsulta.getSituacoes())
@@ -83,7 +83,7 @@ class DocumentoDispensadoParaPesquisarService {
     return DadosParaFormulario.builder()
       .clientes(mapper.mapAsList(clientes, ClienteParaSelecaoResource.class))
       .documentos(mapper.mapAsList(documentos, DocumentoParaSelecaoResource.class))
-      .grupodocumentos(mapper.mapAsList(grupodocumentos, GrupoDocumentoParaSelecaoResource.class))
+      .grupoDocumentos(mapper.mapAsList(grupodocumentos, GrupoDocumentoParaSelecaoResource.class))
       .situacaoDocumentoDispensados(situacaoDocumentoDispensados)
       .build();
   }

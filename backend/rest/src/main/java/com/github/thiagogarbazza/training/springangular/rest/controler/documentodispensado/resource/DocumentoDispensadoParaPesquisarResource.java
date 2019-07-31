@@ -54,7 +54,7 @@ public class DocumentoDispensadoParaPesquisarResource {
     private LocalDate dataBaseFim;
     private LocalDate dataBaseInicio;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private Collection<GrupoDocumentoParaSelecaoResource> grupodocumentos;
+    private Collection<GrupoDocumentoParaSelecaoResource> grupoDocumentos;
     private Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados;
   }
 
@@ -68,7 +68,7 @@ public class DocumentoDispensadoParaPesquisarResource {
 
     private Collection<ClienteParaSelecaoResource> clientes;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private Collection<GrupoDocumentoParaSelecaoResource> grupodocumentos;
+    private Collection<GrupoDocumentoParaSelecaoResource> grupoDocumentos;
     private Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados;
   }
 }

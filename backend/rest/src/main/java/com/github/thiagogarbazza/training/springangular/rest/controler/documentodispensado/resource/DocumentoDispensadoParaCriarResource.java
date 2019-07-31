@@ -38,7 +38,7 @@ public class DocumentoDispensadoParaCriarResource {
     private LocalDate dataBaseFim;
     private LocalDate dataBaseInicio;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private GrupoDocumentoParaSelecaoResource grupodocumentos;
+    private GrupoDocumentoParaSelecaoResource grupoDocumentos;
   }
 
   @Getter
@@ -51,6 +51,6 @@ public class DocumentoDispensadoParaCriarResource {
 
     private Collection<ClienteParaSelecaoResource> clientes;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private Collection<GrupoDocumentoParaSelecaoResource> grupodocumentos;
+    private Collection<GrupoDocumentoParaSelecaoResource> grupoDocumentos;
   }
 }

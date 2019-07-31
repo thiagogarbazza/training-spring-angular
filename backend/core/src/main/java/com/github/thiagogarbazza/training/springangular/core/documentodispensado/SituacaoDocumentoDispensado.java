@@ -6,10 +6,10 @@ import lombok.Getter;
 @Getter
 public enum SituacaoDocumentoDispensado implements EnumIdentifiableWithNome {
 
-  ATIVO(1, "Esperado"),
-  INATIVO(2, "Não esperado");
+  ATIVO(1, "Ativo"),
+  INATIVO(2, "Inativo");
 
-  public final int id;
+  private final int id;
   private final String nome;
 
   SituacaoDocumentoDispensado(final int id, final String nome) {
