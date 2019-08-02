@@ -22,7 +22,7 @@ import static java.time.LocalDateTime.now;
 @CommonsLog
 class LogObserverProcessador {
 
-  @Around("execution(public * br.gov.bcb.crd.batch.commons.processamento.Processador+.processar(..))")
+  @Around("execution(public *  com.github.thiagogarbazza.training.springangular.batchcomum.processamento.Processador+.processar(..))")
   public Object logObserverService(final ProceedingJoinPoint joinPoint) throws Throwable {
     LocalDateTime start = now();
 
@@ -48,6 +48,8 @@ class LogObserverProcessador {
   private Object executePoint(final ProceedingJoinPoint joinPoint, final LocalDateTime start) throws Throwable {
     try {
       return joinPoint.proceed();
+    } catch (InterromperProcessadorException e) {
+      throw e;
     } catch (Throwable throwable) {
       log.error(format(MSG_LOG_ERROR, MSG_SYMBOL_H2, toStringSignatureBuilder(joinPoint), throwable.getMessage(), between(start, now())));
 

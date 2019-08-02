@@ -10,5 +10,5 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-adapter.properties")
 public class AdapterConfiguration {
 
-  static final String PACKAGE = " com.github.thiagogarbazza.training.springangular.core";
+  static final String PACKAGE = " com.github.thiagogarbazza.training.springangular.adapter";
 }

@@ -11,16 +11,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.Type;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import static com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoAuditavel.LENGTH_ATTR_CRIADOR;
@@ -31,7 +35,8 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @Setter
 @Builder
-@ToString(callSuper = true)
+@FieldNameConstants
+@ToString(callSuper = true, of = {"documento", "cliente", "dataBase", "situacao"})
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
 @Table(name = "tbl_documento_esperado", schema = "documento_esperado")
@@ -54,6 +59,8 @@ public class DocumentoEsperado extends AbstractObjectPersistenteCriacaoEModifica
   @ManyToOne
   @JoinColumn(name = "documento_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tbl_documento_esperado_from_tbl_documento"))
   private Documento documento;
+  @OneToMany(mappedBy = HistoricoSituacaoDocumentoEsperado.Fields.documentoEsperado, cascade = CascadeType.ALL)
+  private Collection<HistoricoSituacaoDocumentoEsperado> historicoSituacao;
   @Column(name = "situacao", nullable = false, columnDefinition = "tinyint")
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private SituacaoDocumentoEsperado situacao;

@@ -3,6 +3,7 @@ package com.github.thiagogarbazza.training.springangular.core.documento.impl;
 import com.github.thiagogarbazza.training.springangular.core.documento.Documento;
 import com.github.thiagogarbazza.training.springangular.core.documento.DocumentoFiltroConsulta;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomQueryDslRepositorySupport;
+import com.querydsl.jpa.JPQLQuery;
 
 import java.util.Collection;
 
@@ -16,8 +17,11 @@ public class DocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<Doc
 
   @Override
   public Collection<Documento> pesquisar(final DocumentoFiltroConsulta filtroConsulta) {
-    return from(documento)
-      .orderBy(documento.codigo.asc())
+    final JPQLQuery<Documento> query = from(documento);
+    query.where(DocumentoFiltroConsultaUtil.predicateBuilder(query, filtroConsulta));
+
+    return query
+      .orderBy(documento.grupoDocumento.codigo.asc(), documento.codigo.asc())
       .fetch();
   }
 }

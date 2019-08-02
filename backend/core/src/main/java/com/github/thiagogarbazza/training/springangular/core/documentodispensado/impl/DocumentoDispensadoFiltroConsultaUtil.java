@@ -13,7 +13,7 @@ import static com.github.thiagogarbazza.training.springangular.util.persistence.
 @UtilityClass
 class DocumentoDispensadoFiltroConsultaUtil {
 
-  public static Predicate predicateBuilder(JPQLQuery query, DocumentoDispensadoFiltroConsulta filtroConsulta) {
+  static Predicate predicateBuilder(JPQLQuery query, DocumentoDispensadoFiltroConsulta filtroConsulta) {
     BooleanBuilder conditions = new BooleanBuilder();
 
     if (CollectionUtils.isNotEmpty(filtroConsulta.getClientes())) {

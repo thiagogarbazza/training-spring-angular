@@ -14,8 +14,8 @@ public class AspectUtil {
   public static final String MSG_LOG_ERROR = "{0} Erro na execução {1} pelo motivo \"{2}\" depois de {3}.";
   public static final String MSG_LOG_START = "{0} Iniciando {1}";
 
-  public static final String MSG_SYMBOL_H1 = "<!>>>>>>>>";
-  public static final String MSG_SYMBOL_H2 = "<!>>>>>>>>";
+  public static final String MSG_SYMBOL_H1 = "<h1>>>>>>>>";
+  public static final String MSG_SYMBOL_H2 = "<h2>>>>>>>>";
   public static final String MSG_SYMBOL_H3 = "<!>>>>>>>>";
   public static final String MSG_SYMBOL_H4 = "<!>>>>>>>>";
   public static final String MSG_SYMBOL_H5 = "<!>>>>>>>>";

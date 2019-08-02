@@ -2,7 +2,6 @@ package com.github.thiagogarbazza.training.springangular.rest.configuration.json
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.github.thiagogarbazza.training.springangular.util.ambiente.AmbienteExecucao;
-import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiableWithNome;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +26,7 @@ class OutputConfiguration {
     SimpleModule module = new SimpleModule();
 
     module.addSerializer(new EnumIdentifiableWithNomeSerializer());
-    module.addDeserializer(EnumIdentifiableWithNome.class, new EnumIdentifiableWithNomeDeserializer());
+    //module.addDeserializer(EnumIdentifiableWithNome.class, new EnumIdentifiableWithNomeDeserializer());
 
     return module;
   }

@@ -5,8 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldNameConstants;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Setter
+@ToString(of = {"id"})
 @MappedSuperclass
 @EqualsAndHashCode
 @FieldNameConstants

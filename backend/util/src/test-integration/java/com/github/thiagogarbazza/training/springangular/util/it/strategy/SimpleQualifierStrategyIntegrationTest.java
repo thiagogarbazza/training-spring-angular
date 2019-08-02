@@ -1,4 +1,4 @@
-package com.github.jonasp.simplequalifierstrategy.integrationtest;
+package com.github.thiagogarbazza.training.springangular.util.it.strategy;
 
 import com.github.thiagogarbazza.training.springangular.util.strategy.AbstractSimpleQualifierStrategyManager;
 import com.github.thiagogarbazza.training.springangular.util.strategy.SimpleQualifierStrategy;
@@ -38,7 +38,8 @@ class SimpleQualifierStrategyIntegrationTest {
         asList(new NumericStrategyNegative(), new NumericStrategyNegative()));
     });
 
-    assertEquals("Qualifier -1 is already associated with the com.github.jonasp.simplequalifierstrategy.integrationtest"
+    assertEquals(
+      "Qualifier -1 is already associated with the com.github.thiagogarbazza.training.springangular.util.it.strategy"
         + ".SimpleQualifierStrategyIntegrationTest$NumericStrategyNegative strategy.",
       exception.getMessage());
   }

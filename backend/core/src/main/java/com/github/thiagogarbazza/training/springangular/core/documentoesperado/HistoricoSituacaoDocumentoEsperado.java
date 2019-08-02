@@ -1,6 +1,5 @@
 package com.github.thiagogarbazza.training.springangular.core.documentoesperado;
 
-import com.github.thiagogarbazza.training.springangular.core.documento.Documento;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistente;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoAuditavel;
 import lombok.AllArgsConstructor;
@@ -9,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.AttributeOverride;
@@ -27,6 +27,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @Setter
 @Builder
+@FieldNameConstants
 @ToString(callSuper = true)
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
