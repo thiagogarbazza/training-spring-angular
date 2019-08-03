@@ -1,6 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.rest.it;
 
-import com.github.thiagogarbazza.training.springangular.rest.controler.ApplicationInfoRestController;
+import com.github.thiagogarbazza.training.springangular.rest.controller.ApplicationInfoRestController;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
