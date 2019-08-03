@@ -57,7 +57,7 @@ public class DocumentoDispensado extends AbstractObjectPersistenteCriacaoEModifi
   @ManyToOne
   @JoinColumn(name = "documento_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tbl_documento_dispensado_from_tbl_documento"))
   private Documento documento;
-  @Column(name = "situacao", nullable = false, columnDefinition = "tinyint")
+  @Column(name = "situacao", nullable = false)
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private SituacaoDocumentoDispensado situacao;
 }

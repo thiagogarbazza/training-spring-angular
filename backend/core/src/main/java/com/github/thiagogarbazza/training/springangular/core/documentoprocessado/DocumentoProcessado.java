@@ -62,7 +62,7 @@ public class DocumentoProcessado extends AbstractObjectPersistenteCriacaoEModifi
   private LocalDate nomeArquivo;
   @Column(name = "protocolo_recebimento", nullable = true)
   private Long protocoloRecebimento;
-  @Column(name = "situacao", nullable = false, columnDefinition = "tinyint")
+  @Column(name = "situacao", nullable = false)
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private SituacaoDocumentoProcessado situacao;
 }

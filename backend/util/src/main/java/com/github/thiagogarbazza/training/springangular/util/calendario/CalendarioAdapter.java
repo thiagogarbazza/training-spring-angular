@@ -1,4 +1,4 @@
-package com.github.thiagogarbazza.training.springangular.adapter.calendario;
+package com.github.thiagogarbazza.training.springangular.util.calendario;
 
 import java.time.LocalDate;
 

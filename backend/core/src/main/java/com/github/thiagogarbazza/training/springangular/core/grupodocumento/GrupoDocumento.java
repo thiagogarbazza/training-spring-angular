@@ -45,7 +45,7 @@ public class GrupoDocumento extends AbstractObjectPersistenteCriacaoEModificacao
   private String codigo;
   @Column(name = "nome", nullable = false, length = 100)
   private String nome;
-  @Column(name = "situacao", nullable = false, columnDefinition = "tinyint")
+  @Column(name = "situacao", nullable = false)
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private SituacaoGrupoDocumento situacao;
 }

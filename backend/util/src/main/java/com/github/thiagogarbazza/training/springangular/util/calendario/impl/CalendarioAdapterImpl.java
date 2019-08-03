@@ -1,6 +1,6 @@
-package com.github.thiagogarbazza.training.springangular.adapter.calendario.impl;
+package com.github.thiagogarbazza.training.springangular.util.calendario.impl;
 
-import com.github.thiagogarbazza.training.springangular.adapter.calendario.CalendarioAdapter;
+import com.github.thiagogarbazza.training.springangular.util.calendario.CalendarioAdapter;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.stereotype.Service;
 

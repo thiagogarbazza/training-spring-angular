@@ -42,7 +42,7 @@ public class HistoricoSituacaoDocumentoEsperado extends AbstractObjectPersistent
   @ManyToOne
   @JoinColumn(name = "documento_esperado_id", nullable = false, foreignKey = @ForeignKey(name = "fk_his_situacao_documento_esperado_from_tbl_documento_esperado"))
   private DocumentoEsperado documentoEsperado;
-  @Column(name = "situacao", nullable = false, columnDefinition = "tinyint")
+  @Column(name = "situacao", nullable = false)
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private SituacaoDocumentoEsperado situacao;
 }

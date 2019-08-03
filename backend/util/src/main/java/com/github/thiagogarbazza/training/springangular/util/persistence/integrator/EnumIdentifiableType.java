@@ -1,7 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.util.persistence.integrator;
 
 import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiable;
-import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiableUtil;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.DynamicParameterizedType;
 import org.hibernate.usertype.UserType;
@@ -11,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.text.MessageFormat;
 import java.util.Properties;
 
 import static java.text.MessageFormat.format;
@@ -22,7 +20,7 @@ public class EnumIdentifiableType implements DynamicParameterizedType, UserType 
 
   @Override
   public int[] sqlTypes() {
-    return new int[] {Types.TINYINT};
+    return new int[] {Types.INTEGER};
   }
 
   @Override

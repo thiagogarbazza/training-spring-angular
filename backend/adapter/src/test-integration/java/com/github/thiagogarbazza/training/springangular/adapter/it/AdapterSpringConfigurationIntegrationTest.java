@@ -1,7 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.adapter.it;
 
-import com.github.thiagogarbazza.training.springangular.adapter.calendario.CalendarioAdapter;
-import com.github.thiagogarbazza.training.springangular.adapter.calendario.CalendarioAdapterStub;
+import com.github.thiagogarbazza.training.springangular.adapter.mail.EmailAdapter;
+import com.github.thiagogarbazza.training.springangular.adapter.mail.EmailAdapterStub;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class AdapterSpringConfigurationIntegrationTest {
 
   @Autowired
-  private CalendarioAdapter calendarioAdapter;
+  private EmailAdapter emailAdapter;
   @Autowired
-  private CalendarioAdapterStub calendarioAdapterStub;
+  private EmailAdapterStub emailAdapterStub;
   @Value("${app.adapter.integratio-test}")
   private String property;
 
@@ -26,16 +26,16 @@ class AdapterSpringConfigurationIntegrationTest {
 
   @Test
   void verificarInjectComponenteReal() {
-    assertNotNull(calendarioAdapter);
+    assertNotNull(emailAdapter);
   }
 
   @Test
   void verificarInjectComponenteStub() {
-    assertNotNull(calendarioAdapterStub);
+    assertNotNull(emailAdapterStub);
   }
 
   @Test
   void verificarInjectDeveInjetarOStubPoisEstaMarcadoComoPrimary() {
-    assertEquals(calendarioAdapter, calendarioAdapterStub);
+    assertEquals(emailAdapter, emailAdapterStub);
   }
 }

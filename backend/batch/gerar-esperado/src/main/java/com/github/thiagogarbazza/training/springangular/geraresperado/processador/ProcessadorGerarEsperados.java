@@ -1,11 +1,11 @@
 package com.github.thiagogarbazza.training.springangular.geraresperado.processador;
 
-import com.github.thiagogarbazza.training.springangular.adapter.calendario.CalendarioAdapter;
 import com.github.thiagogarbazza.training.springangular.core.cliente.Cliente;
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensado;
 import com.github.thiagogarbazza.training.springangular.core.documentoesperado.DocumentoEsperado;
 import com.github.thiagogarbazza.training.springangular.core.documentoesperado.DocumentoEsperadoService;
 import com.github.thiagogarbazza.training.springangular.core.documentoesperado.HistoricoSituacaoDocumentoEsperado;
+import com.github.thiagogarbazza.training.springangular.util.calendario.CalendarioAdapter;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;

@@ -1,4 +1,4 @@
-package com.github.thiagogarbazza.training.springangular.utiltest.h2;
+package com.github.thiagogarbazza.training.springangular.utiltest.database.h2.function;
 
 import com.github.thiagogarbazza.training.springangular.utiltest.randon.RandonUtil;
 import com.thedeanda.lorem.LoremIpsum;

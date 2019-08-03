@@ -1,4 +1,4 @@
-package com.github.thiagogarbazza.training.springangular.adapter.calendario;
+package com.github.thiagogarbazza.training.springangular.util.calendario;
 
 import lombok.Getter;
 import org.springframework.context.annotation.Primary;
@@ -13,8 +13,8 @@ import static java.time.DayOfWeek.SATURDAY;
 import static java.time.DayOfWeek.SUNDAY;
 import static java.util.Arrays.asList;
 
-@Service
 @Primary
+@Service
 public class CalendarioAdapterStub implements CalendarioAdapter {
 
   private static final Collection<DayOfWeek> FINAL_SEMANA = asList(SUNDAY, SATURDAY);

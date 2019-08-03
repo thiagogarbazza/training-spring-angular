@@ -18,7 +18,7 @@ class ClienteRepositoryImpl extends CustomQueryDslRepositorySupport<Cliente> imp
   @Override
   public Collection<Cliente> pesquisar() {
     return from(cliente)
-      .orderBy(cliente.nome.asc())
+      .orderBy(cliente.codigo.asc())
       .fetch();
   }
 }

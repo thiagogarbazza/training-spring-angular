@@ -61,7 +61,7 @@ public class DocumentoEsperado extends AbstractObjectPersistenteCriacaoEModifica
   private Documento documento;
   @OneToMany(mappedBy = HistoricoSituacaoDocumentoEsperado.Fields.documentoEsperado, cascade = CascadeType.ALL)
   private Collection<HistoricoSituacaoDocumentoEsperado> historicoSituacao;
-  @Column(name = "situacao", nullable = false, columnDefinition = "tinyint")
+  @Column(name = "situacao", nullable = false)
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private SituacaoDocumentoEsperado situacao;
 }
