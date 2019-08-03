@@ -51,6 +51,7 @@
     <plugin.compiler.version>3.8.1</plugin.compiler.version>
     <plugin.release.version>2.5.3</plugin.release.version>
     <plugin.maven-assembly.version>3.1.1</plugin.maven-assembly.version>
+    <plugin.maven-jar.version>3.1.2</plugin.maven-jar.version>
   </properties>
 
   <dependencyManagement>
@@ -212,6 +213,20 @@
                 <include>**/*AcceptanceTest.java</include>
               </includes>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${plugin.maven-jar.version}</version>
+        <inherited>true</inherited>
+        <executions>
+          <execution>
+            <id>attach-test-jar</id>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

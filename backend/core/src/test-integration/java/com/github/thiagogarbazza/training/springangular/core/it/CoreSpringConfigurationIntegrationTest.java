@@ -16,7 +16,7 @@ class CoreSpringConfigurationIntegrationTest {
   private CalendarioAdapter calendarioAdapter;
   @Autowired
   private CalendarioAdapterStub calendarioAdapterStub;
-  @Value("${app.core.integratio-test}")
+  @Value("${app.core.integration-test}")
   private String property;
 
   @Test

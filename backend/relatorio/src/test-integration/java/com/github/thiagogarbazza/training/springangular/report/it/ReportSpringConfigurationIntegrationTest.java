@@ -1,4 +1,4 @@
-package com.github.thiagogarbazza.training.springangular.adapter.it;
+package com.github.thiagogarbazza.training.springangular.report.it;
 
 import com.github.thiagogarbazza.training.springangular.adapter.mail.EmailAdapter;
 import com.github.thiagogarbazza.training.springangular.adapter.mail.EmailAdapterStub;
@@ -9,19 +9,19 @@ import org.springframework.beans.factory.annotation.Value;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@AdapterIntegrationTestRunner
-class AdapterSpringConfigurationIntegrationTest {
+@ReportIntegrationTestRunner
+class ReportSpringConfigurationIntegrationTest {
 
   @Autowired
   private EmailAdapter emailAdapter;
   @Autowired
   private EmailAdapterStub emailAdapterStub;
-  @Value("${app.adapter.integration-test}")
+  @Value("${app.report.integration-test}")
   private String property;
 
   @Test
   void verificarFezLeituraDoArquivoDeConfiguracao() {
-    assertEquals("Integration test for module adapter.", property);
+    assertEquals("Integration test for module report.", property);
   }
 
   @Test
