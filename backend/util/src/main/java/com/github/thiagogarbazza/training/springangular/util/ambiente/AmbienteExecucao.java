@@ -5,7 +5,6 @@ import lombok.Getter;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 public enum AmbienteExecucao {
-  LOCAL("local", "Local"),
   DESENVOLVIMENTO("dsen", "Desenvolvimento"),
   HOMOLOGACAO("homo", "Homologação"),
   PRODUCAO("prod", "Produção"),
@@ -33,7 +32,7 @@ public enum AmbienteExecucao {
         return ae;
       }
     }
-    
+
     return DESCONHECIDO;
   }
 }

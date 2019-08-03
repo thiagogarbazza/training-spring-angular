@@ -1,6 +1,9 @@
 package com.github.thiagogarbazza.training.springangular.rest;
 
+import com.github.thiagogarbazza.training.springangular.adapter.AdapterConfiguration;
 import com.github.thiagogarbazza.training.springangular.core.CoreConfiguration;
+import com.github.thiagogarbazza.training.springangular.report.ReportConfiguration;
+import com.github.thiagogarbazza.training.springangular.util.UtilConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +17,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 @Configuration
-@Import({CoreConfiguration.class})
-@ComponentScan({RestConfiguracao.PACOTE})
+@Import({UtilConfiguration.class, AdapterConfiguration.class, CoreConfiguration.class, ReportConfiguration.class})
+@ComponentScan({RestConfiguration.PACOTE})
 @PropertySource("classpath:application-rest.properties")
-public class RestConfiguracao {
+public class RestConfiguration {
 
   static final String PACOTE = "com.github.thiagogarbazza.training.springangular.rest";
 

@@ -16,8 +16,8 @@
   <name>ProjectName » batch</name>
 
   <modules>
-    <module>gerar-esperado</module>
     <module>batch-comum</module>
+    <module>gerar-esperado</module>
   </modules>
 
   <properties>

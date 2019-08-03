@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-class OrikaMapperConfiguracao extends ConfigurableMapper implements ApplicationContextAware {
+class OrikaMapperConfiguration extends ConfigurableMapper implements ApplicationContextAware {
 
   private ApplicationContext applicationContext;
 
-  public OrikaMapperConfiguracao() {
+  public OrikaMapperConfiguration() {
     super(false);
   }
 

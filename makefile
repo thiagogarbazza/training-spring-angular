@@ -9,7 +9,7 @@ clean:
 dependency-tree:
   ./${SCRIPTS_DIR}dependency-tree.sh
 
-build:
+build: clean
   mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify
 
 quality-check:
