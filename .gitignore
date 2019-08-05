@@ -14,6 +14,7 @@
 #############################
 target/
 out/
+coverage/
 *.log
 *.jar
 *.war
