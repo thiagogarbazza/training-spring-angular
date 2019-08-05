@@ -12,7 +12,7 @@
   </parent>
 
   <artifactId>project-name-backend</artifactId>
-  <name>ProjectName » backend</name>
+  <name>ProjectName » back-end</name>
   <packaging>pom</packaging>
 
   <modules>

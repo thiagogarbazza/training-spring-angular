@@ -2,6 +2,7 @@ package com.github.thiagogarbazza.training.springangular.utiltest.database.h2.co
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -10,6 +11,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Properties;
+import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -17,14 +19,16 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class H2JPAConfiguration {
 
+  @Resource
+  private Environment environment;
+
   @Bean
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setUsername("disney");
     dataSource.setPassword("mickey");
     dataSource.setUrl(
-      "jdbc:h2:mem:app-data-base;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;INIT=RUNSCRIPT FROM 'classpath:application-execucao-local-schema"
-        + ".sql'");
+      "jdbc:h2:mem:app-data-base;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;INIT=RUNSCRIPT FROM 'classpath:application-data-base-schema.sql'");
     dataSource.setDriverClassName("org.h2.Driver");
     return dataSource;
   }
