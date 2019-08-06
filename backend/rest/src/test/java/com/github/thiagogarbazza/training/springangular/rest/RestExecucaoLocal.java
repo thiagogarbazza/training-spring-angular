@@ -1,17 +1,10 @@
 package com.github.thiagogarbazza.training.springangular.rest;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import com.github.thiagogarbazza.training.springangular.rest.it.RestIntegrationTestRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-//@SpringBootApplication
-//@EnableAutoConfiguration
-@PropertySource("classpath:application-rest-local.properties")
-@ComponentScan("com.github.thiagogarbazza.training.springangular")
-//@EntityScan("com.github.thiagogarbazza.training.springangular")
-@EnableJpaRepositories("com.github.thiagogarbazza.training.springangular")
-@Import({RestConfiguration.class})
+@WebAppConfiguration
+@RestIntegrationTestRunner
 public class RestExecucaoLocal {
 
   public static void main(String[] args) {

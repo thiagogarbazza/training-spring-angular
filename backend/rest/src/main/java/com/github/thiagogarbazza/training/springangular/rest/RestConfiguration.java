@@ -10,12 +10,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.format.Formatter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+@EnableWebMvc
 @Configuration
 @Import({UtilConfiguration.class, AdapterConfiguration.class, CoreConfiguration.class, ReportConfiguration.class})
 @ComponentScan({RestConfiguration.PACOTE})
