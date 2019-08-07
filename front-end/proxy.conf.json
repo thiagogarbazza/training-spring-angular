@@ -1,0 +1,12 @@
+{
+  "/": {
+    "target": {
+      "protocol": "http:",
+      "host": "localhost",
+      "port": 8080
+    },
+    "secure": false,
+    "changeOrigin": false,
+    "logLevel": "info"
+  }
+}

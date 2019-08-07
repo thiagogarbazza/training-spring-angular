@@ -20,9 +20,9 @@
       "dom"
     ],
     "paths": {
-      "@app/*": ["app/*"],
+      "@env/*": ["environments/*"],
       "@shared/*": ["app/shared/*"],
-      "@env/*": ["environments/*"]
+      "@app/*": ["app/*"]
     },
   },
   "angularCompilerOptions": {

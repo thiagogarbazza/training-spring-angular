@@ -18,7 +18,7 @@ export class AbstractApiService {
   ) { }
 
   protected buscarRecurso<T>(caminhoUrl: string, parametros?: any): Observable<T> {
-    const params = ApiUtils.removerUndefinedEmptyNull(parametros);
+  const params = ApiUtils.removerUndefinedEmptyNull(parametros);
 
     return this.http.get<T>(apiURL + caminhoUrl, { params });
   }

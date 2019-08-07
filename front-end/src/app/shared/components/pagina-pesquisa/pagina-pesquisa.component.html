@@ -1,0 +1,54 @@
+<section class="pagina-pesquisa container-fluid mt-4">
+  <div>
+    <h4 class="titulo">
+      <ng-content select="[titulo]"></ng-content>
+    </h4>
+    <div class="dropdown-divider"></div>
+  </div>
+
+  <div class="acoes-topo">
+    <button (click)="formularioVisivel = !formularioVisivel" class="btn btn-primaryblack">
+      <span>Filtro</span> <i [ngClass]="formularioVisivel ? 'fa-angle-left' : 'fa-angle-right'" aria-hidden="true" class="fa fa-lg"></i>
+    </button>
+
+    <div class="pull-right">
+      <ng-content select="[acoes-topo]"></ng-content>
+    </div>
+  </div>
+
+  <div class="row">
+    <div *ngIf="formularioVisivel" @animacaoFormularioPesquisa class="col-sm-12 col-md-3">
+      <div class="card">
+        <div class="card-header pb-1 pt-2">
+          <h6 class="text-primaryblack">Parâmetros da pesquisa</h6>
+        </div>
+        <div class="text-right small text-muted">
+          <small>Campos com <i aria-hidden="true" class="fa fa-asterisk"></i> são de preenchimento obrigatório.</small>
+        </div>
+
+        <div class="card-body">
+          <ng-content select="[formulario]"></ng-content>
+        </div>
+        <div class="card-footer action-buttons">
+          <ng-content select="[formulario-botoes]"></ng-content>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="resultadoVisivel"
+         [@animacaoResultadoPesquisa]="formularioVisivel ? 'col-md-9' : 'col-md-12'"
+         [ngClass]="{'col-md-9' : formularioVisivel, 'col-md-12' : !formularioVisivel}"
+         class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 float-right div-botao-excel">
+              <ng-content select="[botaoes-acima-resultado]"></ng-content>
+            </div>
+          </div>
+          <ng-content select="[resultado]"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-content></ng-content>
+</section>
