@@ -7,6 +7,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @WebAppConfiguration
 @Import({RestConfiguration.class, UtilTestConfiguration.class})
-@PropertySource("classpath:application-rest-integration-test.properties")
+@PropertySource("classpath:application-rest-local.properties")
 class RestExecucaoLocalConfiguration {
 }
