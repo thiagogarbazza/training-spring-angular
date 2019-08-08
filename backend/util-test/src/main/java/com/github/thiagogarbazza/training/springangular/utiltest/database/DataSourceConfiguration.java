@@ -1,6 +1,5 @@
 package com.github.thiagogarbazza.training.springangular.utiltest.database;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -18,13 +17,10 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-public class H2JPAConfiguration {
+class DataSourceConfiguration {
 
   @Resource
   private Environment environment;
-
-  @Value("#{spring.jpa.properties}")
-  private Properties appProperties;
 
   @Bean
   public DataSource dataSource() {
@@ -64,6 +60,7 @@ public class H2JPAConfiguration {
     properties.setProperty("hibernate.dialect", environment.getProperty("spring.jpa.properties.hibernate.dialect"));
     properties.setProperty("hibernate.show_sql", environment.getProperty("spring.jpa.properties.hibernate.show_sql"));
     properties.setProperty("hibernate.format_sql", environment.getProperty("spring.jpa.properties.hibernate.format_sql"));
+    properties.setProperty("hibernate.use_sql_comments", environment.getProperty("spring.jpa.properties.hibernate.use_sql_comments"));
     properties.setProperty("hibernate.ddl-auto", environment.getProperty("spring.jpa.properties.hibernate.ddl-auto"));
     properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
     properties.setProperty("hibernate.default_schema", environment.getProperty("spring.jpa.properties.hibernate.default_schema"));
