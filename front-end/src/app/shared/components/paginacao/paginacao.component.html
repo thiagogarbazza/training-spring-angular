@@ -1,0 +1,67 @@
+<div class="content">
+  <div class="row">
+    <div class="col-sm-12 d-flex justify-content-end">
+      <div class="form-group form-inline float-right">
+        <label for="quantidadePorPagina">Resultados por página:</label> <select (change)="observerOnChangeQuantidadePorPagina()"
+                                                                                [(ngModel)]="paginacao.quantidadePorPagina"
+                                                                                class="custom-select form-control mx-sm-3">
+        <option *ngFor="let op of opcoesRegistroPorPagina" [ngValue]="op">{{ op }}</option>
+      </select>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li [ngClass]="{'disabled': !_pagina?.hasPrevious}" class="page-item">
+            <span *ngIf="!_pagina?.hasPrevious" class="page-link">Anterior</span> <a (click)="navegarPorPagina(_pagina?.pagePrevious)"
+                                                                                     *ngIf="_pagina?.hasPrevious"
+                                                                                     class="page-link">Anterior</a>
+          </li>
+          <li *ngFor="let page of paginacaoNumeros"
+              [ngClass]="{active: _pagina?.pageNumber == page, disabled: page == '...' || _pagina?.pageNumber == page}"
+              class="page-item">
+            <span *ngIf="page == '...'" class="page-link">{{ page }}</span> <span *ngIf="page == _pagina?.pageNumber" class="page-link">{{ page + 1 }}</span> <a
+            (click)="navegarPorPagina(page)"
+            *ngIf="page != '...' && page != _pagina?.pageNumber"
+            class="page-link">{{ page + 1 }}</a>
+          </li>
+
+          <li [ngClass]="{'disabled': !_pagina?.hasNext}" class="page-item">
+            <span *ngIf="!_pagina?.hasNext" class="page-link">Próximo</span> <a (click)="navegarPorPagina(_pagina?.pageNext)"
+                                                                                *ngIf="_pagina?.hasNext"
+                                                                                class="page-link">Próximo</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="form-group total-resultados">
+        <span>Total: {{ _pagina?.totalElements }} {{_pagina?.totalElements > 1 ? 'resultados': 'resultado'}}</span>
+      </div>
+    </div>
+  </div>
+  <ng-content></ng-content>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li [ngClass]="{'disabled': !_pagina?.hasPrevious}" class="page-item">
+            <span *ngIf="!_pagina?.hasPrevious" class="page-link">Anterior</span> <a (click)="navegarPorPagina(_pagina?.pagePrevious)"
+                                                                                     *ngIf="_pagina?.hasPrevious"
+                                                                                     class="page-link">Anterior</a>
+          </li>
+          <li *ngFor="let page of paginacaoNumeros"
+              [ngClass]="{active: _pagina?.pageNumber == page, disabled: page == '...' || _pagina?.pageNumber == page}"
+              class="page-item">
+            <span *ngIf="page == '...'" class="page-link">{{ page }}</span> <span *ngIf="page == _pagina?.pageNumber" class="page-link">{{ page + 1 }}</span> <a
+            (click)="navegarPorPagina(page)"
+            *ngIf="page != '...' && page != _pagina?.pageNumber"
+            class="page-link">{{ page + 1 }}</a>
+          </li>
+
+          <li [ngClass]="{'disabled': !_pagina?.hasNext}" class="page-item">
+            <span *ngIf="!_pagina?.hasNext" class="page-link">Próximo</span> <a (click)="navegarPorPagina(_pagina?.pageNext)"
+                                                                                *ngIf="_pagina?.hasNext"
+                                                                                class="page-link">Próximo</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

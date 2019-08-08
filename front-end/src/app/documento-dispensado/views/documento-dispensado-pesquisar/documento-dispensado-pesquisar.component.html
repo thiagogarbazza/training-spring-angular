@@ -7,6 +7,29 @@
 
   <section resultado>
     <app-simple-messages></app-simple-messages>
+    <app-paginacao (navegacaoGrid)="navegacaoGrid($event);" [pagina]="resultadoPesquisa">
+      <table class="table table-bordered table-hover tablefocus">
+        <thead class="thead-light">
+        <tr>
+          <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'CODIGO_GRUPO_DOCUMENTO'" scope="col" width="20%">Grupo documento</th>
+          <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'CODIGO_DOCUMENTO'" scope="col" width="20%">Documento</th>
+          <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'CODIGO_CLIENTE'" scope="col" width="20%">Cliente</th>
+          <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'DATA_BASE'" scope="col" width="20%">Vigência</th>
+          <th scope="col" width="10%">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of resultadoPesquisa?.content">
+          <td>{{ item.codigoGrupoDocumento }}</td>
+          <td>{{ item.codigoDocumento }}</td>
+          <td>{{ item.codigoCliente }}</td>
+          <td></td>
+          <td class="centralizar-icones">
 
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </app-paginacao>
   </section>
 </app-pagina-pesquisa>

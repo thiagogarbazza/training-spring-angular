@@ -1,6 +1,11 @@
+import { CustomPageResource } from '@shared/models/custom-page-resource';
+import { DocumentoDispensadoResultadoPesquisaResource } from './documento-dispensado-resultado-pesquisa-resource';
+
 export class DocumentoDispensadoParaPesquisarResource {
 
-  public acoes: Acoes;
+  acoes: Acoes;
+  resultadoPesquisa: CustomPageResource<DocumentoDispensadoResultadoPesquisaResource>;
+
 
 }
 
