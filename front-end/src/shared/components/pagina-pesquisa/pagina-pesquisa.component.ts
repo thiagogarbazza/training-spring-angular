@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { animacaoPesquisa } from '@app/shared/components/pagina-pesquisa/animacao';
+import { animacaoPesquisa } from '@shared/components/pagina-pesquisa/animacao';
 
 @Component({
   selector: 'app-pagina-pesquisa',

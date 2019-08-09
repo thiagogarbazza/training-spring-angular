@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { AbstractApiService } from '@shared/services/abstract-api.service';
+import { AbstractApiService } from 'shared/services/abstract-api.service';
 import { DocumentoDispensadoFiltroConsulta } from '@app/documento-dispensado/models/documento-dispensado-filtro-consulta';
 import { CustomPageResource } from '@shared/models/custom-page-resource';
 import { DocumentoDispensadoResultadoPesquisaResource } from '../models/documento-dispensado-resultado-pesquisa-resource';

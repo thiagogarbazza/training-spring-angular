@@ -21,7 +21,7 @@
     ],
     "paths": {
       "@env/*": ["environments/*"],
-      "@shared/*": ["app/shared/*"],
+      "@shared/*": ["shared/*"],
       "@app/*": ["app/*"]
     },
   },
