@@ -1,7 +1,8 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado;
 
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensadoFiltroConsulta;
-import com.github.thiagogarbazza.training.springangular.rest.comum.CustomPageResource;
+import com.github.thiagogarbazza.training.springangular.rest.comum.arquivo.ArquivoUploadResource;
+import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaAlterarResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaCriarResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaDesativarResource;
@@ -22,6 +23,8 @@ import java.util.UUID;
 @RequestMapping("/documento-dispensado")
 class DocumentoDispensadoRestController {
 
+  @Autowired
+  private DocumentoDispensadoGerarRelatorioExcelService documentoDispensadoGerarRelatorioExcelService;
   @Autowired
   private DocumentoDispensadoParaAlterarService documentoDispensadoParaAlterarService;
   @Autowired
@@ -57,6 +60,11 @@ class DocumentoDispensadoRestController {
   @RequestMapping(method = RequestMethod.GET, path = "/{id}")
   public String detalhar() {
     return null;
+  }
+
+  @RequestMapping(method = RequestMethod.GET, path = "/gerar-relatorio-excel")
+  public ArquivoUploadResource gerarRelatorioExcel(DocumentoDispensadoFiltroConsulta filtroConsulta) {
+    return documentoDispensadoGerarRelatorioExcelService.gerar(filtroConsulta);
   }
 
   @RequestMapping(method = RequestMethod.GET, path = "/{id}/para-alterar")

@@ -3,7 +3,7 @@ package com.github.thiagogarbazza.training.springangular.rest.controller.documen
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensado;
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensadoConsultaService;
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensadoFiltroConsulta;
-import com.github.thiagogarbazza.training.springangular.rest.comum.CustomPageResource;
+import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoResultadoPesquisaResource;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import ma.glasnost.orika.MapperFacade;

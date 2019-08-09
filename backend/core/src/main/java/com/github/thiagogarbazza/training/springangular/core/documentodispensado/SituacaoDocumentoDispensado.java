@@ -1,19 +1,19 @@
 package com.github.thiagogarbazza.training.springangular.core.documentodispensado;
 
-import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiableWithNome;
+import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiableWithDescription;
 import lombok.Getter;
 
 @Getter
-public enum SituacaoDocumentoDispensado implements EnumIdentifiableWithNome {
+public enum SituacaoDocumentoDispensado implements EnumIdentifiableWithDescription {
 
   ATIVO(1, "Ativo"),
   INATIVO(2, "Inativo");
 
   private final int id;
-  private final String nome;
+  private final String description;
 
-  SituacaoDocumentoDispensado(final int id, final String nome) {
+  SituacaoDocumentoDispensado(final int id, final String description) {
     this.id = id;
-    this.nome = nome;
+    this.description = description;
   }
 }

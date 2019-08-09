@@ -2,7 +2,7 @@ package com.github.thiagogarbazza.training.springangular.core.documentodispensad
 
 import com.github.thiagogarbazza.training.springangular.core.cliente.Cliente;
 import com.github.thiagogarbazza.training.springangular.core.documento.Documento;
-import com.github.thiagogarbazza.training.springangular.util.persistence.Periodo;
+import com.github.thiagogarbazza.training.springangular.util.calendario.Periodo;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistente;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoAuditavel;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoEModificacaoAuditavel;
@@ -53,7 +53,7 @@ public class DocumentoDispensado extends AbstractObjectPersistenteCriacaoEModifi
     @AttributeOverride(name = Periodo.Fields.inicio, column = @Column(name = "data_base_inicio", nullable = false)),
     @AttributeOverride(name = Periodo.Fields.fim, column = @Column(name = "data_base_fim"))
   })
-  private Periodo dataBase;
+  private Periodo vigencia;
   @ManyToOne
   @JoinColumn(name = "documento_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tbl_documento_dispensado_from_tbl_documento"))
   private Documento documento;

@@ -20,6 +20,7 @@ class EmbeddedJetty {
   }
 
   public void run() {
+    log.info("Starting...");
     server.setHandler(servletContextBuilder());
 
     try {

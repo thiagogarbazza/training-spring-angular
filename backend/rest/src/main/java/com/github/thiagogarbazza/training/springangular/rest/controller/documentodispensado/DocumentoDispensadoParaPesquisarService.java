@@ -10,7 +10,7 @@ import com.github.thiagogarbazza.training.springangular.core.documentodispensado
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoConsultaService;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoFiltroConsulta;
-import com.github.thiagogarbazza.training.springangular.rest.comum.CustomPageResource;
+import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource;
@@ -58,8 +58,8 @@ class DocumentoDispensadoParaPesquisarService {
 
   private Acoes acoesBuild() {
     return Acoes.builder()
-      .podeGerarExcel(true)
-      .podeIncluir(true)
+      .podeCriar(true)
+      .podeGerarRelatorioExcel(true)
       .build();
   }
 

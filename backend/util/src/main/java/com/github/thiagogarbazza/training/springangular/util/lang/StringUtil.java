@@ -5,5 +5,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class StringUtil {
 
+  public static final String TRACO = "-";
   public static final String VIRGULA = ",";
 }

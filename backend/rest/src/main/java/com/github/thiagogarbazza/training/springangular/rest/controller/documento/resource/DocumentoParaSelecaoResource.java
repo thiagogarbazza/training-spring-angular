@@ -1,5 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource;
 
+import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,4 +24,5 @@ public class DocumentoParaSelecaoResource implements Identifiable {
   private String codigo;
   private UUID id;
   private String nome;
+  private GrupoDocumentoParaSelecaoResource grupoDocumento;
 }

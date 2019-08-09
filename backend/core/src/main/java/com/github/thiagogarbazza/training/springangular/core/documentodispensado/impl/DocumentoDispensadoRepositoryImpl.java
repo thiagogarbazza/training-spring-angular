@@ -20,8 +20,13 @@ class DocumentoDispensadoRepositoryImpl extends CustomQueryDslRepositorySupport<
 
   @Override
   public Collection<DocumentoDispensado> pesquisar(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
-    return from(documentoDispensado)
-      .orderBy(documentoDispensado.documento.codigo.asc(), documentoDispensado.cliente.codigo.asc(), documentoDispensado.dataBase.inicio.desc())
+    final JPQLQuery<DocumentoDispensado> query = from(documentoDispensado)
+      .orderBy(documentoDispensado.documento.grupoDocumento.codigo.asc(),
+        documentoDispensado.documento.codigo.asc(),
+        documentoDispensado.cliente.codigo.asc(),
+        documentoDispensado.vigencia.inicio.desc());
+    return query
+      .where(DocumentoDispensadoFiltroConsultaUtil.predicateBuilder(query, filtroConsulta))
       .fetch();
   }
 

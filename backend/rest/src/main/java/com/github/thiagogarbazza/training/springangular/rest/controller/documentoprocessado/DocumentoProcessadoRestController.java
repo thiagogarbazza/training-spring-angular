@@ -1,7 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documentoprocessado;
 
 import com.github.thiagogarbazza.training.springangular.core.documentoprocessado.DocumentoProcessadoFiltroConsulta;
-import com.github.thiagogarbazza.training.springangular.rest.comum.CustomPageResource;
+import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentoprocessado.resource.DocumentoProcessadoParaPesquisarResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentoprocessado.resource.DocumentoProcessadoResultadoPesquisaResource;
 import com.github.thiagogarbazza.violationbuilder.ViolationBuilder;

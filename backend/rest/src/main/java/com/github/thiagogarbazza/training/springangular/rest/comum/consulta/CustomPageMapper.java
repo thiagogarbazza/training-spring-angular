@@ -1,4 +1,4 @@
-package com.github.thiagogarbazza.training.springangular.rest.comum;
+package com.github.thiagogarbazza.training.springangular.rest.comum.consulta;
 
 import com.github.thiagogarbazza.training.springangular.rest.configuration.mapper.AssemblerMapper;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;

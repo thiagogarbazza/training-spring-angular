@@ -1,10 +1,10 @@
 package com.github.thiagogarbazza.training.springangular.core.documento;
 
-import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiableWithNome;
+import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiableWithDescription;
 import lombok.Getter;
 
 @Getter
-public enum Periodicidade implements EnumIdentifiableWithNome {
+public enum Periodicidade implements EnumIdentifiableWithDescription {
 
   DIARIA(1, "Diário"),
   SEMANAL(2, "Semanal"),
@@ -17,10 +17,10 @@ public enum Periodicidade implements EnumIdentifiableWithNome {
   REGRA(255, "Regra");
 
   private final int id;
-  private final String nome;
+  private final String description;
 
-  Periodicidade(final int id, final String nome) {
+  Periodicidade(final int id, final String description) {
     this.id = id;
-    this.nome = nome;
+    this.description = description;
   }
 }

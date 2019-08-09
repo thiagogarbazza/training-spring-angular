@@ -1,5 +1,8 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource;
 
+import com.github.thiagogarbazza.training.springangular.core.documentodispensado.SituacaoDocumentoDispensado;
+import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
+import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,10 +24,11 @@ import static lombok.AccessLevel.PUBLIC;
 public class DocumentoDispensadoResultadoPesquisaResource {
 
   private Acoes acoes;
-  private String codigoCliente;
-  private String codigoDocumento;
-  private String codigoGrupoDocumento;
+  private ClienteParaSelecaoResource cliente;
+  private DocumentoParaSelecaoResource documento;
+  private SituacaoDocumentoDispensado situacao;
   private UUID id;
+  private String vigencia;
 
   @Getter
   @Setter

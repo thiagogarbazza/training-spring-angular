@@ -33,11 +33,12 @@ public class DocumentoDispensadoFiltroConsulta extends AbstractFiltroPaginado<Do
   private Collection<SituacaoDocumentoDispensado> situacoes;
 
   @Override
-  protected Collection<OrderSpecifier> orderByDefault() {
+  public Collection<OrderSpecifier> orderByDefault() {
     return Arrays.asList(
-      documentoDispensado.cliente.codigo.asc(),
+      documentoDispensado.documento.grupoDocumento.codigo.asc(),
       documentoDispensado.documento.codigo.asc(),
-      documentoDispensado.dataBase.inicio.desc()
+      documentoDispensado.cliente.codigo.asc(),
+      documentoDispensado.vigencia.inicio.desc()
                         );
   }
 }

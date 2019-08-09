@@ -30,25 +30,37 @@
     <project.version.timestamp>${maven.build.timestamp}</project.version.timestamp>
     <project.package.pathbase>com/github/thiagogarbazza/trainings/springangular</project.package.pathbase>
 
+    <dependency.apache-poi.version>4.1.0</dependency.apache-poi.version>
+    <dependency.aspectjrt.version>1.9.4</dependency.aspectjrt.version>
+    <dependency.commons-collections4.version>4.4</dependency.commons-collections4.version>
+    <dependency.commons-lang3.version>3.9</dependency.commons-lang3.version>
     <dependency.commons-logging.version>1.2</dependency.commons-logging.version>
     <dependency.h2.version>1.4.199</dependency.h2.version>
+    <dependency.hibernate-core.version>5.4.3.Final</dependency.hibernate-core.version>
+    <dependency.javax.persistence-api.version>2.2</dependency.javax.persistence-api.version>
     <dependency.junit-jupiter.version>5.4.2</dependency.junit-jupiter.version>
     <dependency.junit-jupter-platform.version>1.4.2</dependency.junit-jupter-platform.version>
     <dependency.log4jdbc.version>1.2</dependency.log4jdbc.version>
     <dependency.lombok.version>1.18.8</dependency.lombok.version>
     <dependency.mockito.version>3.0.0</dependency.mockito.version>
+    <dependency.orika-core.version>1.5.4</dependency.orika-core.version>
     <dependency.querydsl.version>4.2.1</dependency.querydsl.version>
     <dependency.simple-message.version>1.0.0</dependency.simple-message.version>
+    <dependency.slf4j.version>1.7.26</dependency.slf4j.version>
     <dependency.spring.version>5.1.8.RELEASE</dependency.spring.version>
     <dependency.spring-batch.version>4.1.2.RELEASE</dependency.spring-batch.version>
     <dependency.spring-data.version>2.1.9.RELEASE</dependency.spring-data.version>
+    <dependency.violation-builder.version>0.1.0-SNAPSHOT</dependency.violation-builder.version>
 
     <plugin.build-helper.version>3.0.0</plugin.build-helper.version>
     <plugin.lombok.version>1.18.6.0</plugin.lombok.version>
-    <plugin.compiler.version>3.8.1</plugin.compiler.version>
-    <plugin.release.version>2.5.3</plugin.release.version>
     <plugin.maven-assembly.version>3.1.1</plugin.maven-assembly.version>
+    <plugin.maven-compiler.version>3.8.1</plugin.maven-compiler.version>
+    <plugin.maven-failsafe.version>2.22.2</plugin.maven-failsafe.version>
     <plugin.maven-jar.version>3.1.2</plugin.maven-jar.version>
+    <plugin.maven-release.version>2.5.3</plugin.maven-release.version>
+    <plugin.maven-resources.version>3.1.0</plugin.maven-resources.version>
+    <plugin.maven-surefire.version>2.22.2</plugin.maven-surefire.version>
   </properties>
 
   <dependencyManagement>
@@ -57,6 +69,21 @@
         <groupId>commons-logging</groupId>
         <artifactId>commons-logging</artifactId>
         <version>${dependency.commons-logging.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.thiagogarbazza</groupId>
+        <artifactId>simple-message</artifactId>
+        <version>${dependency.simple-message.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.thiagogarbazza</groupId>
+        <artifactId>violation-builder</artifactId>
+        <version>${dependency.violation-builder.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${dependency.h2.version}</version>
       </dependency>
       <dependency>
         <groupId>com.querydsl</groupId>
@@ -72,41 +99,48 @@
         <groupId>com.querydsl</groupId>
         <artifactId>querydsl-jpa</artifactId>
         <version>${dependency.querydsl.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.thiagogarbazza</groupId>
-        <artifactId>simple-message</artifactId>
-        <version>${dependency.simple-message.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.thiagogarbazza</groupId>
-        <artifactId>violation-builder</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>javax.persistence</groupId>
         <artifactId>javax.persistence-api</artifactId>
-        <version>2.2</version>
+        <version>${dependency.javax.persistence-api.version}</version>
       </dependency>
       <dependency>
         <groupId>ma.glasnost.orika</groupId>
         <artifactId>orika-core</artifactId>
-        <version>1.5.4</version>
+        <version>${dependency.orika-core.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>3.9</version>
+        <version>${dependency.commons-lang3.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-collections4</artifactId>
-        <version>4.4</version>
+        <version>${dependency.commons-collections4.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>${dependency.apache-poi.version}</version>
       </dependency>
       <dependency>
         <groupId>org.aspectj</groupId>
         <artifactId>aspectjrt</artifactId>
-        <version>1.9.4</version>
+        <version>${dependency.aspectjrt.version}</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -123,7 +157,7 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
-        <version>5.4.3.Final</version>
+        <version>${dependency.hibernate-core.version}</version>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
@@ -138,9 +172,22 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${dependency.slf4j.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
         <version>${dependency.spring.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jcl</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
@@ -156,8 +203,13 @@
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-jpa</artifactId>
         <version>${dependency.spring-data.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 
@@ -174,7 +226,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>${plugin.compiler.version}</version>
+          <version>${plugin.maven-compiler.version}</version>
           <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
@@ -204,7 +256,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>${plugin.maven-failsafe.version}</version>
         <executions>
           <execution>
             <id>integration</id>
@@ -249,7 +301,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>${plugin.release.version}</version>
+        <version>${plugin.maven-release.version}</version>
         <configuration>
           <preparationGoals>clean verify</preparationGoals>
           <tagNameFormat>@{project.version}</tagNameFormat>
@@ -261,7 +313,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>${plugin.maven-resources.version}</version>
         <configuration>
           <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
@@ -269,7 +321,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>${plugin.maven-surefire.version}</version>
         <configuration>
           <excludes>
             <exclude>**/*AT.java</exclude>

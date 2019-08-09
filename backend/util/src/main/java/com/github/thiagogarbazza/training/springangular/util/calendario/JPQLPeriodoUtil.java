@@ -1,4 +1,4 @@
-package com.github.thiagogarbazza.training.springangular.util.persistence;
+package com.github.thiagogarbazza.training.springangular.util.calendario;
 
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;

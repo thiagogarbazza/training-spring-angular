@@ -7,6 +7,8 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.MappingContext;
 import org.springframework.stereotype.Component;
 
+import static com.github.thiagogarbazza.training.springangular.core.documentodispensado.SituacaoDocumentoDispensado.ATIVO;
+
 @Component
 class DocumentoDispensadoResultadoPesquisaMapper
   extends CustomMapper<DocumentoDispensado, DocumentoDispensadoResultadoPesquisaResource>
@@ -23,13 +25,9 @@ class DocumentoDispensadoResultadoPesquisaMapper
   @Override
   public void mapAtoB(final DocumentoDispensado documentoDispensado,
     final DocumentoDispensadoResultadoPesquisaResource documentoDispensadoResultadoPesquisaResource, final MappingContext context) {
-    documentoDispensadoResultadoPesquisaResource.setCodigoCliente(documentoDispensado.getCliente().getCodigo());
-    documentoDispensadoResultadoPesquisaResource.setCodigoDocumento(documentoDispensado.getDocumento().getCodigo());
-    documentoDispensadoResultadoPesquisaResource.setCodigoGrupoDocumento(documentoDispensado.getDocumento().getGrupoDocumento().getCodigo());
-
     documentoDispensadoResultadoPesquisaResource.setAcoes(DocumentoDispensadoResultadoPesquisaResource.Acoes.builder()
-      .podeAlterar(true)
-      .podeDesativar(true)
+      .podeAlterar(ATIVO.equals(documentoDispensado.getSituacao()))
+      .podeDesativar(ATIVO.equals(documentoDispensado.getSituacao()))
       .podeDetalhar(true)
       .build());
   }

@@ -1,7 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource;
 
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.SituacaoDocumentoDispensado;
-import com.github.thiagogarbazza.training.springangular.rest.comum.CustomPageResource;
+import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
@@ -38,8 +38,8 @@ public class DocumentoDispensadoParaPesquisarResource {
   @AllArgsConstructor(access = PRIVATE)
   public static class Acoes {
 
-    private boolean podeGerarExcel;
-    private boolean podeIncluir;
+    private boolean podeCriar;
+    private boolean podeGerarRelatorioExcel;
   }
 
   @Getter

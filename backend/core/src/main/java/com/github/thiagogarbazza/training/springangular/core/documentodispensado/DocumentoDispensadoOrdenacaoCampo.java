@@ -11,7 +11,7 @@ public enum DocumentoDispensadoOrdenacaoCampo implements OrderByColumn {
 
   CODIGO_CLIENTE(documentoDispensado.cliente.codigo),
   CODIGO_DOCUMENTO(documentoDispensado.documento.codigo),
-  DATA_BASE(documentoDispensado.dataBase.inicio);
+  DATA_BASE(documentoDispensado.vigencia.inicio);
 
   private final ComparableExpressionBase expression;
 

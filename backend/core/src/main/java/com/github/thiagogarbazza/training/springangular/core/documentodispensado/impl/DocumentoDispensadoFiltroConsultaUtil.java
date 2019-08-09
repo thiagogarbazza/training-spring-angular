@@ -8,7 +8,7 @@ import lombok.experimental.UtilityClass;
 import org.apache.commons.collections4.CollectionUtils;
 
 import static com.github.thiagogarbazza.training.springangular.core.documentodispensado.QDocumentoDispensado.documentoDispensado;
-import static com.github.thiagogarbazza.training.springangular.util.persistence.JPQLPeriodoUtil.dataEstaContidaNoPeriodo;
+import static com.github.thiagogarbazza.training.springangular.util.calendario.JPQLPeriodoUtil.dataEstaContidaNoPeriodo;
 
 @UtilityClass
 class DocumentoDispensadoFiltroConsultaUtil {
@@ -32,7 +32,7 @@ class DocumentoDispensadoFiltroConsultaUtil {
       conditions.and(documentoDispensado.situacao.in(filtroConsulta.getSituacoes()));
     }
 
-    conditions.and(dataEstaContidaNoPeriodo(documentoDispensado.dataBase, filtroConsulta.getDataBaseInicio(), filtroConsulta.getDataBaseFim()));
+    conditions.and(dataEstaContidaNoPeriodo(documentoDispensado.vigencia, filtroConsulta.getDataBaseInicio(), filtroConsulta.getDataBaseFim()));
 
     return conditions;
   }

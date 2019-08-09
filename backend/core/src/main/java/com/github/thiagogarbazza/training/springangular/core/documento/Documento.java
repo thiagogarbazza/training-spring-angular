@@ -1,7 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.core.documento;
 
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
-import com.github.thiagogarbazza.training.springangular.util.persistence.Periodo;
+import com.github.thiagogarbazza.training.springangular.util.calendario.Periodo;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistente;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoAuditavel;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoEModificacaoAuditavel;

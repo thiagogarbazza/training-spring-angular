@@ -1,6 +1,8 @@
-package com.github.thiagogarbazza.training.springangular.util.persistence;
+package com.github.thiagogarbazza.training.springangular.util.calendario;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldNameConstants;
 import org.apache.commons.lang3.builder.CompareToBuilder;
@@ -14,8 +16,10 @@ import javax.persistence.Embeddable;
 import static lombok.AccessLevel.PROTECTED;
 import static org.apache.commons.lang3.ObjectUtils.allNotNull;
 
-@Embeddable
+@Getter
+@Setter
 @ToString
+@Embeddable
 @FieldNameConstants
 @NoArgsConstructor(access = PROTECTED)
 public class Periodo implements Comparable<Periodo> {
