@@ -12,8 +12,8 @@ export class OrdenacaoCampoDirective {
   @Output() ordenarPesquisa: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('class.sortable') ordenavel = true;
-  @HostBinding('class.sort-asc') asc;
-  @HostBinding('class.sort-desc') desc;
+  @HostBinding('class.sortable-asc') asc;
+  @HostBinding('class.sortable-desc') desc;
 
   constructor() {
   }

@@ -45,7 +45,7 @@ export class AbstractApiService {
     return this.http.get<T>(apiURL + caminhoUrl, { params });
   }
 
-  protected incluirRecurso<T>(caminhoUrl: string, resource?: any): Observable<T> {
+  protected criarRecurso<T>(caminhoUrl: string, resource?: any): Observable<T> {
     const body = ApiUtils.removerUndefinedEmptyNull(resource);
 
     return this.http.post<T>(apiURL + caminhoUrl, body);

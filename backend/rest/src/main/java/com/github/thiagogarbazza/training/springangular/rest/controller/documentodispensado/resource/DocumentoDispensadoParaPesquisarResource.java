@@ -51,8 +51,8 @@ public class DocumentoDispensadoParaPesquisarResource {
   public static class DadosFormulario {
 
     private Collection<ClienteParaSelecaoResource> clientes;
-    private LocalDate dataBaseFim;
-    private LocalDate dataBaseInicio;
+    private LocalDate vigenciaFim;
+    private LocalDate vigenciaInicio;
     private Collection<DocumentoParaSelecaoResource> documentos;
     private Collection<GrupoDocumentoParaSelecaoResource> grupoDocumentos;
     private Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados;

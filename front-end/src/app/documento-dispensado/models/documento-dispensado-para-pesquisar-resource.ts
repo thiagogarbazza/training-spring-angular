@@ -27,8 +27,8 @@ export class Acoes {
 export class DadosFormulario {
 
   public clientes: Array<ClienteParaSelecaoResource>;
-  public dataBaseFim: Date;
-  public dataBaseInicio: Date;
+  public vigenciaFim: Date;
+  public vigenciaInicio: Date;
   public documentos: Array<DocumentoParaSelecaoResource>;
   public grupoDocumentos: Array<GrupoDocumentoParaSelecaoResource>;
   public situacaoDocumentoDispensados: Array<SituacaoDocumentoDispensado>;

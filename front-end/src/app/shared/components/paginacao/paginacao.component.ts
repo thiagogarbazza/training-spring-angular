@@ -8,7 +8,7 @@ import { CustomPageResource } from '@shared/models/custom-page-resource';
 @Component({
   selector: 'app-paginacao',
   templateUrl: './paginacao.component.html',
-  styleUrls: ['./paginacao.component.scss']
+  styleUrls: ['./paginacao.component.sass']
 })
 export class PaginacaoComponent implements OnInit, AfterContentInit {
 

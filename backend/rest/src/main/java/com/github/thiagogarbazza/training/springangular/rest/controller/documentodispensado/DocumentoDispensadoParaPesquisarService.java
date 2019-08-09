@@ -68,8 +68,8 @@ class DocumentoDispensadoParaPesquisarService {
       .clientes(findIdentifiablesByIds(dadosParaFormulario.getClientes(), filtroConsulta.getClientes()))
       .documentos(findIdentifiablesByIds(dadosParaFormulario.getDocumentos(), filtroConsulta.getDocumentos()))
       .grupoDocumentos(findIdentifiablesByIds(dadosParaFormulario.getGrupoDocumentos(), filtroConsulta.getGrupoDocumentos()))
-      .dataBaseInicio(filtroConsulta.getDataBaseInicio())
-      .dataBaseFim(filtroConsulta.getDataBaseFim())
+      .vigenciaInicio(filtroConsulta.getVigenciaInicio())
+      .vigenciaFim(filtroConsulta.getVigenciaFim())
       .situacaoDocumentoDispensados(filtroConsulta.getSituacoes())
       .build();
   }

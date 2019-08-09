@@ -1,0 +1,21 @@
+
+::ng-deep
+  .sortable
+    cursor: pointer
+    position: relative
+    ::after
+      font-family: FontAwesome
+      color: #c0c0c0
+      content: ""
+      position: absolute
+      top: 12px
+      right: 4px
+      display: block
+
+  .sortable-asc::after
+    content: "A"
+    color: #333
+
+  .sortable-desc::after
+    content: "Z"
+    color: #333

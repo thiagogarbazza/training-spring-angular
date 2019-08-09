@@ -25,6 +25,34 @@
         <option *ngFor="let item of dadosParaFormulario.clientes; trackById" [ngValue]="item" title="{{item.codigo}}">{{ item.nome }}</option>
       </select>
       </div>
+      <div class="form-group">
+        <label for="vigencia-inicio">Início</label>
+        <div class="input-group">
+          <input #datePickerVigenciaInicio="ngbDatepicker"
+                 class="form-control"
+                 formControlName="vigenciaInicio"
+                 id="vigencia-inicio"
+                 ngbDatepicker
+                 placeholder="dd/mm/aaaa">
+          <div class="input-group-append">
+            <button (click)="datePickerVigenciaInicio.toggle()" class="btn btn-outline-secondary" type="button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="vigencia-fim">Fim</label>
+        <div class="input-group">
+          <input #datePickerVigenciaFim="ngbDatepicker"
+                 class="form-control"
+                 formControlName="vigenciaFim"
+                 id="vigencia-fim"
+                 ngbDatepicker
+                 placeholder="dd/mm/aaaa">
+          <div class="input-group-append">
+            <button (click)="datePickerVigenciaFim.toggle()" class="btn btn-outline-secondary" type="button"></button>
+          </div>
+        </div>
+      </div>
     </form>
   </section>
 
@@ -55,7 +83,7 @@
           <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'CODIGO_DOCUMENTO'" scope="col" width="20%">Documento</th>
           <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'CODIGO_CLIENTE'" scope="col" width="20%">Cliente</th>
           <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'DATA_BASE'" scope="col" width="20%">Vigência</th>
-          <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'SITUACAO'" scope="col" width="20%">Situação</th>
+          <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'SITUACAO'" scope="col" width="10%">Situação</th>
           <th scope="col" width="10%">Ações</th>
         </tr>
         </thead>

@@ -26,8 +26,8 @@ class ProcessadorCarregarDispensa extends ProcessadorGerarEsperado {
   public void processar(final DadosGeracaoEsperado dados) {
     final Collection<DocumentoDispensado> documentoDispensados = documentoDispensadoConsultaService.pesquisar(
       DocumentoDispensadoFiltroConsulta.builder()
-        .dataBaseInicio(dados.getDataReferencia())
-        .dataBaseFim(dados.getDataReferencia())
+        .vigenciaInicio(dados.getDataReferencia())
+        .vigenciaFim(dados.getDataReferencia())
         .situacoes(singleton(ATIVO))
         .build());
 

@@ -6,6 +6,8 @@ import { OrdenacaoCampoDirective } from './components/paginacao/ordenacao-campo.
 import { PaginacaoComponent } from './components/paginacao/paginacao.component';
 import { FormsModule } from '@angular/forms';
 import { NgForTrackByIdDirective } from './directives/ng-for-track-by/ng-for-track-by-id.directive';
+import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateCustomParserFormatter } from './configurations/ngb-date-custom-parser-formatter';
 
 const EXPORTAR = [
   PaginaPesquisaComponent,
@@ -21,7 +23,11 @@ const EXPORTAR = [
   exports: [... EXPORTAR],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModule
+  ],
+  providers: [
+    {provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter}
   ]
 })
 export class SharedModule { }

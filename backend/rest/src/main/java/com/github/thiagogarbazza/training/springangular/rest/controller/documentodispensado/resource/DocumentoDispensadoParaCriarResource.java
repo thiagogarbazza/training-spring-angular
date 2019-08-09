@@ -35,8 +35,8 @@ public class DocumentoDispensadoParaCriarResource {
   public static class DadosFormulario {
 
     private ClienteParaSelecaoResource clientes;
-    private LocalDate dataBaseFim;
-    private LocalDate dataBaseInicio;
+    private LocalDate vigenciaFim;
+    private LocalDate vigenciaInicio;
     private Collection<DocumentoParaSelecaoResource> documentos;
     private GrupoDocumentoParaSelecaoResource grupoDocumentos;
   }

@@ -89,6 +89,8 @@ export class DocumentoDispensadoPesquisarComponent implements OnInit {
     this.filtroConsulta.grupoDocumentos = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.grupoDocumentos);
     this.filtroConsulta.documentos = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.documentos);
     this.filtroConsulta.clientes = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.clientes);
+    this.filtroConsulta.vigenciaInicio = this.pesquisarFormGroup.value.vigenciaInicio;
+    this.filtroConsulta.vigenciaFim = this.pesquisarFormGroup.value.vigenciaFim;
 
     return this.filtroConsulta;
   }
@@ -104,6 +106,8 @@ export class DocumentoDispensadoPesquisarComponent implements OnInit {
       grupoDocumentos: [dadosFormulario.grupoDocumentos],
       documentos: [dadosFormulario.documentos],
       clientes: [dadosFormulario.clientes],
+      vigenciaInicio: [dadosFormulario.vigenciaInicio],
+      vigenciaFim: [dadosFormulario.vigenciaInicio]
     });
   }
 }

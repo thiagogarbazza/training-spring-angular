@@ -7,8 +7,8 @@ import { Identifiable } from '@shared/models/identifiable';
 export class DocumentoDispensadoResultadoPesquisaResource extends Identifiable {
 
   public cliente: ClienteParaSelecaoResource;
-  public dataBaseFim: Date;
-  public dataBaseInicio: Date;
+  public vigenciaFim: Date;
+  public vigenciaInicio: Date;
   public documento: DocumentoParaSelecaoResource;
   public grupoDocumento: GrupoDocumentoParaSelecaoResource;
   public situacaoDocumentoDispensado: SituacaoDocumentoDispensado;

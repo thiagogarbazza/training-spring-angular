@@ -32,7 +32,7 @@ class DocumentoDispensadoFiltroConsultaUtil {
       conditions.and(documentoDispensado.situacao.in(filtroConsulta.getSituacoes()));
     }
 
-    conditions.and(dataEstaContidaNoPeriodo(documentoDispensado.vigencia, filtroConsulta.getDataBaseInicio(), filtroConsulta.getDataBaseFim()));
+    conditions.and(dataEstaContidaNoPeriodo(documentoDispensado.vigencia, filtroConsulta.getVigenciaInicio(), filtroConsulta.getVigenciaFim()));
 
     return conditions;
   }

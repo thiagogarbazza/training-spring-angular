@@ -26,11 +26,11 @@ import static lombok.AccessLevel.PRIVATE;
 public class DocumentoDispensadoFiltroConsulta extends AbstractFiltroPaginado<DocumentoDispensadoOrdenacaoCampo> {
 
   private Collection<UUID> clientes;
-  private LocalDate dataBaseFim;
-  private LocalDate dataBaseInicio;
   private Collection<UUID> documentos;
   private Collection<UUID> grupoDocumentos;
   private Collection<SituacaoDocumentoDispensado> situacoes;
+  private LocalDate vigenciaFim;
+  private LocalDate vigenciaInicio;
 
   @Override
   public Collection<OrderSpecifier> orderByDefault() {

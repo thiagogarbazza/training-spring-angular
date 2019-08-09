@@ -29,7 +29,7 @@ export class DocumentoDispensadoApiService extends AbstractApiService{
     return super.buscarRecurso(`/documento-dispensado/para-pesquisar`, parametros);
   }
 
-  public pesquisar<DocumentoDispensadoParaPesquisarResource>(parametros: DocumentoDispensadoFiltroConsulta): Observable<CustomPageResource<DocumentoDispensadoResultadoPesquisaResource>> {
+  public pesquisar(parametros: DocumentoDispensadoFiltroConsulta): Observable<CustomPageResource<DocumentoDispensadoResultadoPesquisaResource>> {
     return super.pesquisarRecurso(`/documento-dispensado/pesquisar`, parametros);
   }
 }
