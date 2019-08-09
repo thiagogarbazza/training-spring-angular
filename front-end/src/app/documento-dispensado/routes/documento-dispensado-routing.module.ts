@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DocumentoDispensadoPesquisarComponent } from '@app/documento-dispensado/views/documento-dispensado-pesquisar/documento-dispensado-pesquisar.component';
-import { DocumentoDispensadoParaPesquisarResolver } from '@app/documento-dispensado/services/documento-dispensado-api.service';
+import { DocumentoDispensadoParaPesquisarResolver } from '@app/documento-dispensado/views/documento-dispensado-pesquisar/documento-dispensado-para-pesquisar-resolver';
+
 
 const MODULE_ROUTES: Routes = [
   {

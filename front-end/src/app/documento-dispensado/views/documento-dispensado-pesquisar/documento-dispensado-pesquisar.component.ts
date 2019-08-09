@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { DocumentoDispensadoParaPesquisarResource } from '@app/documento-dispensado/models/documento-dispensado-para-pesquisar-resource';
+import { DocumentoDispensadoParaPesquisarResource, DadosParaFormulario, DadosFormulario, Acoes } from '@app/documento-dispensado/models/documento-dispensado-para-pesquisar-resource';
 import { Paginacao } from '@shared/components/paginacao/paginacao';
 import { Ordenacao } from '@shared/components/paginacao/ordenacao';
 import { DocumentoDispensadoFiltroConsulta } from '@app/documento-dispensado/models/documento-dispensado-filtro-consulta';
 import { DocumentoDispensadoResultadoPesquisaResource } from '@app/documento-dispensado/models/documento-dispensado-resultado-pesquisa-resource';
 import { CustomPageResource } from '@shared/models/custom-page-resource';
+import { DocumentoDispensadoApiService } from '@app/documento-dispensado/services/documento-dispensado-api.service';
+import { FiltroConsultaUtil } from '@shared/utils/filtro-consulta-utils';
 
 @Component({
   selector: 'app-documento-dispensado-pesquisar',
@@ -16,66 +18,92 @@ import { CustomPageResource } from '@shared/models/custom-page-resource';
 })
 export class DocumentoDispensadoPesquisarComponent implements OnInit {
 
-  public paraPesquisarResource: DocumentoDispensadoParaPesquisarResource;
+  public acoes: Acoes;
+  public dadosParaFormulario: DadosParaFormulario;
   public resultadoPesquisa: CustomPageResource<DocumentoDispensadoResultadoPesquisaResource>;
   public pesquisarFormGroup: FormGroup;
+  private filtroConsulta: DocumentoDispensadoFiltroConsulta;
 
   constructor(
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private documentoDispensadoApiService: DocumentoDispensadoApiService
   ) { }
 
   public ngOnInit() {
-    this.paraPesquisarResource = this.route.snapshot.data.resolver as DocumentoDispensadoParaPesquisarResource;
-    this.resultadoPesquisa = this.paraPesquisarResource.resultadoPesquisa;
-    this.onInitFormGroupBuild();
+    const paraPesquisarResource = this.activatedRoute.snapshot.data.resolver as DocumentoDispensadoParaPesquisarResource;
+    this.filtroConsulta = new DocumentoDispensadoFiltroConsulta(this.activatedRoute.snapshot.queryParams);
+
+    this.acoes = new Acoes(paraPesquisarResource.acoes);
+    this.resultadoPesquisa = paraPesquisarResource.resultadoPesquisa;
+    this.dadosParaFormulario = paraPesquisarResource.dadosParaFormulario;
+    this.pesquisarFormGroup = this.onInitFormGroupBuild(paraPesquisarResource.dadosFormulario);
+
+  }
+
+  limparForm() {
+    this.pesquisarFormGroup.reset();
+  }
+
+  public desativar(item: DocumentoDispensadoResultadoPesquisaResource) {
+    alert("Solicitou" + item.id);
+  }
+
+  public gerarRelatorioExcel() {
+    const filtroConsulta = this.filtroConsultaBuild();
+    filtroConsulta.numeroPagina = 0;
+    filtroConsulta.ordenacaoCampo = undefined;
+    filtroConsulta.ordenacaoDirecao = undefined;
+
+    return this.documentoDispensadoApiService.gerarRelatorioExcel(filtroConsulta);
   }
 
   public pesquisar() {
-    const filtro: any = this.filtroConsultaBuild();
-    filtro.numeroPagina = 0;
-    filtro.quantidadePorPagina = undefined;
-    filtro.ordenacaoCampo = undefined;
-    filtro.ordenacaoDirecao = undefined;
+    const filtroConsulta = this.filtroConsultaBuild();
+    filtroConsulta.numeroPagina = 0;
+    filtroConsulta.ordenacaoCampo = undefined;
+    filtroConsulta.ordenacaoDirecao = undefined;
 
-    return this.pesquisarNoServidor(filtro);
+    return this.pesquisarNoServidor(filtroConsulta);
   }
 
   public ordenarGrid(ordenacao: Ordenacao) {
-    const filtro: any = this.filtroConsultaBuild();
-    filtro.ordenacaoCampo = ordenacao.field;
-    filtro.ordenacaoDirecao = ordenacao.direction;
+    const filtroConsulta = this.filtroConsultaBuild();
+    filtroConsulta.ordenacaoCampo = ordenacao.field;
+    filtroConsulta.ordenacaoDirecao = ordenacao.direction;
 
-    return this.pesquisarNoServidor(filtro);
+    return this.pesquisarNoServidor(filtroConsulta);
   }
 
   public navegacaoGrid(paginacao: Paginacao) {
-    const filtro: any = this.filtroConsultaBuild();
-    filtro.numeroPagina = paginacao.numeroPagina;
-    filtro.quantidadePorPagina = paginacao.quantidadePorPagina;
-    filtro.ordenacaoCampo = paginacao.ordenacaoCampo;
-    filtro.ordenacaoDirecao = paginacao.ordenacaoDirecao;
+    const filtroConsulta = this.filtroConsultaBuild();
+    filtroConsulta.numeroPagina = paginacao.numeroPagina;
+    filtroConsulta.quantidadePorPagina = paginacao.quantidadePorPagina;
+    filtroConsulta.ordenacaoCampo = paginacao.ordenacaoCampo;
+    filtroConsulta.ordenacaoDirecao = paginacao.ordenacaoDirecao;
 
-    return this.pesquisarNoServidor(filtro);
-  }
-
-
-  private onInitFormGroupBuild() {
-    this.pesquisarFormGroup = this.formBuilder.group({
-      situacao: [null],
-    });
+    return this.pesquisarNoServidor(filtroConsulta);
   }
 
   private filtroConsultaBuild(): DocumentoDispensadoFiltroConsulta {
-    return new DocumentoDispensadoFiltroConsulta();
+    this.filtroConsulta.grupoDocumentos = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.grupoDocumentos);
+    this.filtroConsulta.documentos = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.documentos);
+    this.filtroConsulta.clientes = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.clientes);
+
+    return this.filtroConsulta;
   }
 
-  private pesquisarNoServidor(filtro: DocumentoDispensadoFiltroConsulta) {
-   // this.regimePrudencialService.pesquisar(filtro).subscribe(resultado => {
-   //   this.resultadoVisivel = true;
-   //   this.resultadoPesquisa = resultado;
-   // });
+  private pesquisarNoServidor(filtroConsulta: DocumentoDispensadoFiltroConsulta) {
+    return this.documentoDispensadoApiService.pesquisar(filtroConsulta).subscribe(resultado => {
+      this.resultadoPesquisa = resultado;
+    });
   }
 
-
+  private onInitFormGroupBuild(dadosFormulario: DadosFormulario) {
+    return this.formBuilder.group({
+      grupoDocumentos: [dadosFormulario.grupoDocumentos],
+      documentos: [dadosFormulario.documentos],
+      clientes: [dadosFormulario.clientes],
+    });
+  }
 }

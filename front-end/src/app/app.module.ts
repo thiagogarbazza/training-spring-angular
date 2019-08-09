@@ -12,17 +12,20 @@ import { HomeModule } from '@app/home/home.module';
 import { DocumentoDispensadoModule } from '@app/documento-dispensado/documento-dispensado.module';
 import { SharedModule } from '@shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
-    BrowserModule,
     ReactiveFormsModule,
+    BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
     NgbModule,
 
     AppRoutingModule,
@@ -30,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeModule,
     DocumentoDispensadoModule
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

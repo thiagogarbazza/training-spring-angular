@@ -8,4 +8,9 @@ export class DocumentoDispensadoFiltroConsulta extends AbstractFiltroPaginado {
   public documentos: Array<string>;
   public grupoDocumentos: Array<string>;
   public situacoes: Array<string>;
+
+  constructor(values: Object) {
+    super();
+    Object.assign(this, values);
+  }
 }

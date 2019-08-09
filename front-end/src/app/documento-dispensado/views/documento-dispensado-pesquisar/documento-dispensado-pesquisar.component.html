@@ -1,12 +1,52 @@
 <app-pagina-pesquisa>
   <span titulo>Pesquisa de documentos dispensados</span>
 
+  <section acoes-topo>
+    <a *ngIf="acoes.podeCriar" class="btn btn-secondary" routerLink="/documento-dispensado/criar" title="Novo documento dispensado"> Novo </a>
+  </section>
   <section formulario>
-
+    <form [formGroup]="pesquisarFormGroup">
+      <div class="form-group">
+        <label for="grupo-documentos">Grupo documento</label> <select class="form-control" formControlName="grupoDocumentos" id="grupo-documentos" multiple>
+        <option *ngFor="let item of dadosParaFormulario.grupoDocumentos; trackById" [ngValue]="item" title="{{item.codigo}}">{{ item.nome }}</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="documentos">Documento</label> <select class="form-control" formControlName="documentos" id="documentos" multiple>
+        <option *ngFor="let item of dadosParaFormulario.documentos; trackById" [ngValue]="item" title="{{item.codigo}}">{{ item.nome }}</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="clientes">Cliente</label> <select aria-placeholder="Selecione um cliente"
+                                                      class="form-control"
+                                                      formControlName="clientes"
+                                                      id="clientes"
+                                                      multiple>
+        <option *ngFor="let item of dadosParaFormulario.clientes; trackById" [ngValue]="item" title="{{item.codigo}}">{{ item.nome }}</option>
+      </select>
+      </div>
+    </form>
   </section>
 
+  <div formulario-botoes>
+    <button (click)="pesquisar()" [disabled]="pesquisarFormGroup.invalid" class="btn btn-primary" role="button">
+      <i class="fa fa-search"></i> Pesquisar
+    </button>
+    <button (click)="limparForm()" class="btn btn-form-inline" role="button">
+      Limpar
+    </button>
+  </div>
+
+  <div botaoes-acima-resultado>
+    <button (click)="gerarRelatorioExcel()"
+            *ngIf="acoes.podeGerarRelatorioExcel"
+            class="btn btn-secondary"
+            role="button"
+            title="Clique aqui para gerar o relatório em excel">
+      <i class="fa fa-search"></i> Relatório em excel
+    </button>
+  </div>
   <section resultado>
-    <app-simple-messages></app-simple-messages>
     <app-paginacao (navegacaoGrid)="navegacaoGrid($event);" [pagina]="resultadoPesquisa">
       <table class="table table-bordered table-hover tablefocus">
         <thead class="thead-light">
@@ -15,17 +55,29 @@
           <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'CODIGO_DOCUMENTO'" scope="col" width="20%">Documento</th>
           <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'CODIGO_CLIENTE'" scope="col" width="20%">Cliente</th>
           <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'DATA_BASE'" scope="col" width="20%">Vigência</th>
+          <th (ordenarPesquisa)="ordenarGrid($event)" [appOrdenacaoCampo]="'SITUACAO'" scope="col" width="20%">Situação</th>
           <th scope="col" width="10%">Ações</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let item of resultadoPesquisa?.content">
-          <td>{{ item.codigoGrupoDocumento }}</td>
-          <td>{{ item.codigoDocumento }}</td>
-          <td>{{ item.codigoCliente }}</td>
-          <td></td>
-          <td class="centralizar-icones">
-
+          <td>{{ item.documento.grupoDocumento.nome }}</td>
+          <td>{{ item.documento.nome }}</td>
+          <td>{{ item.cliente.nome }}</td>
+          <td>{{ item.vigencia }}</td>
+          <td>{{ item.situacao.description }}</td>
+          <td class="td-acoes">
+            <a *ngIf="item.acoes.podeDetalhar"
+               class="btn btn-outline-secondary btn-sm"
+               routerLink="/documento-dispensado/{{item.id}}/detalhar"
+               title="Clique aqui para detalhar este registro."> D </a> <a *ngIf="item.acoes.podeAlterar"
+                                                                           class="btn btn-outline-secondary btn-sm"
+                                                                           routerLink="/documento-dispensado/{{item.id}}/alterar"
+                                                                           title="Clique aqui para alterar este registro."> A </a> <a (click)="desativar(item)"
+                                                                                                                                      *ngIf="item.acoes.podeDesativar"
+                                                                                                                                      class="btn btn-outline-danger btn-sm"
+                                                                                                                                      title="Clique aqui para desativar este registro.">
+            I </a>
           </td>
         </tr>
         </tbody>

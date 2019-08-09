@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AbstractApiService } from '@shared/services/abstract-api.service';
-import { DocumentoDispensadoParaPesquisarResource } from '@app/documento-dispensado/models/documento-dispensado-para-pesquisar-resource';
 import { DocumentoDispensadoFiltroConsulta } from '@app/documento-dispensado/models/documento-dispensado-filtro-consulta';
+import { CustomPageResource } from '@shared/models/custom-page-resource';
+import { DocumentoDispensadoResultadoPesquisaResource } from '../models/documento-dispensado-resultado-pesquisa-resource';
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +14,22 @@ import { DocumentoDispensadoFiltroConsulta } from '@app/documento-dispensado/mod
 export class DocumentoDispensadoApiService extends AbstractApiService{
 
   constructor(
-    http: HttpClient
+    http: HttpClient,
+    activatedRoute: ActivatedRoute,
+    router: Router
   ) {
-    super(http);
+    super(http, activatedRoute, router);
+  }
+
+  public gerarRelatorioExcel(parametros: DocumentoDispensadoFiltroConsulta) : Observable<any> {
+    return super.baixarArquivo(`/documento-dispensado/gerar-relatorio-excel`, parametros);
   }
 
   public paraPesquisar<DocumentoDispensadoParaPesquisarResource>(parametros: DocumentoDispensadoFiltroConsulta): Observable<DocumentoDispensadoParaPesquisarResource> {
     return super.buscarRecurso(`/documento-dispensado/para-pesquisar`, parametros);
   }
-}
 
-@Injectable({
-  providedIn: 'root'
-})
-export class DocumentoDispensadoParaPesquisarResolver implements Resolve<DocumentoDispensadoParaPesquisarResource>{
-
-  constructor(private documentoDispensadoApiService: DocumentoDispensadoApiService) { }
-
-  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<DocumentoDispensadoParaPesquisarResource> {
-    return this.documentoDispensadoApiService.paraPesquisar(route.queryParams as DocumentoDispensadoFiltroConsulta);
+  public pesquisar<DocumentoDispensadoParaPesquisarResource>(parametros: DocumentoDispensadoFiltroConsulta): Observable<CustomPageResource<DocumentoDispensadoResultadoPesquisaResource>> {
+    return super.pesquisarRecurso(`/documento-dispensado/pesquisar`, parametros);
   }
 }
