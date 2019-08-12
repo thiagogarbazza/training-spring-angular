@@ -1,5 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.utiltest.database;
 
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+@CommonsLog
 @Configuration
 class DataSourceConfiguration {
 
@@ -22,6 +24,7 @@ class DataSourceConfiguration {
 
   @Bean
   public DataSource dataSource() {
+    log.trace("Configurando data source.");
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
     dataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class-name"));
@@ -34,6 +37,7 @@ class DataSourceConfiguration {
 
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+    log.trace("Configurando entity manager factory.");
     LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
     JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 
@@ -48,6 +52,7 @@ class DataSourceConfiguration {
 
   @Bean
   public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+    log.trace("Configurando transaction manager.");
     return new JpaTransactionManager(entityManagerFactory);
   }
 
