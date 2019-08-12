@@ -28,6 +28,8 @@ class EmbeddedJetty {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
+
+    log.info("Started");
   }
 
   public void stop() {
