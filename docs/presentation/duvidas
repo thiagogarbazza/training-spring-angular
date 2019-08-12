@@ -1,0 +1,15 @@
+Dúvidas:
+ - Método get utiliza payload.
+ - Necessidade do content-type para download excel.
+ - Como fazer animações no angular.
+ - Entender melhor como funciona o formgroup
+ - On change na criação do form group
+
+Configurar o intellij para indentar o html.
+
+
+callback hell -> promisse -> reactivex
+
+http://callbackhell.com/
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Usando_promises
+http://reactivex.io/documentation/observable.html

@@ -40,4 +40,8 @@ export class DadosParaFormulario {
   public documentos: Array<DocumentoParaSelecaoResource>;
   public grupoDocumentos: Array<GrupoDocumentoParaSelecaoResource>;
   public situacaoDocumentoDispensados: Array<SituacaoDocumentoDispensado>;
+
+  constructor(values: Object) {
+    Object.assign(this, values);
+  }
 }

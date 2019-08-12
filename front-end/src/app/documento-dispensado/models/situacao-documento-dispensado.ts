@@ -2,4 +2,7 @@ import { EnumIdentifiableWithDescription } from '@shared/models/enum-identifiabl
 
 export class SituacaoDocumentoDispensado extends EnumIdentifiableWithDescription{
 
+  constructor(values: Object) {
+    super(values);
+  }
 }

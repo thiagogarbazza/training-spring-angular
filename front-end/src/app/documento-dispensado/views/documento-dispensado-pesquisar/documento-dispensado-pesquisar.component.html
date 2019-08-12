@@ -7,7 +7,11 @@
   <section formulario>
     <form [formGroup]="pesquisarFormGroup">
       <div class="form-group">
-        <label for="grupo-documentos">Grupo documento</label> <select class="form-control" formControlName="grupoDocumentos" id="grupo-documentos" multiple>
+        <label for="grupo-documentos">Grupo documento</label> <select (change)="onChangeGrupoDocumento($event)"
+                                                                      class="form-control"
+                                                                      formControlName="grupoDocumentos"
+                                                                      id="grupo-documentos"
+                                                                      multiple>
         <option *ngFor="let item of dadosParaFormulario.grupoDocumentos; trackById" [ngValue]="item" title="{{item.codigo}}">{{ item.nome }}</option>
       </select>
       </div>
@@ -41,17 +45,14 @@
       </div>
       <div class="form-group">
         <label for="vigencia-fim">Fim</label>
-        <div class="input-group">
-          <input #datePickerVigenciaFim="ngbDatepicker"
+
+        <input
                  class="form-control"
                  formControlName="vigenciaFim"
                  id="vigencia-fim"
-                 ngbDatepicker
-                 placeholder="dd/mm/aaaa">
-          <div class="input-group-append">
-            <button (click)="datePickerVigenciaFim.toggle()" class="btn btn-outline-secondary" type="button"></button>
-          </div>
-        </div>
+
+                 placeholder="dd/mm/aaaa"/>
+
       </div>
     </form>
   </section>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DocumentoDispensadoParaPesquisarResource, DadosParaFormulario, DadosFormulario, Acoes } from '@app/documento-dispensado/models/documento-dispensado-para-pesquisar-resource';
 import { Paginacao } from '@shared/components/paginacao/paginacao';
@@ -23,6 +23,7 @@ export class DocumentoDispensadoPesquisarComponent implements OnInit {
   public resultadoPesquisa: CustomPageResource<DocumentoDispensadoResultadoPesquisaResource>;
   public pesquisarFormGroup: FormGroup;
   private filtroConsulta: DocumentoDispensadoFiltroConsulta;
+  private paraPesquisarResource :DocumentoDispensadoParaPesquisarResource;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,14 +32,13 @@ export class DocumentoDispensadoPesquisarComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    const paraPesquisarResource = this.activatedRoute.snapshot.data.resolver as DocumentoDispensadoParaPesquisarResource;
+    this.paraPesquisarResource = this.activatedRoute.snapshot.data.resolver as DocumentoDispensadoParaPesquisarResource;
     this.filtroConsulta = new DocumentoDispensadoFiltroConsulta(this.activatedRoute.snapshot.queryParams);
 
-    this.acoes = new Acoes(paraPesquisarResource.acoes);
-    this.resultadoPesquisa = paraPesquisarResource.resultadoPesquisa;
-    this.dadosParaFormulario = paraPesquisarResource.dadosParaFormulario;
-    this.pesquisarFormGroup = this.onInitFormGroupBuild(paraPesquisarResource.dadosFormulario);
-
+    this.acoes = new Acoes(this.paraPesquisarResource.acoes);
+    this.resultadoPesquisa = this.paraPesquisarResource.resultadoPesquisa;
+    this.dadosParaFormulario = new DadosParaFormulario(this.paraPesquisarResource.dadosParaFormulario);
+    this.pesquisarFormGroup = this.onInitFormGroupBuild(this.paraPesquisarResource.dadosFormulario);
   }
 
   limparForm() {
@@ -51,9 +51,6 @@ export class DocumentoDispensadoPesquisarComponent implements OnInit {
 
   public gerarRelatorioExcel() {
     const filtroConsulta = this.filtroConsultaBuild();
-    filtroConsulta.numeroPagina = 0;
-    filtroConsulta.ordenacaoCampo = undefined;
-    filtroConsulta.ordenacaoDirecao = undefined;
 
     return this.documentoDispensadoApiService.gerarRelatorioExcel(filtroConsulta);
   }
@@ -85,6 +82,18 @@ export class DocumentoDispensadoPesquisarComponent implements OnInit {
     return this.pesquisarNoServidor(filtroConsulta);
   }
 
+  public onChangeGrupoDocumento(){
+    const gruposSelecionados = this.pesquisarFormGroup.value.grupoDocumentos;
+    if(!gruposSelecionados || gruposSelecionados.length > 0){
+      this.pesquisarFormGroup.controls['vigenciaFim'].enable();
+      this.dadosParaFormulario.documentos =
+        this.paraPesquisarResource.dadosParaFormulario.documentos.filter(item => item.nome === 'Documento 001 do GRP02');
+    } else {
+      this.pesquisarFormGroup.controls['vigenciaFim'].disable();
+      this.dadosParaFormulario.documentos = this.paraPesquisarResource.dadosParaFormulario.documentos;
+    }
+  }
+
   private filtroConsultaBuild(): DocumentoDispensadoFiltroConsulta {
     this.filtroConsulta.grupoDocumentos = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.grupoDocumentos);
     this.filtroConsulta.documentos = FiltroConsultaUtil.converteObjectToIds(this.pesquisarFormGroup.value.documentos);
@@ -106,8 +115,8 @@ export class DocumentoDispensadoPesquisarComponent implements OnInit {
       grupoDocumentos: [dadosFormulario.grupoDocumentos],
       documentos: [dadosFormulario.documentos],
       clientes: [dadosFormulario.clientes],
-      vigenciaInicio: [dadosFormulario.vigenciaInicio],
-      vigenciaFim: [dadosFormulario.vigenciaInicio]
+      vigenciaInicio: [null],
+      vigenciaFim: [{value: 't', disabled: true}, [Validators.required, Validators.maxLength(5)]]
     });
   }
 }

@@ -61,10 +61,10 @@ class DataSourceConfiguration {
     properties.setProperty("hibernate.show_sql", environment.getProperty("spring.jpa.properties.hibernate.show_sql"));
     properties.setProperty("hibernate.format_sql", environment.getProperty("spring.jpa.properties.hibernate.format_sql"));
     properties.setProperty("hibernate.use_sql_comments", environment.getProperty("spring.jpa.properties.hibernate.use_sql_comments"));
-    properties.setProperty("hibernate.ddl-auto", environment.getProperty("spring.jpa.properties.hibernate.ddl-auto"));
-    properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
+    //    properties.setProperty("hibernate.ddl-auto", environment.getProperty("spring.jpa.properties.hibernate.ddl-auto"));
+    //    properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
     properties.setProperty("hibernate.default_schema", environment.getProperty("spring.jpa.properties.hibernate.default_schema"));
-    properties.setProperty("hibernate.hbm2ddl.import_files", environment.getProperty("spring.jpa.properties.hibernate.hbm2ddl.import_files"));
+    //    properties.setProperty("hibernate.hbm2ddl.import_files", environment.getProperty("spring.jpa.properties.hibernate.hbm2ddl.import_files"));
 
     return properties;
   }
