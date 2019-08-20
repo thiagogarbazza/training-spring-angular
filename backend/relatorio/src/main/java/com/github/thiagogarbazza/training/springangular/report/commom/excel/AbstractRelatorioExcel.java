@@ -34,7 +34,7 @@ public abstract class AbstractRelatorioExcel {
 
   protected abstract void construir();
 
-  public final ArquivoUpload construirEGerar() {
+  public final ArquivoUpload build() {
     construir();
     return gerar();
   }
@@ -62,13 +62,7 @@ public abstract class AbstractRelatorioExcel {
     return mainSheet().createRow(linhaAtualId);
   }
 
-  protected Sheet criarSheete() {
-    SXSSFSheet sheet = workbook.createSheet();
-    sheet.setDisplayGridlines(false);
-    return sheet;
-  }
-
-  protected Sheet criarSheete(String nomeSheet) {
+  protected Sheet newSheet(String nomeSheet) {
     SXSSFSheet sheet = workbook.createSheet(nomeSheet);
     sheet.setDisplayGridlines(false);
     return sheet;

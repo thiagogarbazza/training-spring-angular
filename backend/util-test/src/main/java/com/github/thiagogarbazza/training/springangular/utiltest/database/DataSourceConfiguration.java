@@ -27,10 +27,10 @@ class DataSourceConfiguration {
     log.trace("Configurando data source.");
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-    dataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class-name"));
-    dataSource.setUrl(environment.getProperty("spring.datasource.url"));
-    dataSource.setUsername(environment.getProperty("spring.datasource.username"));
-    dataSource.setPassword(environment.getProperty("spring.datasource.password"));
+    dataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driver-class-name"));
+    dataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
+    dataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
+    dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
 
     return dataSource;
   }

@@ -20,6 +20,6 @@ class DocumentoDispensadoRelatorioServiceImpl implements DocumentoDispensadoRela
   public ArquivoUpload gerarRelatorioExcel(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
     final Collection<DocumentoDispensado> documentoDispensados = documentoDispensadoConsultaService.pesquisar(filtroConsulta);
 
-    return new DocumentoDispensadoRelatorioExcel(documentoDispensados).construirEGerar();
+    return new DocumentoDispensadoRelatorioExcel(documentoDispensados).build();
   }
 }
