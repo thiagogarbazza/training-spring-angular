@@ -18,7 +18,7 @@ class DocumentoDispensadoRelatorioExcel extends AbstractRelatorioExcel {
   private final Collection<Coluna<DocumentoDispensado>> colunas;
   private final Collection<DocumentoDispensado> itens;
 
-  public DocumentoDispensadoRelatorioExcel(Collection<DocumentoDispensado> itens) {
+  DocumentoDispensadoRelatorioExcel(Collection<DocumentoDispensado> itens) {
     super("documentos-dispensados");
     this.itens = itens;
     this.colunas = new ArrayList<>(asList(DocumentoDispensadoRelatorioExcelColuna.values()));
@@ -27,8 +27,11 @@ class DocumentoDispensadoRelatorioExcel extends AbstractRelatorioExcel {
   @Override
   protected void construir() {
     final Sheet sheet = newSheet("documentos-dispensados");
-    ExcelTableBuilder.builder()
+
+    ExcelTableBuilder.<DocumentoDispensado>builder()
       .sheet(sheet)
+      .rowStart(0)
+      .colStart(0)
       .title("Documentos dispensados")
       .colunas(this.colunas)
       .items(this.itens)

@@ -23,48 +23,44 @@ public class ExcelTableBuilder<T> {
   private Sheet sheet;
   private String title;
 
-  public static ExcelTableBuilder builder() {
-    return new ExcelTableBuilder();
-  }
-
   public void build() {
     createTitle();
     createHeader();
     createBody();
   }
 
-  public ExcelTableBuilder colStart(int colStart) {
+  public ExcelTableBuilder<T> colStart(int colStart) {
     this.colStart = colStart;
 
     return this;
   }
 
-  public ExcelTableBuilder colunas(Collection<Coluna<T>> colunas) {
+  public ExcelTableBuilder<T> colunas(Collection<Coluna<T>> colunas) {
     this.colunas = colunas;
 
     return this;
   }
 
-  public ExcelTableBuilder items(Collection<T> items) {
+  public ExcelTableBuilder<T> items(Collection<T> items) {
     this.items = items;
 
     return this;
   }
 
-  public ExcelTableBuilder rowStart(int rowStart) {
+  public ExcelTableBuilder<T> rowStart(int rowStart) {
     this.rowStart = rowStart;
     this.rowIndex = rowStart;
 
     return this;
   }
 
-  public ExcelTableBuilder sheet(Sheet sheet) {
+  public ExcelTableBuilder<T> sheet(Sheet sheet) {
     this.sheet = sheet;
 
     return this;
   }
 
-  public ExcelTableBuilder title(String title) {
+  public ExcelTableBuilder<T> title(String title) {
     this.title = title;
 
     return this;
@@ -109,5 +105,9 @@ public class ExcelTableBuilder<T> {
 
     final CellRangeAddress cellAddresses = new CellRangeAddress(row.getRowNum(), row.getRowNum(), this.colStart, this.colStart + this.colunas.size() - 1);
     sheet.addMergedRegion(cellAddresses);
+  }
+
+  public static <T> ExcelTableBuilder<T> builder() {
+    return new ExcelTableBuilder<>();
   }
 }
