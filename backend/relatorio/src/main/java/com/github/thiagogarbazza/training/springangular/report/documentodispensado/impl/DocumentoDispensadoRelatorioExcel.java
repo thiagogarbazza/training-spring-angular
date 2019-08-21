@@ -7,7 +7,6 @@ import com.github.thiagogarbazza.training.springangular.report.commom.excel.Exce
 import lombok.Getter;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import static com.github.thiagogarbazza.training.springangular.util.calendario.PeriodoUtil.periodoToString;
@@ -15,17 +14,15 @@ import static java.util.Arrays.asList;
 
 class DocumentoDispensadoRelatorioExcel extends AbstractRelatorioExcel {
 
-  private final Collection<Coluna<DocumentoDispensado>> colunas;
   private final Collection<DocumentoDispensado> itens;
 
   DocumentoDispensadoRelatorioExcel(Collection<DocumentoDispensado> itens) {
     super("documentos-dispensados");
     this.itens = itens;
-    this.colunas = new ArrayList<>(asList(DocumentoDispensadoRelatorioExcelColuna.values()));
   }
 
   @Override
-  protected void construir() {
+  protected void buildSheets() {
     final Sheet sheet = newSheet("documentos-dispensados");
 
     ExcelTableBuilder.<DocumentoDispensado>builder()
@@ -33,7 +30,7 @@ class DocumentoDispensadoRelatorioExcel extends AbstractRelatorioExcel {
       .rowStart(0)
       .colStart(0)
       .title("Documentos dispensados")
-      .colunas(this.colunas)
+      .colunas(asList(DocumentoDispensadoRelatorioExcelColuna.values()))
       .items(this.itens)
       .build();
   }

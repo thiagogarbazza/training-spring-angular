@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 import static com.github.thiagogarbazza.training.springangular.report.commom.excel.ExcelWorkbook.workbookToOutputStream;
 import static java.util.Arrays.asList;
@@ -25,12 +24,12 @@ class ExcelTableBuilderTest {
     final Sheet sheet = workbook.createSheet("Example");
     sheet.setDisplayGridlines(false);
 
-    ExcelTableBuilder.builder()
+    ExcelTableBuilder.<Integer>builder()
       .sheet(sheet)
       .rowStart(0)
       .colStart(0)
       .title("Table example title")
-      .colunas(new ArrayList<>(asList(ExampleColumn.values())))
+      .colunas(asList(ExampleColumn.values()))
       .items(asList(1, 2, 3, 4, 5, 6))
       .build();
 
