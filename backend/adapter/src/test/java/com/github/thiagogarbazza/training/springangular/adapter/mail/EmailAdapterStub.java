@@ -1,7 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.adapter.mail;
 
 import com.github.thiagogarbazza.training.springangular.adapter.AdapterException;
-import com.github.thiagogarbazza.training.springangular.adapter.mail.impl.Email;
 import lombok.Getter;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.context.annotation.Primary;

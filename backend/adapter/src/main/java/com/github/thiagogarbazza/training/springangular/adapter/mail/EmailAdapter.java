@@ -1,7 +1,5 @@
 package com.github.thiagogarbazza.training.springangular.adapter.mail;
 
-import com.github.thiagogarbazza.training.springangular.adapter.mail.impl.Email;
-
 import java.util.Collection;
 
 public interface EmailAdapter {

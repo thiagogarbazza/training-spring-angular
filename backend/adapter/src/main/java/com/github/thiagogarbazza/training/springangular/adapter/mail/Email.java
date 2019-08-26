@@ -1,19 +1,18 @@
-package com.github.thiagogarbazza.training.springangular.adapter.mail.impl;
+package com.github.thiagogarbazza.training.springangular.adapter.mail;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Collection;
 
+import static com.github.thiagogarbazza.training.springangular.adapter.mail.EmailPriority.NORMAL;
 import static com.github.thiagogarbazza.training.springangular.util.lang.StringUtil.VIRGULA;
 import static lombok.AccessLevel.PRIVATE;
 import static org.apache.commons.lang3.StringUtils.join;
 
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
@@ -22,9 +21,10 @@ public class Email {
   private String assunto;
   private Collection<String> comCopia;
   private Collection<String> comCopiaOculta;
-  private boolean importante;
   private String mensagem;
   private Collection<String> para;
+  @Builder.Default
+  private EmailPriority prioridade = NORMAL;
   private String remetente;
 
   @Override

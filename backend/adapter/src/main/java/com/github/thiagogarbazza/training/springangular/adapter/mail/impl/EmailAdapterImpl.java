@@ -1,5 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.adapter.mail.impl;
 
+import com.github.thiagogarbazza.training.springangular.adapter.mail.Email;
 import com.github.thiagogarbazza.training.springangular.adapter.mail.EmailAdapter;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.stereotype.Service;
