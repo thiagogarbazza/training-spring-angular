@@ -56,8 +56,6 @@
     <dependency>
       <groupId>org.springframework.batch</groupId>
       <artifactId>spring-batch-core</artifactId>
-      <version>${dependency.spring-batch.version}</version>
     </dependency>
   </dependencies>
-
 </project>
