@@ -6,8 +6,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@EnableAspectJAutoProxy
 @ComponentScan({UtilConfiguration.PACOTE})
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @PropertySource("classpath:application-util.properties")
 public class UtilConfiguration {
 
