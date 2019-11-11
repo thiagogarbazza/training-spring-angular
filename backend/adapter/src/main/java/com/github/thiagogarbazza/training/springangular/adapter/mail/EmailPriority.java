@@ -1,5 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.adapter.mail;
 
+import lombok.Getter;
+
 public enum EmailPriority {
 
   HIGHEST(1),
@@ -8,6 +10,7 @@ public enum EmailPriority {
   LOW(4),
   LOWEST(5);
 
+  @Getter
   private final int code;
 
   EmailPriority(final int code) {
