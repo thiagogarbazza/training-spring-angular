@@ -8,13 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import static com.github.thiagogarbazza.training.springangular.util.ambiente.AmbienteExecucao.getAmbienteExecucao;
+
 @Configuration
 class OutputConfiguration {
 
   @Bean
   public Jackson2ObjectMapperBuilder customJson() {
     return new Jackson2ObjectMapperBuilder()
-      .indentOutput(AmbienteExecucao.DESCONHECIDO.equals(AmbienteExecucao.getInstance()))
+      .indentOutput(AmbienteExecucao.DESCONHECIDO.equals(getAmbienteExecucao()))
       .modules(customModule())
       .serializationInclusion(JsonInclude.Include.NON_NULL)
       .propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

@@ -5,6 +5,7 @@ import lombok.Getter;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 public enum AmbienteExecucao {
+
   DESENVOLVIMENTO("dsen", "Desenvolvimento"),
   HOMOLOGACAO("homo", "Homologação"),
   PRODUCAO("prod", "Produção"),
@@ -19,13 +20,8 @@ public enum AmbienteExecucao {
     this.descricao = descricao;
   }
 
-  public static boolean ehAmbienteCooporativoDiferenteProducao() {
-    AmbienteExecucao instance = getInstance();
-    return instance.equals(DESENVOLVIMENTO) || instance.equals(HOMOLOGACAO);
-  }
-
-  public static AmbienteExecucao getInstance() {
-    final String env = trimToEmpty(System.getenv().get("ENV_NAME"));
+  public static AmbienteExecucao getAmbienteExecucao() {
+    final String env = trimToEmpty(System.getenv().get("ENV_ID"));
 
     for (AmbienteExecucao ae : values()) {
       if (env.equals(ae.identificacao)) {

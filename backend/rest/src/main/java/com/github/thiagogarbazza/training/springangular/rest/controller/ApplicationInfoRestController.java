@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.github.thiagogarbazza.training.springangular.util.ambiente.AmbienteExecucao.getAmbienteExecucao;
+
 @RestController
 public class ApplicationInfoRestController {
 
@@ -22,7 +24,7 @@ public class ApplicationInfoRestController {
   public ApplicationInfoResourceSupport applicationInfo() {
     return ApplicationInfoResourceSupport.builder()
       .acoes(ApplicationInfoResourceSupport.Acoes.builder().podeVerChangeLog(true).build())
-      .ambiente(AmbienteExecucao.getInstance())
+      .ambiente(getAmbienteExecucao())
       .versao(this.buildInfoVersion)
       .versaoDataHora(this.buildInfoTimestamp)
       .build();
