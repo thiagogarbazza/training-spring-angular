@@ -8,8 +8,8 @@ import com.github.thiagogarbazza.training.springangular.core.documento.Documento
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensadoFiltroConsulta;
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.SituacaoDocumentoDispensado;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoConsultaService;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoFiltroConsulta;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchFilter;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
 import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
@@ -38,7 +38,7 @@ class DocumentoDispensadoParaPesquisarService {
   @Autowired
   private DocumentoDispensadoPesquisarService documentoDispensadoPesquisarService;
   @Autowired
-  private GrupoDocumentoConsultaService grupoDocumentoConsultaService;
+  private GrupoDocumentoSearchService grupoDocumentoConsultaService;
   @Autowired
   private MapperFacade mapper;
 
@@ -77,7 +77,7 @@ class DocumentoDispensadoParaPesquisarService {
   private DadosParaFormulario dadosParaFormularioBuild() {
     final Collection<Cliente> clientes = clienteConsultaService.pesquisar();
     final Collection<Documento> documentos = documentoConsultaService.pesquisar(DocumentoFiltroConsulta.builder().build());
-    final Collection<GrupoDocumento> grupodocumentos = grupoDocumentoConsultaService.pesquisar(GrupoDocumentoFiltroConsulta.builder().build());
+    final Collection<GrupoDocumento> grupodocumentos = grupoDocumentoConsultaService.search(GrupoDocumentoSearchFilter.builder().build());
     final Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados = asList(SituacaoDocumentoDispensado.values());
 
     return DadosParaFormulario.builder()

@@ -8,8 +8,8 @@ import com.github.thiagogarbazza.training.springangular.core.documento.Documento
 import com.github.thiagogarbazza.training.springangular.core.documentoprocessado.DocumentoProcessadoFiltroConsulta;
 import com.github.thiagogarbazza.training.springangular.core.documentoprocessado.SituacaoDocumentoProcessado;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoConsultaService;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoFiltroConsulta;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchFilter;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
 import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
@@ -34,7 +34,7 @@ class DocumentoProcessadoParaPesquisarService {
   @Autowired
   private DocumentoProcessadoPesquisarService documentoProcessadoPesquisarService;
   @Autowired
-  private GrupoDocumentoConsultaService grupoDocumentoConsultaService;
+  private GrupoDocumentoSearchService grupoDocumentoConsultaService;
   @Autowired
   private MapperFacade mapper;
 
@@ -61,7 +61,7 @@ class DocumentoProcessadoParaPesquisarService {
   private DocumentoProcessadoParaPesquisarResource.DadosParaFormulario dadosParaFormularioBuild() {
     final Collection<Cliente> clientes = clienteConsultaService.pesquisar();
     final Collection<Documento> documentos = documentoConsultaService.pesquisar(DocumentoFiltroConsulta.builder().build());
-    final Collection<GrupoDocumento> grupodocumentos = grupoDocumentoConsultaService.pesquisar(GrupoDocumentoFiltroConsulta.builder().build());
+    final Collection<GrupoDocumento> grupodocumentos = grupoDocumentoConsultaService.search(GrupoDocumentoSearchFilter.builder().build());
     final Collection<SituacaoDocumentoProcessado> situacaoDocumentoProcessados = asList(SituacaoDocumentoProcessado.values());
 
     return DocumentoProcessadoParaPesquisarResource.DadosParaFormulario.builder()

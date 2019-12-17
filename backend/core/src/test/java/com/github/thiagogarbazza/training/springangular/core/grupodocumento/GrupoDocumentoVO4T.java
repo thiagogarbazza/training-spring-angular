@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento.ATIVO;
 
 @UtilityClass
-public class GrupoDocumentoD4T {
+public class GrupoDocumentoVO4T {
 
   public static GrupoDocumento grupoDocumentoABC() {
     return GrupoDocumento.builder()

@@ -24,12 +24,13 @@ class ProcessadorCarregarDispensa extends ProcessadorGerarEsperado {
 
   @Override
   public void processar(final DadosGeracaoEsperado dados) {
-    final Collection<DocumentoDispensado> documentoDispensados = documentoDispensadoConsultaService.pesquisar(
-      DocumentoDispensadoFiltroConsulta.builder()
-        .vigenciaInicio(dados.getDataReferencia())
-        .vigenciaFim(dados.getDataReferencia())
-        .situacoes(singleton(ATIVO))
-        .build());
+    final DocumentoDispensadoFiltroConsulta documentoDispensadoFiltroConsulta = DocumentoDispensadoFiltroConsulta.builder()
+      .vigenciaInicio(dados.getDataReferencia())
+      .vigenciaFim(dados.getDataReferencia())
+      .situacoes(singleton(ATIVO))
+      .build();
+
+    final Collection<DocumentoDispensado> documentoDispensados = documentoDispensadoConsultaService.pesquisar(documentoDispensadoFiltroConsulta);
 
     log.info(format("Existem {0} dispensas para o documento.", documentoDispensados.size()));
     dados.setDocumentoDispensados(documentoDispensados);

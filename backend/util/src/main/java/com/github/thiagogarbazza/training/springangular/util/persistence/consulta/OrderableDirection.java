@@ -3,7 +3,8 @@ package com.github.thiagogarbazza.training.springangular.util.persistence.consul
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.ComparableExpressionBase;
 
-public enum OrderByDirection {
+public enum OrderableDirection {
+
   ASC() {
     @Override
     public OrderSpecifier getOrderSpecifier(ComparableExpressionBase expression) {

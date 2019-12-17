@@ -1,21 +1,20 @@
-package com.github.thiagogarbazza.training.springangular.core.documentodispensado;
+package com.github.thiagogarbazza.training.springangular.core.documento;
 
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.OrderableColumn;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.OrderableDirection;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.ComparableExpressionBase;
 
-import static com.github.thiagogarbazza.training.springangular.core.documentodispensado.QDocumentoDispensado.documentoDispensado;
+import static com.github.thiagogarbazza.training.springangular.core.documento.QDocumento.documento;
 
-public enum DocumentoDispensadoOrdenacaoCampo implements OrderableColumn {
+public enum DocumentoOrdenacaoCampo implements OrderableColumn {
 
-  CODIGO_CLIENTE(documentoDispensado.cliente.codigo),
-  CODIGO_DOCUMENTO(documentoDispensado.documento.codigo),
-  DATA_BASE(documentoDispensado.vigencia.inicio);
+  CODIGO(documento.codigo),
+  SITUACAO(documento.situacao);
 
   private final ComparableExpressionBase expression;
 
-  DocumentoDispensadoOrdenacaoCampo(final ComparableExpressionBase expression) {
+  DocumentoOrdenacaoCampo(final ComparableExpressionBase expression) {
     this.expression = expression;
   }
 

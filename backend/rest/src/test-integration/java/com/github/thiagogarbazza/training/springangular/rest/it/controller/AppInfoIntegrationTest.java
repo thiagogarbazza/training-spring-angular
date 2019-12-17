@@ -1,6 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.rest.it.controller;
 
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoConsultaService;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
 import com.github.thiagogarbazza.training.springangular.rest.it.RestIntegrationTestRunner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class AppInfoIntegrationTest {
 
   private MockMvc mockMvc;
   @MockBean
-  private GrupoDocumentoConsultaService grupoDocumentoConsultaService;
+  private GrupoDocumentoSearchService grupoDocumentoConsultaService;
 
   @BeforeEach
   final void setupWebTest() {

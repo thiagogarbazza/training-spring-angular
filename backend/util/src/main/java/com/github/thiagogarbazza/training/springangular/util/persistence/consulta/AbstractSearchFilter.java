@@ -2,7 +2,8 @@ package com.github.thiagogarbazza.training.springangular.util.persistence.consul
 
 import com.querydsl.core.types.OrderSpecifier;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QPageRequest;
@@ -10,26 +11,22 @@ import org.springframework.data.querydsl.QPageRequest;
 import java.util.Collection;
 
 @Getter
-@Setter
-public abstract class AbstractFiltroPaginado<T extends OrderByColumn> {
+@SuperBuilder
+@ToString
+public abstract class AbstractSearchFilter<T extends OrderableColumn> {
 
   private static final int PAGINA_INICIAL = 0;
   private static final int QUANTIDADE_POR_PAGINA_PADRAO = 10;
 
-  private Integer numeroPagina;
-  private T ordenacaoCampo;
-  private OrderByDirection ordenacaoDirecao;
-  private Integer quantidadePorPagina;
+  private final Integer numeroPagina;
+  private final T ordenacaoCampo;
+  private final OrderableDirection ordenacaoDirecao;
+  private final Integer quantidadePorPagina;
 
-  protected abstract Collection<OrderSpecifier> orderByDefault();
+  protected abstract Collection<OrderSpecifier> defaultOrdering();
 
-  public void ignorarPaginacao() {
-    this.numeroPagina = null;
-    this.quantidadePorPagina = Integer.MAX_VALUE;
-  }
-
-  final OrderSpecifier buildOrderByColumn() {
-    return this.ordenacaoCampo.getOrderSpecifier(ordenacaoDirecao);
+  public final OrderSpecifier[] ordering() {
+    return OrderingHelper.union(this.possuiOrdenacaoPorCampo() ? this.orderableColumn() : null, this.defaultOrdering());
   }
 
   final int numeroPagina() {
@@ -46,6 +43,10 @@ public abstract class AbstractFiltroPaginado<T extends OrderByColumn> {
     return this.quantidadePorPagina == null || this.quantidadePorPagina < 0
       ? getQuantidadePorPaginaPadrao()
       : this.quantidadePorPagina;
+  }
+
+  private OrderSpecifier orderableColumn() {
+    return this.ordenacaoCampo.getOrderSpecifier(ordenacaoDirecao);
   }
 
   final Pageable getPageable() {

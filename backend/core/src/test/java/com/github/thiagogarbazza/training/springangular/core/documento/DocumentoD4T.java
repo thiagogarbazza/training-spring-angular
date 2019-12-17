@@ -3,8 +3,8 @@ package com.github.thiagogarbazza.training.springangular.core.documento;
 import lombok.experimental.UtilityClass;
 
 import static com.github.thiagogarbazza.training.springangular.core.documento.SituacaoDocumento.ATIVO;
-import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoD4T.grupoDocumentoABC;
-import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoD4T.grupoDocumentoXYZ;
+import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4T.grupoDocumentoABC;
+import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4T.grupoDocumentoXYZ;
 
 @UtilityClass
 public class DocumentoD4T {

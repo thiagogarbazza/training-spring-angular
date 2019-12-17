@@ -1,13 +1,16 @@
 package com.github.thiagogarbazza.training.springangular.core.grupodocumento.impl;
 
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoFiltroConsulta;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchFilter;
+import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomQueryDslRepositorySupport;
+import com.querydsl.jpa.JPQLQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.QGrupoDocumento.grupoDocumento;
+import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.impl.GrupoDocumentoSearchFilterHelper.grupoDocumentoSearchFilterPredicateBuilder;
 
 @Repository
 class GrupoDocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<GrupoDocumento> implements GrupoDocumentoRepositoryCustom {
@@ -17,9 +20,18 @@ class GrupoDocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<Grupo
   }
 
   @Override
-  public Collection<GrupoDocumento> pesquisar(final GrupoDocumentoFiltroConsulta filtroConsulta) {
+  public Collection<GrupoDocumento> search(final GrupoDocumentoSearchFilter grupoDocumentoConsultaFiltro) {
     return from(grupoDocumento)
-      .orderBy(grupoDocumento.codigo.asc())
+      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoConsultaFiltro))
+      .orderBy(grupoDocumentoConsultaFiltro.ordering())
       .fetch();
+  }
+
+  @Override
+  public CustomPage<GrupoDocumento> searchPaginating(final GrupoDocumentoSearchFilter grupoDocumentoConsultaFiltro) {
+    final JPQLQuery query = from(grupoDocumento)
+      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoConsultaFiltro));
+
+    return readPage(query, grupoDocumento, grupoDocumentoConsultaFiltro);
   }
 }

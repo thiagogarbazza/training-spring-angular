@@ -15,9 +15,9 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString(callSuper = true)
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-public class OrderBy<T extends OrderByColumn> {
+public class Ordering<T extends OrderableColumn> {
 
   private T column;
-  private OrderByDirection direction;
+  private OrderableDirection direction;
   private int index;
 }
