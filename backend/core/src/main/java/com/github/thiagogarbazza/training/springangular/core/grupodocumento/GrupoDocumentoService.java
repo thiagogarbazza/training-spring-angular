@@ -6,7 +6,7 @@ public interface GrupoDocumentoService {
 
   GrupoDocumento create(GrupoDocumentoVO4Create grupoDocumentoVO4Create);
 
-  void deletar(UUID uuid);
+  void delete(UUID uuid);
 
   GrupoDocumento update(GrupoDocumentoVO4Update grupoDocumentoVO4Update);
 }

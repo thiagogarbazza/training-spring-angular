@@ -33,8 +33,10 @@ class GrupoDocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<Grupo
 
   @Override
   public Collection<GrupoDocumentoVO4Select> search4Select(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    QGrupoDocumentoVO4Select projection = new QGrupoDocumentoVO4Select(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome);
+
     return from(grupoDocumento)
-      .select(new QGrupoDocumentoVO4Select(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome))
+      .select(projection)
       .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter))
       .orderBy(grupoDocumentoSearchFilter.ordering())
       .fetch();
@@ -45,7 +47,7 @@ class GrupoDocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<Grupo
     final JPQLQuery query = from(grupoDocumento)
       .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter));
 
-    return readPage(query, new QGrupoDocumentoVO4SearchResult(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome),
-      grupoDocumentoSearchFilter);
+    QGrupoDocumentoVO4SearchResult projection = new QGrupoDocumentoVO4SearchResult(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome);
+    return readPage(query, projection, grupoDocumentoSearchFilter);
   }
 }

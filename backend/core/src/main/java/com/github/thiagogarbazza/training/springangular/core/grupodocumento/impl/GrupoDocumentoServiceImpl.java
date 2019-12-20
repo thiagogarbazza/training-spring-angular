@@ -8,6 +8,7 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Situ
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,13 +33,22 @@ class GrupoDocumentoServiceImpl implements GrupoDocumentoService {
   }
 
   @Override
-  public void deletar(final UUID uuid) {
+  public void delete(final UUID uuid) {
     grupoDocumentoRepository.deleteById(uuid);
   }
 
   @Override
   public GrupoDocumento update(final GrupoDocumentoVO4Update grupoDocumentoVO4Update) {
     grupoDocumentoValidation.onUpdate(grupoDocumentoVO4Update);
+
+    final Optional<GrupoDocumento> optionalGrupoDocumento = grupoDocumentoRepository.findById(grupoDocumentoVO4Update.getId());
+    if (optionalGrupoDocumento.isPresent()) {
+      final GrupoDocumento grupoDocumento = optionalGrupoDocumento.get();
+      grupoDocumento.setCodigo(grupoDocumentoVO4Update.getCodigo());
+      grupoDocumento.setCodigo(grupoDocumentoVO4Update.getNome());
+
+      return grupoDocumentoRepository.save(grupoDocumento);
+    }
 
     return null;
   }
