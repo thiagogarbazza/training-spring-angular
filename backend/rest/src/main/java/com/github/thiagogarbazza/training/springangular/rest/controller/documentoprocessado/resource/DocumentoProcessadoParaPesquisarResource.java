@@ -1,10 +1,10 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documentoprocessado.resource;
 
 import com.github.thiagogarbazza.training.springangular.core.documentoprocessado.SituacaoDocumentoProcessado;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Select;
 import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
-import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,7 +50,7 @@ public class DocumentoProcessadoParaPesquisarResource {
 
     Collection<ClienteParaSelecaoResource> clientes;
     Collection<DocumentoParaSelecaoResource> documentos;
-    Collection<GrupoDocumentoParaSelecaoResource> grupodocumentos;
+    Collection<GrupoDocumentoVO4Select> grupodocumentos;
     Collection<SituacaoDocumentoProcessado> situacaoDocumentoProcessados;
   }
 

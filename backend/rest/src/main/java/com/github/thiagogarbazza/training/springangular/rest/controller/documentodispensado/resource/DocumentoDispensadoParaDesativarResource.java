@@ -1,8 +1,8 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource;
 
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Select;
 import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
-import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,10 +35,10 @@ public class DocumentoDispensadoParaDesativarResource {
   public static class DadosFormulario {
 
     private ClienteParaSelecaoResource clientes;
+    private Collection<DocumentoParaSelecaoResource> documentos;
+    private GrupoDocumentoVO4Select grupoDocumentos;
     private LocalDate vigenciaFim;
     private LocalDate vigenciaInicio;
-    private Collection<DocumentoParaSelecaoResource> documentos;
-    private GrupoDocumentoParaSelecaoResource grupoDocumentos;
   }
 
   @Getter
@@ -51,6 +51,6 @@ public class DocumentoDispensadoParaDesativarResource {
 
     private Collection<ClienteParaSelecaoResource> clientes;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private Collection<GrupoDocumentoParaSelecaoResource> grupoDocumentos;
+    private Collection<GrupoDocumentoVO4Select> grupoDocumentos;
   }
 }
