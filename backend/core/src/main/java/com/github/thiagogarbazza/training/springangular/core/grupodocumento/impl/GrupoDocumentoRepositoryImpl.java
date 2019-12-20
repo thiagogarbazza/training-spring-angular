@@ -2,6 +2,10 @@ package com.github.thiagogarbazza.training.springangular.core.grupodocumento.imp
 
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchFilter;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResult;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Select;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.QGrupoDocumentoVO4SearchResult;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.QGrupoDocumentoVO4Select;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomQueryDslRepositorySupport;
 import com.querydsl.jpa.JPQLQuery;
@@ -20,18 +24,28 @@ class GrupoDocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<Grupo
   }
 
   @Override
-  public Collection<GrupoDocumento> search(final GrupoDocumentoSearchFilter grupoDocumentoConsultaFiltro) {
+  public Collection<GrupoDocumento> search(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
     return from(grupoDocumento)
-      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoConsultaFiltro))
-      .orderBy(grupoDocumentoConsultaFiltro.ordering())
+      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter))
+      .orderBy(grupoDocumentoSearchFilter.ordering())
       .fetch();
   }
 
   @Override
-  public CustomPage<GrupoDocumento> searchPaginating(final GrupoDocumentoSearchFilter grupoDocumentoConsultaFiltro) {
-    final JPQLQuery query = from(grupoDocumento)
-      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoConsultaFiltro));
+  public Collection<GrupoDocumentoVO4Select> search4Select(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    return from(grupoDocumento)
+      .select(new QGrupoDocumentoVO4Select(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome))
+      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter))
+      .orderBy(grupoDocumentoSearchFilter.ordering())
+      .fetch();
+  }
 
-    return readPage(query, grupoDocumento, grupoDocumentoConsultaFiltro);
+  @Override
+  public CustomPage<GrupoDocumentoVO4SearchResult> searchPaginating(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    final JPQLQuery query = from(grupoDocumento)
+      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter));
+
+    return readPage(query, new QGrupoDocumentoVO4SearchResult(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome),
+      grupoDocumentoSearchFilter);
   }
 }

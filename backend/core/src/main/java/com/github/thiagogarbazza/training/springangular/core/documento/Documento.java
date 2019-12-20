@@ -6,11 +6,11 @@ import com.github.thiagogarbazza.training.springangular.util.persistence.entity.
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoAuditavel;
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoEModificacaoAuditavel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.AttributeOverride;
@@ -31,7 +31,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Entity
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @ToString(callSuper = true)
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)

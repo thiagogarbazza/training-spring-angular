@@ -1,5 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.core.grupodocumento;
 
+import com.github.thiagogarbazza.training.springangular.util.persistence.entity.Identifiable;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Builder
 @ToString
 @RequiredArgsConstructor(access = PROTECTED)
-public class GrupoDocumentoVO4Update {
+public class GrupoDocumentoVO4Update implements Identifiable {
 
   private final String codigo;
   private final UUID id;

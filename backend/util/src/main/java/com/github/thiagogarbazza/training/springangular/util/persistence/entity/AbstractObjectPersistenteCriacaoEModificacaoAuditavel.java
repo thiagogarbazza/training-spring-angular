@@ -1,11 +1,11 @@
 package com.github.thiagogarbazza.training.springangular.util.persistence.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -16,6 +16,7 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Setter
+@SuperBuilder
 @MappedSuperclass
 @FieldNameConstants
 @NoArgsConstructor(access = PROTECTED)

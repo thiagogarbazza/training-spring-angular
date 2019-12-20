@@ -1,10 +1,10 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource;
 
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.SituacaoDocumentoDispensado;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Select;
 import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
-import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,7 +54,7 @@ public class DocumentoDispensadoParaPesquisarResource {
     private LocalDate vigenciaFim;
     private LocalDate vigenciaInicio;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private Collection<GrupoDocumentoParaSelecaoResource> grupoDocumentos;
+    private Collection<GrupoDocumentoVO4Select> grupoDocumentos;
     private Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados;
   }
 
@@ -68,7 +68,7 @@ public class DocumentoDispensadoParaPesquisarResource {
 
     private Collection<ClienteParaSelecaoResource> clientes;
     private Collection<DocumentoParaSelecaoResource> documentos;
-    private Collection<GrupoDocumentoParaSelecaoResource> grupoDocumentos;
+    private Collection<GrupoDocumentoVO4Select> grupoDocumentos;
     private Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados;
   }
 }

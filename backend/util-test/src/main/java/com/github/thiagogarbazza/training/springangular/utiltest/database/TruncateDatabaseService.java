@@ -23,7 +23,7 @@ public class TruncateDatabaseService {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = READ_UNCOMMITTED, readOnly = false)
   public void truncate() {
-    Collection<String> tableNames = Arrays.asList("cliente.tbl_cliente");
+    Collection<String> tableNames = Arrays.asList("cliente.tbl_cliente", "documento.tbl_grupo_documento");
     Session session = entityManager.unwrap(Session.class);
     Metamodel hibernateMetadata = session.getSessionFactory().getMetamodel();
 

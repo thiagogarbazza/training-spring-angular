@@ -8,5 +8,7 @@ public interface GrupoDocumentoSearchService {
 
   Collection<GrupoDocumento> search(GrupoDocumentoSearchFilter grupoDocumentoSearchFilter);
 
-  CustomPage<GrupoDocumento> searchPaginating(GrupoDocumentoSearchFilter grupoDocumentoSearchFilter);
+  Collection<GrupoDocumentoVO4Select> search4Select(GrupoDocumentoSearchFilter grupoDocumentoSearchFilter);
+
+  CustomPage<GrupoDocumentoVO4SearchResult> searchPaginating(GrupoDocumentoSearchFilter grupoDocumentoSearchFilter);
 }

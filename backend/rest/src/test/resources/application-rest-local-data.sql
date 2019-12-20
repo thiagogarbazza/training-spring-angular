@@ -27,11 +27,11 @@
 --└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 INSERT INTO cliente.tbl_cliente
   (id,                                 codigo,    nome,         criador,        criacao,                   modificador,   modificacao) VALUES
-  ('deba2cb2fc074a4fb818648a6b9bd9af', 'CLI001', 'Cliente 001', 'mickey.mouse', CURRENT_TIMESTAMP() - 360, 'duck.donald', CURRENT_TIMESTAMP() - 100),
-  ('126c1f8fcb594b07b8fdfe09050415cc', 'CLI002', 'Cliente 002', 'mickey.mouse', CURRENT_TIMESTAMP() - 360, 'duck.donald', CURRENT_TIMESTAMP() - 200),
-  ('ad5c316d24724d1eb6f76d4c96b9b1cb', 'CLI003', 'Cliente 003', 'mickey.mouse', CURRENT_TIMESTAMP() - 360, 'duck.donald', CURRENT_TIMESTAMP() - 300),
-  ('fbeaf5ea671541f9a7fc71495f8ca86f', 'CLI004', 'Cliente 004', 'mickey.mouse', CURRENT_TIMESTAMP() - 360, null           , null),
-  ('3b75a592f67549ab8b8e605faff8d12d', 'CLI005', 'Cliente 005', 'mickey.mouse', CURRENT_TIMESTAMP() - 360, null           , null);
+  ('deba2cb2fc074a4fb818648a6b9bd9af', 'CLI001', 'Cliente 001', 'mouse.mickey', CURRENT_TIMESTAMP() - 360, 'duck.donald', CURRENT_TIMESTAMP() - 100),
+  ('126c1f8fcb594b07b8fdfe09050415cc', 'CLI002', 'Cliente 002', 'mouse.mickey', CURRENT_TIMESTAMP() - 360, 'duck.donald', CURRENT_TIMESTAMP() - 200),
+  ('ad5c316d24724d1eb6f76d4c96b9b1cb', 'CLI003', 'Cliente 003', 'mouse.mickey', CURRENT_TIMESTAMP() - 360, 'duck.donald', CURRENT_TIMESTAMP() - 300),
+  ('fbeaf5ea671541f9a7fc71495f8ca86f', 'CLI004', 'Cliente 004', 'mouse.mickey', CURRENT_TIMESTAMP() - 360, null           , null),
+  ('3b75a592f67549ab8b8e605faff8d12d', 'CLI005', 'Cliente 005', 'mouse.mickey', CURRENT_TIMESTAMP() - 360, null           , null);
 
 --┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 --├───────── Grupo de documentos                                                                                                                      ─────────┤

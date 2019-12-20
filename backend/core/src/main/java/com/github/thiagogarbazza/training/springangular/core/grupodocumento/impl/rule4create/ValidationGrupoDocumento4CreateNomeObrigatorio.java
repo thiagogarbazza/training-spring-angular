@@ -15,7 +15,7 @@ class ValidationGrupoDocumento4CreateNomeObrigatorio implements ValidationRuleCu
 
   @Override
   public void run(final ViolationBuilder violationBuilder, final GrupoDocumentoVO4Create grupoDocumentoVO4Create) {
-    violationBuilder.error(isBlank(grupoDocumentoVO4Create.getCodigo()),
+    violationBuilder.error(isBlank(grupoDocumentoVO4Create.getNome()),
       "grupo-documento.nome-obrigatorio",
       "O campo 'nome' deve ser preenchido.");
   }

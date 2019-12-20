@@ -5,8 +5,10 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSortableColumns;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.impl.GrupoDocumentoService4TA;
 import com.github.thiagogarbazza.training.springangular.core.it.CoreIntegrationTestRunner;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.OrderableDirection;
+import com.github.thiagogarbazza.training.springangular.utiltest.database.TruncateDatabaseService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,10 @@ class GrupoDocumentoSearchIntegrationTest {
 
   @Autowired
   private GrupoDocumentoSearchService grupoDocumentoSearchService;
+  @Autowired
+  private GrupoDocumentoService4TA grupoDocumentoService4TA;
+  @Autowired
+  private TruncateDatabaseService truncateDatabaseService;
 
   @Test
   void verify() {

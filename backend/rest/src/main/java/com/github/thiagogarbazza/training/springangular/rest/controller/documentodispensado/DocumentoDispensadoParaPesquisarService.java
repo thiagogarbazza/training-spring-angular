@@ -7,18 +7,15 @@ import com.github.thiagogarbazza.training.springangular.core.documento.Documento
 import com.github.thiagogarbazza.training.springangular.core.documento.DocumentoFiltroConsulta;
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensadoFiltroConsulta;
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.SituacaoDocumentoDispensado;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchFilter;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
+import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Select;
 import com.github.thiagogarbazza.training.springangular.rest.comum.consulta.CustomPageResource;
-import com.github.thiagogarbazza.training.springangular.rest.controller.cliente.resource.ClienteParaSelecaoResource;
-import com.github.thiagogarbazza.training.springangular.rest.controller.documento.resource.DocumentoParaSelecaoResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource.Acoes;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource.DadosFormulario;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoParaPesquisarResource.DadosParaFormulario;
 import com.github.thiagogarbazza.training.springangular.rest.controller.documentodispensado.resource.DocumentoDispensadoResultadoPesquisaResource;
-import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoParaSelecaoResource;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,7 +49,7 @@ class DocumentoDispensadoParaPesquisarService {
       .acoes(acoes)
       .dadosParaFormulario(dadosParaFormulario)
       .dadosFormulario(dadosFormulario)
-      .resultadoPesquisa(resultadoPesquisa)
+      //.resultadoPesquisa(resultadoPesquisa)
       .build();
   }
 
@@ -77,14 +74,14 @@ class DocumentoDispensadoParaPesquisarService {
   private DadosParaFormulario dadosParaFormularioBuild() {
     final Collection<Cliente> clientes = clienteConsultaService.pesquisar();
     final Collection<Documento> documentos = documentoConsultaService.pesquisar(DocumentoFiltroConsulta.builder().build());
-    final Collection<GrupoDocumento> grupodocumentos = grupoDocumentoConsultaService.search(GrupoDocumentoSearchFilter.builder().build());
+    final Collection<GrupoDocumentoVO4Select> grupodocumentos = grupoDocumentoConsultaService.search4Select(GrupoDocumentoSearchFilter.builder().build());
     final Collection<SituacaoDocumentoDispensado> situacaoDocumentoDispensados = asList(SituacaoDocumentoDispensado.values());
 
     return DadosParaFormulario.builder()
-      .clientes(mapper.mapAsList(clientes, ClienteParaSelecaoResource.class))
-      .documentos(mapper.mapAsList(documentos, DocumentoParaSelecaoResource.class))
-      .grupoDocumentos(mapper.mapAsList(grupodocumentos, GrupoDocumentoParaSelecaoResource.class))
-      .situacaoDocumentoDispensados(situacaoDocumentoDispensados)
+     // .clientes(mapper.mapAsList(clientes, ClienteParaSelecaoResource.class))
+      //.documentos(mapper.mapAsList(documentos, DocumentoParaSelecaoResource.class))
+      .grupoDocumentos(grupodocumentos)
+      //.situacaoDocumentoDispensados(situacaoDocumentoDispensados)
       .build();
   }
 

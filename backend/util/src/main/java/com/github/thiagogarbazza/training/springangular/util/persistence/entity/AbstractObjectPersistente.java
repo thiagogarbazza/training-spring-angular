@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldNameConstants;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Setter
+@SuperBuilder
 @ToString(of = {"id"})
 @MappedSuperclass
 @EqualsAndHashCode
