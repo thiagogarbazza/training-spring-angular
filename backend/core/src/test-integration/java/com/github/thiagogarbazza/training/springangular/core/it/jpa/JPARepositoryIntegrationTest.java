@@ -18,7 +18,6 @@ import java.util.Collection;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.transaction.annotation.Isolation.READ_UNCOMMITTED;
 
 @CoreIntegrationTestRunner
@@ -51,10 +50,6 @@ class JPARepositoryIntegrationTest {
     assertFalse(clienteRecuperado.isNew());
     assertEquals("TPGV", clienteRecuperado.getCodigo());
     assertEquals("Thiago Garbazza", clienteRecuperado.getNome());
-    assertEquals("thiago.garbazza", clienteRecuperado.getCriador());
-    assertNotNull(clienteRecuperado.getCriacao());
-    assertNull(clienteRecuperado.getModificador());
-    assertNull(clienteRecuperado.getModificacao());
 
     cliente.setCodigo("TPGV 02");
     cliente.setNome("Thiago de Pádua Garbazza Vieira");
@@ -68,10 +63,6 @@ class JPARepositoryIntegrationTest {
     assertFalse(clienteRecuperado.isNew());
     assertEquals("TPGV 02", clienteRecuperado.getCodigo());
     assertEquals("Thiago de Pádua Garbazza Vieira", clienteRecuperado.getNome());
-    assertEquals("thiago.garbazza", clienteRecuperado.getCriador());
-    assertNotNull(clienteRecuperado.getCriacao());
-    assertEquals("thiago.garbazza", clienteRecuperado.getModificador());
-    assertNotNull(clienteRecuperado.getModificacao());
   }
 
   @AfterAll

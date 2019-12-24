@@ -2,6 +2,8 @@ package com.github.thiagogarbazza.training.springangular.util.persistence.consul
 
 import com.querydsl.core.types.OrderSpecifier;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.ObjectUtils;
@@ -10,18 +12,22 @@ import org.springframework.data.querydsl.QPageRequest;
 
 import java.util.Collection;
 
+import static lombok.AccessLevel.PROTECTED;
+
 @Getter
+@Setter
 @SuperBuilder
 @ToString
+@NoArgsConstructor(access = PROTECTED)
 public abstract class AbstractSearchFilter<T extends OrderableColumn> {
 
   private static final int PAGINA_INICIAL = 0;
   private static final int QUANTIDADE_POR_PAGINA_PADRAO = 10;
 
-  private final Integer numeroPagina;
-  private final T ordenacaoCampo;
-  private final OrderableDirection ordenacaoDirecao;
-  private final Integer quantidadePorPagina;
+  private Integer numeroPagina;
+  private T ordenacaoCampo;
+  private OrderableDirection ordenacaoDirecao;
+  private Integer quantidadePorPagina;
 
   protected abstract Collection<OrderSpecifier> defaultOrdering();
 

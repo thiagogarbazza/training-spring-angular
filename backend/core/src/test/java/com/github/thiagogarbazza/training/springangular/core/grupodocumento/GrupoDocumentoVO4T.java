@@ -1,8 +1,8 @@
 package com.github.thiagogarbazza.training.springangular.core.grupodocumento;
 
+import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AuditEntityVO4T;
 import lombok.experimental.UtilityClass;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento.ATIVO;
@@ -17,10 +17,8 @@ public class GrupoDocumentoVO4T {
       .codigo("ABC")
       .nome("ABC")
       .situacao(ATIVO)
-      .criador("mouse.mickey")
-      .criacao(LocalDateTime.of(2000, 1, 31, 0, 0, 0))
-      .modificador("duck.donald")
-      .modificacao(LocalDateTime.of(2000, 1, 31, 0, 0, 0))
+      .creation(AuditEntityVO4T.auditEntityCreationBuilder())
+      .modification(AuditEntityVO4T.auditEntityModificationBuilder())
       .build();
   }
 
@@ -30,10 +28,8 @@ public class GrupoDocumentoVO4T {
       .codigo("XYZ")
       .nome("XYZ")
       .situacao(INATIVO)
-      .criador("mouse.mickey")
-      .criacao(LocalDateTime.of(2000, 1, 31, 0, 0, 0))
-      .modificador("duck.donald")
-      .modificacao(LocalDateTime.of(2000, 1, 31, 0, 0, 0))
+      .creation(AuditEntityVO4T.auditEntityCreationBuilder())
+      .modification(AuditEntityVO4T.auditEntityModificationBuilder())
       .build();
   }
 }

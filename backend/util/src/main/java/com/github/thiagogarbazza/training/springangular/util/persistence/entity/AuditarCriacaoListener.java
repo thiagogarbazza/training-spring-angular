@@ -7,7 +7,11 @@ class AuditarCriacaoListener {
 
   @PrePersist
   public void prePersist(AbstractObjectPersistenteCriacaoAuditavel abstractObjectPersistenteCriacaoAuditavel) {
-    abstractObjectPersistenteCriacaoAuditavel.setCriacao(LocalDateTime.now());
-    abstractObjectPersistenteCriacaoAuditavel.setCriador("thiago.garbazza");
+    final AuditEntity auditEntity = AuditEntity.builder()
+      .userName("thiago.garbazza")
+      .dateTime(LocalDateTime.now())
+      .build();
+
+    abstractObjectPersistenteCriacaoAuditavel.setCreation(auditEntity);
   }
 }

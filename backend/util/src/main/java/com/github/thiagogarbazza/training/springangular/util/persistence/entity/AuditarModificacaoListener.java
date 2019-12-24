@@ -7,7 +7,11 @@ class AuditarModificacaoListener {
 
   @PreUpdate
   public void preUpdate(AbstractObjectPersistenteCriacaoEModificacaoAuditavel abstractObjectPersistenteCriacaoEModificacaoAuditavel) {
-    abstractObjectPersistenteCriacaoEModificacaoAuditavel.setModificacao(LocalDateTime.now());
-    abstractObjectPersistenteCriacaoEModificacaoAuditavel.setModificador("thiago.garbazza");
+    final AuditEntity auditEntity = AuditEntity.builder()
+      .userName("thiago.garbazza")
+      .dateTime(LocalDateTime.now())
+      .build();
+
+    abstractObjectPersistenteCriacaoEModificacaoAuditavel.setModification(auditEntity);
   }
 }

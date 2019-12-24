@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import static com.github.thiagogarbazza.training.springangular.util.aspect.AspectUtil.MSG_LOG_ENDING;
 import static com.github.thiagogarbazza.training.springangular.util.aspect.AspectUtil.MSG_LOG_ERROR;
 import static com.github.thiagogarbazza.training.springangular.util.aspect.AspectUtil.MSG_LOG_START;
-import static com.github.thiagogarbazza.training.springangular.util.aspect.AspectUtil.MSG_SYMBOL_H1;
+import static com.github.thiagogarbazza.training.springangular.util.aspect.AspectUtil.MSG_SYMBOL_H2;
 import static com.github.thiagogarbazza.training.springangular.util.aspect.AspectUtil.toStringSignatureBuilder;
 import static java.text.MessageFormat.format;
 import static java.time.Duration.between;
@@ -38,13 +38,13 @@ public class LogObserverService {
   private void afterPoint(final ProceedingJoinPoint joinPoint, final Object resposta, final LocalDateTime start) {
     if (log.isDebugEnabled()) {
       final Duration duration = between(start, now());
-      log.debug(format(MSG_LOG_ENDING, MSG_SYMBOL_H1, toStringSignatureBuilder(joinPoint), resposta, duration));
+      log.debug(format(MSG_LOG_ENDING, MSG_SYMBOL_H2, toStringSignatureBuilder(joinPoint), resposta, duration));
     }
   }
 
   private void beforePoint(final ProceedingJoinPoint joinPoint) {
     if (log.isDebugEnabled()) {
-      log.debug(format(MSG_LOG_START, MSG_SYMBOL_H1, toStringSignatureBuilder(joinPoint)));
+      log.debug(format(MSG_LOG_START, MSG_SYMBOL_H2, toStringSignatureBuilder(joinPoint)));
     }
   }
 
@@ -55,7 +55,7 @@ public class LogObserverService {
       throw e;
     } catch (Throwable throwable) {
       final Duration duration = between(start, now());
-      log.error(format(MSG_LOG_ERROR, MSG_SYMBOL_H1, toStringSignatureBuilder(joinPoint), throwable.getMessage(), duration));
+      log.error(format(MSG_LOG_ERROR, MSG_SYMBOL_H2, toStringSignatureBuilder(joinPoint), throwable.getMessage(), duration));
 
       throw throwable;
     }

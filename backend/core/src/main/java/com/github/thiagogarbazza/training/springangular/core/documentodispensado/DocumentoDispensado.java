@@ -24,8 +24,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import static com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoAuditavel.LENGTH_ATTR_CRIADOR;
-import static com.github.thiagogarbazza.training.springangular.util.persistence.entity.AbstractObjectPersistenteCriacaoEModificacaoAuditavel.LENGTH_ATTR_MODIFICADOR;
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
@@ -38,26 +36,26 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "tbl_documento_dispensado", schema = "documento_esperado")
 @AttributeOverrides({ // @formatter:off
   @AttributeOverride(name = AbstractObjectPersistente.Fields.id, column = @Column(name = "id", nullable = false)),
-  @AttributeOverride(name = AbstractObjectPersistenteCriacaoAuditavel.Fields.criador, column = @Column(name = "criador", nullable = false, length = LENGTH_ATTR_CRIADOR)),
-  @AttributeOverride(name = AbstractObjectPersistenteCriacaoAuditavel.Fields.criacao, column = @Column(name = "criacao", nullable = false)),
-  @AttributeOverride(name = AbstractObjectPersistenteCriacaoEModificacaoAuditavel.Fields.modificador, column = @Column(name = "modificador", nullable = true, length = LENGTH_ATTR_MODIFICADOR)),
-  @AttributeOverride(name = AbstractObjectPersistenteCriacaoEModificacaoAuditavel.Fields.modificacao, column = @Column(name = "modificacao", nullable = true))
+  @AttributeOverride(name = AbstractObjectPersistenteCriacaoAuditavel.ATTR_USER_NAME_CREATOR, column = @Column(name = "criador", nullable = false, length = AbstractObjectPersistenteCriacaoAuditavel.ATTR_USER_NAME_LENGTH)),
+  @AttributeOverride(name = AbstractObjectPersistenteCriacaoAuditavel.ATTR_DATE_TIME_CREATOR, column = @Column(name = "criacao", nullable = false)),
+  @AttributeOverride(name = AbstractObjectPersistenteCriacaoEModificacaoAuditavel.ATTR_USER_NAME_MODIFIER, column = @Column(name = "modificador", nullable = true, length = AbstractObjectPersistenteCriacaoAuditavel.ATTR_USER_NAME_LENGTH)),
+  @AttributeOverride(name = AbstractObjectPersistenteCriacaoEModificacaoAuditavel.ATTR_DATE_TIME_MODIFIER, column = @Column(name = "modificacao", nullable = true))
 }) // @formatter:on
 public class DocumentoDispensado extends AbstractObjectPersistenteCriacaoEModificacaoAuditavel {
 
   @ManyToOne
   @JoinColumn(name = "cliente_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tbl_documento_dispensado_from_tbl_cliente"))
   private Cliente cliente;
-  @Embedded
-  @AttributeOverrides({
-    @AttributeOverride(name = Periodo.Fields.inicio, column = @Column(name = "data_base_inicio", nullable = false)),
-    @AttributeOverride(name = Periodo.Fields.fim, column = @Column(name = "data_base_fim"))
-  })
-  private Periodo vigencia;
   @ManyToOne
   @JoinColumn(name = "documento_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tbl_documento_dispensado_from_tbl_documento"))
   private Documento documento;
   @Column(name = "situacao", nullable = false)
   @Type(type = "com.github.thiagogarbazza.training.springangular.util.persistence.integrator.EnumIdentifiableType")
   private SituacaoDocumentoDispensado situacao;
+  @Embedded
+  @AttributeOverrides({
+    @AttributeOverride(name = Periodo.Fields.inicio, column = @Column(name = "data_base_inicio", nullable = false)),
+    @AttributeOverride(name = Periodo.Fields.fim, column = @Column(name = "data_base_fim"))
+  })
+  private Periodo vigencia;
 }

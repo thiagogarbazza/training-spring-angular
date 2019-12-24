@@ -1,22 +1,24 @@
-package com.github.thiagogarbazza.training.springangular.core.grupodocumento;
+package com.github.thiagogarbazza.training.springangular.util.persistence.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
+import javax.persistence.Embeddable;
 
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
-@Setter
 @Builder
 @ToString
+@Embeddable
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-public class GrupoDocumentoVO4Create {
+public class AuditEntity {
 
-  private String codigo;
-  private String nome;
+  private LocalDateTime dateTime;
+  private String userName;
 }

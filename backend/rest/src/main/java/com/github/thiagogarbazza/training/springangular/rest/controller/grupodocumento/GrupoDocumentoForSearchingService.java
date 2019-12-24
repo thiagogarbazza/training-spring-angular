@@ -4,7 +4,7 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResult;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento;
-import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoParaPesquisarResource;
+import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingResource;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,35 +12,36 @@ import org.springframework.stereotype.Component;
 import static java.util.Arrays.asList;
 
 @Component
-class GrupoDocumentoParaPesquisarService {
+class GrupoDocumentoForSearchingService {
 
   @Autowired
   private GrupoDocumentoSearchService grupoDocumentoSearchService;
 
-  GrupoDocumentoParaPesquisarResource paraPesquisar(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
-    return GrupoDocumentoParaPesquisarResource.builder()
+  GrupoDocumentoForSearchingResource forSearching(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    return GrupoDocumentoForSearchingResource.builder()
       .actions(actionsBuild())
-      .formData(formDataBuild())
+      .formData(formDataBuild(grupoDocumentoSearchFilter))
       .dataToBuildForm(dataToBuildFormBuild())
       .result(getResult(grupoDocumentoSearchFilter))
       .build();
   }
 
-  private GrupoDocumentoParaPesquisarResource.Actions actionsBuild() {
-    return GrupoDocumentoParaPesquisarResource.Actions.builder()
+  private GrupoDocumentoForSearchingResource.Actions actionsBuild() {
+    return GrupoDocumentoForSearchingResource.Actions.builder()
       .doCreate(true)
       .doReportExcel(true)
       .build();
   }
 
-  private GrupoDocumentoParaPesquisarResource.DataToBuildForm dataToBuildFormBuild() {
-    return GrupoDocumentoParaPesquisarResource.DataToBuildForm.builder()
+  private GrupoDocumentoForSearchingResource.DataToBuildForm dataToBuildFormBuild() {
+    return GrupoDocumentoForSearchingResource.DataToBuildForm.builder()
       .situacaoGrupoDocumentos(asList(SituacaoGrupoDocumento.values()))
       .build();
   }
 
-  private GrupoDocumentoParaPesquisarResource.FormData formDataBuild() {
-    return GrupoDocumentoParaPesquisarResource.FormData.builder()
+  private GrupoDocumentoForSearchingResource.FormData formDataBuild(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    return GrupoDocumentoForSearchingResource.FormData.builder()
+      .situacaoGrupoDocumentos(grupoDocumentoSearchFilter.getSituacoes())
       .build();
   }
 

@@ -20,7 +20,7 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-public class GrupoDocumentoParaPesquisarResource {
+public class GrupoDocumentoForSearchingResource {
 
   private Actions actions;
   private DataToBuildForm dataToBuildForm;

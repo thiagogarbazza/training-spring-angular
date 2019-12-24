@@ -1,22 +1,26 @@
 package com.github.thiagogarbazza.training.springangular.core.grupodocumento;
 
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.Identifiable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.UUID;
 
-import static lombok.AccessLevel.PROTECTED;
+import static lombok.AccessLevel.PRIVATE;
 
 @Getter
+@Setter
 @Builder
 @ToString
-@RequiredArgsConstructor(access = PROTECTED)
+@NoArgsConstructor(access = PRIVATE)
+@AllArgsConstructor(access = PRIVATE)
 public class GrupoDocumentoVO4Update implements Identifiable {
 
-  private final String codigo;
-  private final UUID id;
-  private final String nome;
+  private String codigo;
+  private UUID id;
+  private String nome;
 }

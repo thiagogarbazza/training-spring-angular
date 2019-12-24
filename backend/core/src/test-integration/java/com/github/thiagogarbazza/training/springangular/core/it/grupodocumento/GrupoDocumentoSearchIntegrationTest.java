@@ -8,7 +8,6 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Situ
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.impl.GrupoDocumentoService4TA;
 import com.github.thiagogarbazza.training.springangular.core.it.CoreIntegrationTestRunner;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.OrderableDirection;
-import com.github.thiagogarbazza.training.springangular.utiltest.database.TruncateDatabaseService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +22,11 @@ class GrupoDocumentoSearchIntegrationTest {
   private GrupoDocumentoSearchService grupoDocumentoSearchService;
   @Autowired
   private GrupoDocumentoService4TA grupoDocumentoService4TA;
-  @Autowired
-  private TruncateDatabaseService truncateDatabaseService;
 
   @Test
   void verify() {
     final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter = GrupoDocumentoSearchFilter.builder()
-      .codigo("GRP01")
+      .codigo("GRP002")
       .situacoes(Collections.singleton(SituacaoGrupoDocumento.ATIVO))
       .numeroPagina(0)
       .quantidadePorPagina(1)
