@@ -1,6 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.util.persistence.enumeration;
 
-public interface EnumIdentifiable {
+public interface EnumIdentifiable<T> {
 
-  int getId();
+  T getId();
 }

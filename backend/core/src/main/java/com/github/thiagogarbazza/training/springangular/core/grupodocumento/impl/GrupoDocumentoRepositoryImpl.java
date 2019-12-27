@@ -47,7 +47,8 @@ class GrupoDocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<Grupo
     final JPQLQuery query = from(grupoDocumento)
       .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter));
 
-    QGrupoDocumentoVO4SearchResult projection = new QGrupoDocumentoVO4SearchResult(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome);
+    QGrupoDocumentoVO4SearchResult projection = new QGrupoDocumentoVO4SearchResult(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome,
+      grupoDocumento.situacao);
     return readPage(query, projection, grupoDocumentoSearchFilter);
   }
 }

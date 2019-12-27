@@ -4,12 +4,12 @@ import com.github.thiagogarbazza.training.springangular.util.persistence.enumera
 import lombok.Getter;
 
 @Getter
-public enum SituacaoDocumentoEsperado implements EnumIdentifiableWithDescription {
+public enum SituacaoDocumentoEsperado implements EnumIdentifiableWithDescription<Integer> {
 
   ESPERADO(1, "Esperado"),
   NAO_ESPERADO(2, "Não esperado");
 
-  public final int id;
+  private final Integer id;
   private final String description;
 
   SituacaoDocumentoEsperado(final int id, final String description) {

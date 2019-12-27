@@ -6,6 +6,8 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingResource;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
+import com.github.thiagogarbazza.training.springangular.util.security.Action;
+import com.github.thiagogarbazza.training.springangular.util.security.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,11 +28,21 @@ class GrupoDocumentoForSearchingService {
       .build();
   }
 
-  private GrupoDocumentoForSearchingResource.Actions actionsBuild() {
-    return GrupoDocumentoForSearchingResource.Actions.builder()
-      .doCreate(true)
-      .doReportExcel(true)
-      .build();
+  private Actions actionsBuild() {
+    final Actions actions = new Actions();
+
+    actions.put(Actions.ACTION_CAN_CREATE, Action.builder()
+      .doAction(true)
+      .name("Novo grupo de documento")
+      .title("Clique aqui para criar um novo grupo de documento")
+      .build());
+    actions.put(Actions.ACTION_CAN_REPORT_EXCEL, Action.builder()
+      .doAction(true)
+      .name("Relatório excel grupo de documento")
+      .title("Clique aqui para gerar de grupo de documento")
+      .build());
+
+    return actions;
   }
 
   private GrupoDocumentoForSearchingResource.DataToBuildForm dataToBuildFormBuild() {

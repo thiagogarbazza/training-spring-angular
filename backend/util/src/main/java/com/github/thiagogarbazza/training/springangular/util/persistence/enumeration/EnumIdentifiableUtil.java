@@ -6,11 +6,11 @@ import lombok.experimental.UtilityClass;
 public class EnumIdentifiableUtil {
 
   @SuppressWarnings("Unchecked")
-  public static <T extends Object, C extends Enum> C findById(final Class<C> enumClass, final int id) {
+  public static <E extends Enum, ID extends Object> E findById(final Class<E> enumClass, final ID id) {
     for (Enum e : enumClass.getEnumConstants()) {
       EnumIdentifiable castEnum = (EnumIdentifiable) e;
-      if (castEnum.getId() == id) {
-        return (C) e;
+      if (castEnum.getId().equals(id)) {
+        return (E) e;
       }
     }
 

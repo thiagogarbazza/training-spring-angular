@@ -3,6 +3,7 @@ package com.github.thiagogarbazza.training.springangular.rest.controller.grupodo
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResult;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
+import com.github.thiagogarbazza.training.springangular.util.security.Actions;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,22 +29,8 @@ public class GrupoDocumentoForSearchingResource {
   private CustomPage<GrupoDocumentoVO4SearchResult> result;
 
   @Getter
-  @Setter
   @Builder
   @ToString
-  @NoArgsConstructor(access = PRIVATE)
-  @AllArgsConstructor(access = PRIVATE)
-  public static class Actions {
-
-    private boolean doCreate;
-    private boolean doReportExcel;
-  }
-
-  @Getter
-  @Setter
-  @Builder
-  @ToString
-  @NoArgsConstructor(access = PRIVATE)
   @AllArgsConstructor(access = PRIVATE)
   public static class DataToBuildForm {
 
@@ -51,10 +38,8 @@ public class GrupoDocumentoForSearchingResource {
   }
 
   @Getter
-  @Setter
   @Builder
   @ToString
-  @NoArgsConstructor(access = PRIVATE)
   @AllArgsConstructor(access = PRIVATE)
   public static class FormData {
 

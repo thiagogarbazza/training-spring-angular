@@ -4,7 +4,7 @@ import com.github.thiagogarbazza.training.springangular.util.persistence.enumera
 import lombok.Getter;
 
 @Getter
-public enum Periodicidade implements EnumIdentifiableWithDescription {
+public enum Periodicidade implements EnumIdentifiableWithDescription<Integer> {
 
   DIARIA(1, "Diário"),
   SEMANAL(2, "Semanal"),
@@ -16,7 +16,7 @@ public enum Periodicidade implements EnumIdentifiableWithDescription {
   ANUAL(8, "Anual"),
   REGRA(255, "Regra");
 
-  private final int id;
+  private final Integer id;
   private final String description;
 
   Periodicidade(final int id, final String description) {

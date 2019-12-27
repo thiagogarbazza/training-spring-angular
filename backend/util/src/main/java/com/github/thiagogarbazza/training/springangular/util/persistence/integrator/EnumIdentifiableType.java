@@ -49,7 +49,7 @@ public class EnumIdentifiableType implements DynamicParameterizedType, UserType 
     for (Enum value : returnedClass().getEnumConstants()) {
       if (value instanceof EnumIdentifiable) {
         EnumIdentifiable enumComCodigo = (EnumIdentifiable) value;
-        if (enumComCodigo.getId() == id) {
+        if (enumComCodigo.getId().equals(id)) {
           return value;
         }
       }
@@ -63,8 +63,8 @@ public class EnumIdentifiableType implements DynamicParameterizedType, UserType 
     if (value == null) {
       st.setNull(index, Types.TINYINT);
     } else {
-      final int id = ((EnumIdentifiable) value).getId();
-      st.setInt(index, id);
+      final Object id = ((EnumIdentifiable) value).getId();
+      st.setObject(index, id);
     }
   }
 

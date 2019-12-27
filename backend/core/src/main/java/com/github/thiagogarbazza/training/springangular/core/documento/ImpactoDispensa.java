@@ -4,12 +4,12 @@ import com.github.thiagogarbazza.training.springangular.util.persistence.enumera
 import lombok.Getter;
 
 @Getter
-public enum ImpactoDispensa implements EnumIdentifiableWithDescription {
+public enum ImpactoDispensa implements EnumIdentifiableWithDescription<Integer> {
 
   NAO_FAZER_NADA(0, "Não fazer nada"),
   REJEITAR_DOCUMENTOS_PROCESSADOS(1, "Rejeitar documentos processados");
 
-  private final int id;
+  private final Integer id;
   private final String description;
 
   ImpactoDispensa(final int id, final String description) {

@@ -23,7 +23,7 @@ public abstract class CustomQueryDslRepositorySupport<E> extends QuerydslReposit
       ? realizarPesquisaPaginada(queryContent, expression, pageable)
       : Collections.<T>emptyList();
 
-    return new CustomPage<T>(content, pageable, total);
+    return new CustomPage<T>(content, total, filtro);
   }
 
   protected <T> CustomPage<T> readPage(JPQLQuery query, Expression<T> expression, AbstractSearchFilter filtro) {
@@ -37,7 +37,7 @@ public abstract class CustomQueryDslRepositorySupport<E> extends QuerydslReposit
       ? realizarPesquisaPaginada(query, expression, pageable)
       : Collections.<T>emptyList();
 
-    return new CustomPage<T>(content, pageable, total);
+    return new CustomPage<T>(content, total, filtro);
   }
 
   private <T> List<T> realizarPesquisaPaginada(JPQLQuery query, Expression<T> expression, Pageable pageable) {

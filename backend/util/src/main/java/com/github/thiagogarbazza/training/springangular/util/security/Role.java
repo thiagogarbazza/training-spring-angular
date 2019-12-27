@@ -4,17 +4,15 @@ import com.github.thiagogarbazza.training.springangular.util.persistence.enumera
 import lombok.Getter;
 
 @Getter
-public enum Role implements EnumIdentifiableWithDescription {
+public enum Role implements EnumIdentifiableWithDescription<String> {
 
-  ADMINISTRADOR(0, "SCRD005", "Administrador");
+  ADMINISTRADOR("STR005", "Administrador");
 
-  private final String codigo;
-  private final int id;
   private final String description;
+  private final String id;
 
-  Role(final int id, final String codigo, final String description) {
+  Role(final String id, final String description) {
     this.id = id;
-    this.codigo = codigo;
     this.description = description;
   }
 }

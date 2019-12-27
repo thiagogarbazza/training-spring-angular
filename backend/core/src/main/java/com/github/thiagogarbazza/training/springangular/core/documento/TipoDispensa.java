@@ -4,13 +4,13 @@ import com.github.thiagogarbazza.training.springangular.util.persistence.enumera
 import lombok.Getter;
 
 @Getter
-public enum TipoDispensa implements EnumIdentifiableWithDescription {
+public enum TipoDispensa implements EnumIdentifiableWithDescription<Integer> {
 
   NAO_PERMITE_DISPENSA(0, false, "Não permite dispensa"),
   PERIODO(1, true, "Dispensa por periodo"),
   DATA_BASE(2, true, "Dispensa por data-base");
 
-  private final int id;
+  private final Integer id;
   private final String description;
   private final boolean permiteDispensa;
 
