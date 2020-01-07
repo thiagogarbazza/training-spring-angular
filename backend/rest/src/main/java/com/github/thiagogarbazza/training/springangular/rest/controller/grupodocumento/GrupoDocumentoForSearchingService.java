@@ -4,7 +4,7 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResult;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento;
-import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingResource;
+import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingVO;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import com.github.thiagogarbazza.training.springangular.util.security.Action;
 import com.github.thiagogarbazza.training.springangular.util.security.Actions;
@@ -19,8 +19,8 @@ class GrupoDocumentoForSearchingService {
   @Autowired
   private GrupoDocumentoSearchService grupoDocumentoSearchService;
 
-  GrupoDocumentoForSearchingResource forSearching(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
-    return GrupoDocumentoForSearchingResource.builder()
+  GrupoDocumentoForSearchingVO forSearching(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    return GrupoDocumentoForSearchingVO.builder()
       .actions(actionsBuild())
       .formData(formDataBuild(grupoDocumentoSearchFilter))
       .dataToBuildForm(dataToBuildFormBuild())
@@ -34,25 +34,25 @@ class GrupoDocumentoForSearchingService {
     actions.put(Actions.ACTION_CAN_CREATE, Action.builder()
       .doAction(true)
       .name("Novo grupo de documento")
-      .title("Clique aqui para criar um novo grupo de documento")
+      .tooltip("Clique aqui para criar um novo grupo de documento")
       .build());
     actions.put(Actions.ACTION_CAN_REPORT_EXCEL, Action.builder()
       .doAction(true)
       .name("Relatório excel grupo de documento")
-      .title("Clique aqui para gerar de grupo de documento")
+      .tooltip("Clique aqui para gerar de grupo de documento")
       .build());
 
     return actions;
   }
 
-  private GrupoDocumentoForSearchingResource.DataToBuildForm dataToBuildFormBuild() {
-    return GrupoDocumentoForSearchingResource.DataToBuildForm.builder()
+  private GrupoDocumentoForSearchingVO.DataToBuildForm dataToBuildFormBuild() {
+    return GrupoDocumentoForSearchingVO.DataToBuildForm.builder()
       .situacaoGrupoDocumentos(asList(SituacaoGrupoDocumento.values()))
       .build();
   }
 
-  private GrupoDocumentoForSearchingResource.FormData formDataBuild(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
-    return GrupoDocumentoForSearchingResource.FormData.builder()
+  private GrupoDocumentoForSearchingVO.FormData formDataBuild(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    return GrupoDocumentoForSearchingVO.FormData.builder()
       .situacaoGrupoDocumentos(grupoDocumentoSearchFilter.getSituacoes())
       .build();
   }

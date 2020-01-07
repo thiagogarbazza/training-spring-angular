@@ -27,7 +27,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Setter
 @Builder
 @FieldNameConstants
-@ToString(callSuper = true)
+@ToString(callSuper = true, of = {"grupoDocumento", "situacao"})
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
 @Table(name = "his_situacao_grupo_documento", schema = "documento")

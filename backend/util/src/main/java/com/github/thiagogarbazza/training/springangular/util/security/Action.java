@@ -15,5 +15,5 @@ public class Action {
 
   private boolean doAction;
   private String name;
-  private String title;
+  private String tooltip;
 }

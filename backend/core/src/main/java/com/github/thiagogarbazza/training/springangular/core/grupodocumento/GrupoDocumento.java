@@ -26,7 +26,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @Setter
 @SuperBuilder
-@ToString(callSuper = true)
+@ToString(callSuper = true, of = {"codigo"})
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
 @Table(name = "tbl_grupo_documento", schema = "documento", indexes = {

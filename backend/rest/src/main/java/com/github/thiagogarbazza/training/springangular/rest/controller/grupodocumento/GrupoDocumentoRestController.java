@@ -10,11 +10,13 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Detail;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResult;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Update;
-import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingResource;
+import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForCreatingVO;
+import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingVO;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -38,10 +40,12 @@ class GrupoDocumentoRestController {
   private GrupoDocumentoSearchService grupoDocumentoSearchService;
   @Autowired
   private GrupoDocumentoUpdateService grupoDocumentoUpdateService;
+  @Autowired
+  private GrupoDocumentoForCreatingService grupoDocumentoForCreatingService;
 
-  @RequestMapping(method = RequestMethod.POST, path = "/")
+  @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(code = HttpStatus.CREATED)
-  public void create(final GrupoDocumentoVO4Create grupoDocumentoVO4Create) {
+  public void create(@RequestBody final GrupoDocumentoVO4Create grupoDocumentoVO4Create) {
     grupoDocumentoCreateService.create(grupoDocumentoVO4Create);
   }
 
@@ -56,12 +60,12 @@ class GrupoDocumentoRestController {
   }
 
   @RequestMapping(method = RequestMethod.GET, path = "/for-creating")
-  public void forCreating() {
-
+  public GrupoDocumentoForCreatingVO forCreating() {
+    return grupoDocumentoForCreatingService.forCreating();
   }
 
   @RequestMapping(method = RequestMethod.GET, path = "/for-searching")
-  public GrupoDocumentoForSearchingResource forSearching(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+  public GrupoDocumentoForSearchingVO forSearching(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
     return grupoDocumentoForSearchingService.forSearching(grupoDocumentoSearchFilter);
   }
 
@@ -76,7 +80,8 @@ class GrupoDocumentoRestController {
   }
 
   @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
-  public void update(@PathVariable("id") final UUID id, final GrupoDocumentoVO4Update grupoDocumentoVO4Update) {
+  public void update(@PathVariable("id") final UUID id, @RequestBody final GrupoDocumentoVO4Update grupoDocumentoVO4Update) {
+    grupoDocumentoVO4Update.setId(id);
     grupoDocumentoUpdateService.update(grupoDocumentoVO4Update);
   }
 }

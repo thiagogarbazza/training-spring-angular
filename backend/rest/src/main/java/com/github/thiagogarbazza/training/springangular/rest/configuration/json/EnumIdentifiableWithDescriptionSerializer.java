@@ -16,7 +16,7 @@ class EnumIdentifiableWithDescriptionSerializer extends StdSerializer<SituacaoGr
   @Override
   public void serialize(final SituacaoGrupoDocumento value, final JsonGenerator gen, final SerializerProvider provider) throws IOException {
     gen.writeStartObject();
-//    gen.writeObject("id", value.getId());
+    gen.writeObjectField("id", value.getId());
     gen.writeStringField("description", value.getDescription());
     gen.writeEndObject();
   }

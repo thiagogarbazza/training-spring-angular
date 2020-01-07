@@ -27,28 +27,19 @@ class AppInfoIntegrationTest {
 
   @Autowired
   private WebApplicationContext context;
-
-  //  @Captor
-  //  private ArgumentCaptor<GrupoDocumentoFiltroConsulta> captor;
-
-  private MockMvc mockMvc;
   @MockBean
   private GrupoDocumentoSearchService grupoDocumentoConsultaService;
+  private MockMvc mockMvc;
 
   @BeforeEach
   final void setupWebTest() {
     mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-
-    //    Mockito.when(grupoDocumentoConsultaService.pesquisar(captor.capture())).thenReturn(EMPTY_LIST);
   }
 
   @Test
   void verificandoRetorno() throws Exception {
     this.mockMvc
       .perform(get("/application-info"))
-      //      .andDo(result -> {
-      //        final GrupoDocumentoFiltroConsulta value = captor.getValue();
-      //      })
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.ambiente", equalTo(DESCONHECIDO.name())))
       .andExpect(jsonPath("$.versao", equalTo(buildInfoVersion)))

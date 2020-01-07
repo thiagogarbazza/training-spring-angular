@@ -3,6 +3,7 @@ package com.github.thiagogarbazza.training.springangular.rest.configuration.json
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -38,5 +39,11 @@ class JacksonConfiguration {
   private SimpleModule customModule() {
     return new SimpleModule()
       .addSerializer(new EnumIdentifiableWithDescriptionSerializer());
+  }
+
+  @Bean
+  public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder) {
+    return jackson2ObjectMapperBuilder
+      .build();
   }
 }

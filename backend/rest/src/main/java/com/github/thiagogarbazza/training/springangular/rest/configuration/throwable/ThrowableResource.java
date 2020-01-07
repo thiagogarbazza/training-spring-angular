@@ -18,7 +18,7 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-public class ThrowableResource {
+class ThrowableResource {
 
   private String message;
   private String stackTrace;

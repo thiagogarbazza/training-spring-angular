@@ -4,43 +4,33 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import com.github.thiagogarbazza.training.springangular.util.security.Actions;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import lombok.Value;
 
 import java.util.Collection;
 
-import static lombok.AccessLevel.PRIVATE;
-
-@Getter
-@Setter
+@Value
 @Builder
 @ToString
-@NoArgsConstructor(access = PRIVATE)
-@AllArgsConstructor(access = PRIVATE)
-public class GrupoDocumentoForSearchingResource {
+public class GrupoDocumentoForSearchingVO {
 
   private Actions actions;
   private DataToBuildForm dataToBuildForm;
   private FormData formData;
   private CustomPage<GrupoDocumentoVO4SearchResult> result;
 
-  @Getter
+  @Value
   @Builder
   @ToString
-  @AllArgsConstructor(access = PRIVATE)
   public static class DataToBuildForm {
 
     private Collection<SituacaoGrupoDocumento> situacaoGrupoDocumentos;
   }
 
-  @Getter
+  @Value
   @Builder
   @ToString
-  @AllArgsConstructor(access = PRIVATE)
   public static class FormData {
 
     private Collection<SituacaoGrupoDocumento> situacaoGrupoDocumentos;

@@ -4,9 +4,10 @@ import java.util.TreeMap;
 
 public class Actions extends TreeMap<String, Action> {
 
-  public static final String ACTION_CAN_CREATE = "canCreate";
-  public static final String ACTION_CAN_DELETE = "canDelete";
-  public static final String ACTION_CAN_REPORT_EXCEL = "canReportExcel";
-  public static final String ACTION_CAN_SEARCH = "canSearch";
-  public static final String ACTION_CAN_UPDATE = "canUpdate";
+  public static final String ACTION_CAN_CREATE = "doCreate";
+  public static final String ACTION_CAN_DELETE = "doDelete";
+  public static final String ACTION_CAN_DETAIL = "doDetail";
+  public static final String ACTION_CAN_REPORT_EXCEL = "doReportExcel";
+  public static final String ACTION_CAN_SEARCH = "doSearch";
+  public static final String ACTION_CAN_UPDATE = "doUpdate";
 }
