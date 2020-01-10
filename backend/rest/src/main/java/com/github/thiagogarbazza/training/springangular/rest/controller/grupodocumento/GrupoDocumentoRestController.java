@@ -12,6 +12,7 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Update;
 import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForCreatingVO;
 import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingVO;
+import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForUpdatingVO;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,8 @@ class GrupoDocumentoRestController {
   private GrupoDocumentoUpdateService grupoDocumentoUpdateService;
   @Autowired
   private GrupoDocumentoForCreatingService grupoDocumentoForCreatingService;
+  @Autowired
+  private GrupoDocumentoForUpdatingService grupoDocumentoForUpdatingService;
 
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(code = HttpStatus.CREATED)
@@ -70,8 +73,8 @@ class GrupoDocumentoRestController {
   }
 
   @RequestMapping(method = RequestMethod.GET, path = "/{id}/for-updating")
-  public void forUpdating(@PathVariable("id") final UUID id) {
-
+  public GrupoDocumentoForUpdatingVO forUpdating(@PathVariable("id") final UUID id) {
+    return grupoDocumentoForUpdatingService.forUpdating(id);
   }
 
   @RequestMapping(method = RequestMethod.GET, path = "/search")

@@ -16,8 +16,8 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Setter
-@SuperBuilder
 @ToString
+@SuperBuilder
 @NoArgsConstructor(access = PROTECTED)
 public abstract class AbstractSearchFilter<T extends OrderableColumn> {
 

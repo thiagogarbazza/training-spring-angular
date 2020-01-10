@@ -1,12 +1,8 @@
 package com.github.thiagogarbazza.training.springangular.rest.it.controller.grupodocumento;
 
-import com.github.thiagogarbazza.simplemessage.SimpleMessage;
-import com.github.thiagogarbazza.simplemessage.SimpleMessageType;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoUpdateService;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Update;
 import com.github.thiagogarbazza.training.springangular.rest.it.RestIntegrationTestRunner;
-import com.github.thiagogarbazza.violationbuilder.ViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -17,7 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static java.util.Collections.singleton;
+import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4T.grupoDocumentoQualquerAtivo;
+import static com.github.thiagogarbazza.training.springangular.util.validation.ViolationExceptionD4T.violationExceptionQualquer;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,9 +44,7 @@ class GrupoDocumentoUpdateIntegrationTest {
   @Test
   void verifyUpdateError() throws Exception {
     final String content = "{\"codigo\":null,\"nome\":\"GRP-NOME\"}";
-    final SimpleMessage MESSAGEM_ERROR = new SimpleMessage(SimpleMessageType.ERROR, "error-key", "error-content");
-    when(grupoDocumentoUpdateService.update(captor.capture())).thenThrow(
-      new ViolationException("There was some violation.", singleton(MESSAGEM_ERROR)));
+    when(grupoDocumentoUpdateService.update(captor.capture())).thenThrow(violationExceptionQualquer());
 
     this.mockMvc
       .perform(put("/grupo-documento/df160f6e-e4e5-4fbf-a39f-d92acff9eade").content(content).contentType(APPLICATION_JSON))
@@ -70,7 +65,7 @@ class GrupoDocumentoUpdateIntegrationTest {
   @Test
   void verifyUpdateSuccess() throws Exception {
     final String content = "{\"codigo\":\"GRP-CODIGO\",\"nome\":\"GRP-NOME\"}";
-    when(grupoDocumentoUpdateService.update(captor.capture())).thenReturn(GrupoDocumento.builder().build());
+    when(grupoDocumentoUpdateService.update(captor.capture())).thenReturn(grupoDocumentoQualquerAtivo());
 
     this.mockMvc
       .perform(put("/grupo-documento/df160f6e-e4e5-4fbf-a39f-d92acff9eade").content(content).contentType(APPLICATION_JSON))

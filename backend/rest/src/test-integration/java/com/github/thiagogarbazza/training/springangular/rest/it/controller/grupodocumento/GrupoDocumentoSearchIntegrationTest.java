@@ -1,15 +1,11 @@
 package com.github.thiagogarbazza.training.springangular.rest.it.controller.grupodocumento;
 
-import com.github.thiagogarbazza.simplemessage.SimpleMessage;
-import com.github.thiagogarbazza.simplemessage.SimpleMessageType;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchFilter;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSearchService;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResult;
 import com.github.thiagogarbazza.training.springangular.rest.it.RestIntegrationTestRunner;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
-import com.github.thiagogarbazza.training.springangular.util.security.Action;
-import com.github.thiagogarbazza.training.springangular.util.security.Actions;
-import com.github.thiagogarbazza.violationbuilder.ViolationException;
+import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPageD4T;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -22,14 +18,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.UUID;
 
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoSortableColumns.CODIGO;
+import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResultD4T.grupoDocumentoVO4SearchResultQualquer;
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento.ATIVO;
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento.INATIVO;
 import static com.github.thiagogarbazza.training.springangular.util.persistence.consulta.OrderableDirection.ASC;
-import static java.util.Collections.singleton;
+import static com.github.thiagogarbazza.training.springangular.util.validation.SimpleMessageD4T.simpleMessageWarning;
+import static com.github.thiagogarbazza.training.springangular.util.validation.ViolationExceptionD4T.violationExceptionQualquer;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
@@ -59,9 +55,7 @@ class GrupoDocumentoSearchIntegrationTest {
 
   @Test
   void verifySearchError() throws Exception {
-    final SimpleMessage MESSAGEM_ERROR = new SimpleMessage(SimpleMessageType.ERROR, "error-key", "error-content");
-    when(grupoDocumentoSearchService.searchPaginating(captor.capture())).thenThrow(
-      new ViolationException("There was some violation.", singleton(MESSAGEM_ERROR)));
+    when(grupoDocumentoSearchService.searchPaginating(captor.capture())).thenThrow(violationExceptionQualquer());
 
     this.mockMvc
       .perform(get("/grupo-documento/search"))
@@ -85,27 +79,9 @@ class GrupoDocumentoSearchIntegrationTest {
   @Test
   @Disabled("Desabilitado até corrigir a conversão de java.time e dos Enuns")
   void verifySearchSuccess() throws Exception {
-    final Actions actions = new Actions();
-    actions.put(Actions.ACTION_CAN_DETAIL, Action.builder()
-      .doAction(true)
-      .name("Detalhar")
-      .tooltip("Clique aqui para detalhar este registro.")
-      .build());
-    actions.put(Actions.ACTION_CAN_DELETE, Action.builder()
-      .doAction(false)
-      .name("Deletar")
-      .tooltip("Clique aqui para deletar este registro.")
-      .build());
-    final GrupoDocumentoVO4SearchResult grupoDocumentoVO4SearchResult = GrupoDocumentoVO4SearchResult.builder()
-      .id(UUID.fromString("df160f6e-e4e5-4fbf-a39f-d92acff9eade"))
-      .codigo("GRP-CODIGO")
-      .nome("GRP-NOME")
-      .situacao(ATIVO)
-      .actions(actions)
-      .build();
-    final CustomPage<GrupoDocumentoVO4SearchResult> page = new CustomPage<>(singleton(grupoDocumentoVO4SearchResult), 1,
-      GrupoDocumentoSearchFilter.builder().build());
-    page.addMessage(new SimpleMessage(SimpleMessageType.WARNING, "warning-key", "warning-contet"));
+
+    final CustomPage<GrupoDocumentoVO4SearchResult> page = CustomPageD4T.newCustomPage(grupoDocumentoVO4SearchResultQualquer());
+    page.addMessage(simpleMessageWarning());
     page.addParameter("doSomething", true);
     when(grupoDocumentoSearchService.searchPaginating(captor.capture())).thenReturn(page);
 
@@ -134,7 +110,6 @@ class GrupoDocumentoSearchIntegrationTest {
       .andExpect(jsonPath("$.content[0].actions.doDelete.doAction", equalTo(false)))
       .andExpect(jsonPath("$.content[0].actions.doDelete.name", equalTo("Deletar")))
       .andExpect(jsonPath("$.content[0].actions.doDelete.tooltip", equalTo("Clique aqui para deletar este registro.")))
-
       .andExpect(jsonPath("$.contentSize", equalTo(1)))
       .andExpect(jsonPath("$.hasContent", equalTo(true)))
       .andExpect(jsonPath("$.hasNext", equalTo(false)))
@@ -156,8 +131,7 @@ class GrupoDocumentoSearchIntegrationTest {
 
   @Test
   void verifySearchSuccessComFiltros() throws Exception {
-    final CustomPage<GrupoDocumentoVO4SearchResult> page = new CustomPage<>(Collections.emptyList(), 0, GrupoDocumentoSearchFilter.builder().build());
-    when(grupoDocumentoSearchService.searchPaginating(captor.capture())).thenReturn(page);
+    when(grupoDocumentoSearchService.searchPaginating(captor.capture())).thenReturn(CustomPageD4T.pageEmpty());
 
     this.mockMvc
       .perform(get("/grupo-documento/search"
@@ -169,8 +143,8 @@ class GrupoDocumentoSearchIntegrationTest {
         + "&ordenacaoDirecao=ASC"))
       .andDo(result -> {
         final GrupoDocumentoSearchFilter value = captor.getValue();
-        assertIterableEquals(Arrays.asList(ATIVO, INATIVO), value.getSituacoes());
         assertEquals("GRP-CODIGO", value.getCodigo());
+        assertIterableEquals(Arrays.asList(ATIVO, INATIVO), value.getSituacoes());
         assertEquals(5, value.getNumeroPagina());
         assertEquals(25, value.getQuantidadePorPagina());
         assertEquals(CODIGO, value.getOrdenacaoCampo());

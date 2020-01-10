@@ -25,10 +25,10 @@ class GrupoDocumentoValidation {
   private List<ValidationRule<GrupoDocumentoVO4Update>> rules4Update;
 
   void onCreate(GrupoDocumentoVO4Create grupoDocumentoVO4Create) {
-    rulesExecutor(rules4Create, grupoDocumentoVO4Create);
+    rulesExecutor(this.rules4Create, grupoDocumentoVO4Create);
   }
 
   void onUpdate(GrupoDocumentoVO4Update grupoDocumentoVO4Update) {
-    rulesExecutor(rules4Update, grupoDocumentoVO4Update);
+    rulesExecutor(this.rules4Update, grupoDocumentoVO4Update);
   }
 }

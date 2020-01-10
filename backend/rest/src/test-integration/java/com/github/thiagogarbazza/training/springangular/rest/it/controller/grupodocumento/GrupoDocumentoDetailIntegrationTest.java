@@ -1,13 +1,8 @@
 package com.github.thiagogarbazza.training.springangular.rest.it.controller.grupodocumento;
 
-import com.github.thiagogarbazza.simplemessage.SimpleMessage;
-import com.github.thiagogarbazza.simplemessage.SimpleMessageType;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoDetailService;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Detail;
-import com.github.thiagogarbazza.training.springangular.core.grupodocumento.SituacaoGrupoDocumento;
 import com.github.thiagogarbazza.training.springangular.rest.it.RestIntegrationTestRunner;
-import com.github.thiagogarbazza.training.springangular.util.persistence.entity.AuditEntity;
-import com.github.thiagogarbazza.violationbuilder.ViolationException;
+import com.github.thiagogarbazza.training.springangular.util.validation.ViolationExceptionD4T;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -19,10 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static java.util.Collections.singleton;
+import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4DetailD4T.grupoDocumentoVO4DetailQualquer;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
@@ -51,9 +45,7 @@ class GrupoDocumentoDetailIntegrationTest {
 
   @Test
   void verifyDetailError() throws Exception {
-    final SimpleMessage MESSAGEM_ERROR = new SimpleMessage(SimpleMessageType.ERROR, "error-key", "error-content");
-    when(grupoDocumentoDetailService.detail(captor.capture())).thenThrow(
-      new ViolationException("There was some violation.", singleton(MESSAGEM_ERROR)));
+    when(grupoDocumentoDetailService.detail(captor.capture())).thenThrow(ViolationExceptionD4T.violationExceptionQualquer());
 
     this.mockMvc
       .perform(get("/grupo-documento/df160f6e-e4e5-4fbf-a39f-d92acff9eade"))
@@ -72,26 +64,7 @@ class GrupoDocumentoDetailIntegrationTest {
   @Test
   @Disabled("Desabilitado até corrigir a conversão de java.time e dos Enuns")
   void verifyDetailSuccess() throws Exception {
-    when(grupoDocumentoDetailService.detail(captor.capture())).thenReturn(GrupoDocumentoVO4Detail.builder()
-      .id(UUID.fromString("df160f6e-e4e5-4fbf-a39f-d92acff9eade"))
-      .codigo("GRP-CODIGO")
-      .nome("GRP-NOME")
-      .situacao(SituacaoGrupoDocumento.ATIVO)
-      .creation(AuditEntity.builder()
-        .userName("mouse.mickey")
-        .dateTime(LocalDateTime.of(2000, 1, 31, 23, 59, 59, 999))
-        .build())
-      .modification(null)
-      .historicoSituacaos(singleton(GrupoDocumentoVO4Detail.HistoricoSituacao.builder()
-        .id(UUID.fromString("014f2cc3-ca55-4be9-a392-84850ded3338"))
-        .situacao(SituacaoGrupoDocumento.ATIVO)
-        .motivo(null)
-        .creation(AuditEntity.builder()
-          .userName("mouse.mickey")
-          .dateTime(LocalDateTime.of(2000, 1, 31, 23, 59, 59, 999))
-          .build())
-        .build()))
-      .build());
+    when(grupoDocumentoDetailService.detail(captor.capture())).thenReturn(grupoDocumentoVO4DetailQualquer());
 
     this.mockMvc
       .perform(get("/grupo-documento/df160f6e-e4e5-4fbf-a39f-d92acff9eade"))

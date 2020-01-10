@@ -1,10 +1,8 @@
 package com.github.thiagogarbazza.training.springangular.rest.it.controller.grupodocumento;
 
-import com.github.thiagogarbazza.simplemessage.SimpleMessage;
-import com.github.thiagogarbazza.simplemessage.SimpleMessageType;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoDeleteService;
 import com.github.thiagogarbazza.training.springangular.rest.it.RestIntegrationTestRunner;
-import com.github.thiagogarbazza.violationbuilder.ViolationException;
+import com.github.thiagogarbazza.training.springangular.util.validation.ViolationExceptionD4T;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -17,7 +15,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.UUID;
 
-import static java.util.Collections.singleton;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,9 +42,7 @@ class GrupoDocumentoDeleteIntegrationTest {
 
   @Test
   void verifyDeleteError() throws Exception {
-    final SimpleMessage MESSAGEM_ERROR = new SimpleMessage(SimpleMessageType.ERROR, "error-key", "error-content");
-    doThrow(new ViolationException("There was some violation.", singleton(MESSAGEM_ERROR)))
-      .when(grupoDocumentoDeleteService).delete(captor.capture());
+    doThrow(ViolationExceptionD4T.violationExceptionQualquer()).when(grupoDocumentoDeleteService).delete(captor.capture());
 
     this.mockMvc
       .perform(delete("/grupo-documento/df160f6e-e4e5-4fbf-a39f-d92acff9eade"))

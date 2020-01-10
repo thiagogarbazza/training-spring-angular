@@ -2,9 +2,6 @@ package com.github.thiagogarbazza.training.springangular.util.persistence.consul
 
 import com.github.thiagogarbazza.simplemessage.SimpleMessage;
 import com.github.thiagogarbazza.simplemessage.SimpleMessageType;
-import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.dsl.ComparableExpressionBase;
-import lombok.experimental.SuperBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +20,7 @@ class CustomPageTest {
   void verificar01() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 0;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -48,7 +45,7 @@ class CustomPageTest {
   void verificar02() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 1;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -73,7 +70,7 @@ class CustomPageTest {
   void verificar03() {
     final Collection<String> content = Arrays.asList("Item 01");
     final long totalElements = 1;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -98,7 +95,7 @@ class CustomPageTest {
   void verificar04() {
     final Collection<String> content = Arrays.asList("Item 01", "Item 02", "Item 03");
     final long totalElements = 3;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -123,7 +120,7 @@ class CustomPageTest {
   void verificar05() {
     final Collection<String> content = Arrays.asList("Item 01", "Item 02", "Item 03");
     final long totalElements = 11;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -148,7 +145,7 @@ class CustomPageTest {
   void verificar06() {
     final Collection<String> content = Arrays.asList("Item 07", "Item 08", "Item 09");
     final long totalElements = 11;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(2).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(2).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -173,7 +170,7 @@ class CustomPageTest {
   void verificar07() {
     final Collection<String> content = Arrays.asList("Item 10", "Item 11");
     final long totalElements = 11;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -198,7 +195,7 @@ class CustomPageTest {
   void verificar90() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 0;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -215,7 +212,7 @@ class CustomPageTest {
   void verificar91() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 0;
-    final AbstractSearchFilter abstractSearchFilter = Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
+    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
 
     CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
 
@@ -224,30 +221,5 @@ class CustomPageTest {
     assertEquals("page.any-value", page.getParameters().get("page.any-key"));
   }
 
-  private enum OrderFilter implements OrderableColumn {
 
-    SITUACAO(null);
-
-    private final ComparableExpressionBase expression;
-
-    OrderFilter(final ComparableExpressionBase expression) {
-      this.expression = expression;
-    }
-
-    @Override
-    public OrderSpecifier getOrderSpecifier(OrderableDirection direction) {
-      return direction.getOrderSpecifier(expression);
-    }
-  }
-
-  @SuperBuilder
-  private static class Filter extends AbstractSearchFilter<OrderFilter> {
-
-    private String text;
-
-    @Override
-    protected Collection<OrderSpecifier> defaultOrdering() {
-      return null;
-    }
-  }
 }
