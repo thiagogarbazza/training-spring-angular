@@ -22,7 +22,7 @@ import static java.time.LocalDateTime.now;
 @Aspect
 @Component
 @CommonsLog
-public class LogObserverService {
+class LogObserverService {
 
   @Around("execution(public * com.github.thiagogarbazza.training.springangular..*Service.*(..))")
   public Object logObserverService(final ProceedingJoinPoint joinPoint) throws Throwable {

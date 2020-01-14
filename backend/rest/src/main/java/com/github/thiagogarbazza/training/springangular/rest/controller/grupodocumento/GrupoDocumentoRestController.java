@@ -10,9 +10,12 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Detail;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4SearchResult;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Update;
+import com.github.thiagogarbazza.training.springangular.report.grupodocumento.GrupoDocumentoReportService;
+import com.github.thiagogarbazza.training.springangular.rest.comum.arquivo.ArquivoUploadResource;
 import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForCreatingVO;
 import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForSearchingVO;
 import com.github.thiagogarbazza.training.springangular.rest.controller.grupodocumento.resource.GrupoDocumentoForUpdatingVO;
+import com.github.thiagogarbazza.training.springangular.util.arquivo.ArquivoUpload;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,6 +48,8 @@ class GrupoDocumentoRestController {
   private GrupoDocumentoForCreatingService grupoDocumentoForCreatingService;
   @Autowired
   private GrupoDocumentoForUpdatingService grupoDocumentoForUpdatingService;
+  @Autowired
+  private GrupoDocumentoReportService grupoDocumentoReportService;
 
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(code = HttpStatus.CREATED)
@@ -80,6 +85,12 @@ class GrupoDocumentoRestController {
   @RequestMapping(method = RequestMethod.GET, path = "/search")
   public CustomPage<GrupoDocumentoVO4SearchResult> search(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
     return grupoDocumentoSearchService.searchPaginating(grupoDocumentoSearchFilter);
+  }
+
+  @RequestMapping(method = RequestMethod.GET, path = "/report-excel")
+  public ArquivoUploadResource reportExcel(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+    final ArquivoUpload arquivoUpload = grupoDocumentoReportService.excel(grupoDocumentoSearchFilter);
+    return new ArquivoUploadResource(arquivoUpload);
   }
 
   @RequestMapping(method = RequestMethod.PUT, path = "/{id}")

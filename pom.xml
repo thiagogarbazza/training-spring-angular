@@ -52,7 +52,7 @@
     <dependency.querydsl.version>4.2.2</dependency.querydsl.version>
     <dependency.simple-message.version>1.0.0</dependency.simple-message.version>
     <dependency.slf4j.version>1.7.28</dependency.slf4j.version>
-    <dependency.spring.version>5.2.0.RELEASE</dependency.spring.version>
+    <dependency.spring.version>5.2.2.RELEASE</dependency.spring.version>
     <dependency.spring-batch.version>4.2.0.RELEASE</dependency.spring-batch.version>
     <dependency.spring-boot.version>2.2.0.RELEASE</dependency.spring-boot.version>
     <dependency.spring-data.version>2.2.0.RELEASE</dependency.spring-data.version>

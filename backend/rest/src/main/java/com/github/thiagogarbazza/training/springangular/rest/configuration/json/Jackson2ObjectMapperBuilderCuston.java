@@ -3,26 +3,20 @@ package com.github.thiagogarbazza.training.springangular.rest.configuration.json
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.github.thiagogarbazza.training.springangular.util.ambiente.AmbienteExecucao;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-import static com.github.thiagogarbazza.training.springangular.util.ambiente.AmbienteExecucao.getAmbienteExecucao;
+public class Jackson2ObjectMapperBuilderCuston {
 
-@Configuration
-class JacksonConfiguration {
-
-  @Bean
-  public Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
+  public static Jackson2ObjectMapperBuilder newJacksonBuilder() {
     return new Jackson2ObjectMapperBuilder()
-      .indentOutput(AmbienteExecucao.DESCONHECIDO.equals(getAmbienteExecucao()))
+      .indentOutput(false)
       .simpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
       .modules(customModule())
+      .modules(new JavaTimeModule())
       .propertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE)
       .serializationInclusion(JsonInclude.Include.NON_NULL)
       .featuresToEnable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)
@@ -36,14 +30,9 @@ class JacksonConfiguration {
       ;
   }
 
-  private SimpleModule customModule() {
+  private static SimpleModule customModule() {
     return new SimpleModule()
-      .addSerializer(new EnumIdentifiableWithDescriptionSerializer());
-  }
-
-  @Bean
-  public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder) {
-    return jackson2ObjectMapperBuilder
-      .build();
+      .addSerializer(new EnumIdentifiableWithDescriptionSerializer())
+      ;
   }
 }

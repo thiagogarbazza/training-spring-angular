@@ -49,7 +49,7 @@ class GrupoDocumentoSearchIntegrationTest {
   private MockMvc mockMvc;
 
   @BeforeEach
-  final void setupWebTest() {
+  final void beforeEach() {
     mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
   }
 
@@ -79,7 +79,6 @@ class GrupoDocumentoSearchIntegrationTest {
   @Test
   @Disabled("Desabilitado até corrigir a conversão de java.time e dos Enuns")
   void verifySearchSuccess() throws Exception {
-
     final CustomPage<GrupoDocumentoVO4SearchResult> page = CustomPageD4T.newCustomPage(grupoDocumentoVO4SearchResultQualquer());
     page.addMessage(simpleMessageWarning());
     page.addParameter("doSomething", true);
@@ -125,8 +124,7 @@ class GrupoDocumentoSearchIntegrationTest {
       .andExpect(jsonPath("$.number", equalTo(0)))
       .andExpect(jsonPath("$.size", equalTo(10)))
       .andExpect(jsonPath("$.totalElements", equalTo(1)))
-      .andExpect(jsonPath("$.totalPages", equalTo(1)))
-    ;
+      .andExpect(jsonPath("$.totalPages", equalTo(1)));
   }
 
   @Test

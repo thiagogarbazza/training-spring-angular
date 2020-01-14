@@ -37,7 +37,7 @@ class GrupoDocumentoCreateIntegrationTest {
   private MockMvc mockMvc;
 
   @BeforeEach
-  final void setupWebTest() {
+  final void beforeEach() {
     mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
   }
 

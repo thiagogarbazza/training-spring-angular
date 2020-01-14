@@ -14,6 +14,10 @@ public class LocalDateUtil {
   public static final String DD_MM_YYYY = "dd/MM/yyyy";
 
   public static String localDateToString(LocalDate localDate) {
-    return isNull(localDate) ? EMPTY : localDate.format(ofPattern(DD_MM_YYYY));
+    return localDateToString(localDate, DD_MM_YYYY);
+  }
+
+  public static String localDateToString(LocalDate localDate, String pattern) {
+    return isNull(localDate) ? EMPTY : localDate.format(ofPattern(pattern));
   }
 }

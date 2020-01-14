@@ -1,34 +1,35 @@
 package com.github.thiagogarbazza.training.springangular.rest.it.objectmapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.thiagogarbazza.training.springangular.rest.it.RestIntegrationTestRunner;
-import org.junit.jupiter.api.Disabled;
+import com.github.thiagogarbazza.training.springangular.rest.configuration.json.Jackson2ObjectMapperBuilderCuston;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Disabled("Desabilitado até corrigir a conversão de java.time e dos Enuns")
-@RestIntegrationTestRunner
 class JacksonMapperJavaTimeIntegrationTest {
 
-  @Autowired
-  private ObjectMapper objectMapper;
+  private ObjectMapper objectMapper = Jackson2ObjectMapperBuilderCuston.newJacksonBuilder().build();
 
   @Test
-  void verifyLocalDate() throws Exception {
-    final String content = this.objectMapper.writeValueAsString(LocalDate.of(2019, 12, 31));
-
-    assertEquals("2019-12-31", content);
+  void verifyLocalDateDeserializer() throws Exception {
+    assertEquals(LocalDate.of(2019, 12, 31), this.objectMapper.readValue("\"2019-12-31\"", LocalDate.class));
   }
 
   @Test
-  void verifyLocalDateTime() throws Exception {
-    final String content = this.objectMapper.writeValueAsString(LocalDateTime.of(2019, 12, 31, 23, 59, 59, 999));
+  void verifyLocalDateSerializer() throws Exception {
+    assertEquals("\"2019-12-31\"", this.objectMapper.writeValueAsString(LocalDate.of(2019, 12, 31)));
+  }
 
-    assertEquals("2019-12-31 23:59:59:999", content);
+  @Test
+  void verifyLocalDateTimeDeserializer() throws Exception {
+    assertEquals(LocalDateTime.of(2019, 12, 31, 23, 59, 59), this.objectMapper.readValue("\"2019-12-31T23:59:59\"", LocalDateTime.class));
+  }
+
+  @Test
+  void verifyLocalDateTimeSerializer() throws Exception {
+    assertEquals("\"2019-12-31T23:59:59\"", this.objectMapper.writeValueAsString(LocalDateTime.of(2019, 12, 31, 23, 59, 59)));
   }
 }

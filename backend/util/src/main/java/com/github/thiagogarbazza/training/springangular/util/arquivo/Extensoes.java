@@ -5,5 +5,5 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class Extensoes {
 
-  public static final String EXTENSAO_PLANILHA = ".xlsx";
+  public static final String EXTENSAO_PLANILHA = "xlsx";
 }

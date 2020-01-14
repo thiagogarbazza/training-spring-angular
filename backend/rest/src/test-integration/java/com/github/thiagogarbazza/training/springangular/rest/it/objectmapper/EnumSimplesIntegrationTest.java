@@ -7,19 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EnumIdentifiableWithDescriptionIntegrationTest {
+class EnumSimplesIntegrationTest {
 
   private ObjectMapper objectMapper = Jackson2ObjectMapperBuilderCuston.newJacksonBuilder().build();
 
   @Test
   void verifyDeserializer() throws Exception {
-    assertEquals(ExemploDataVO.ExampleEnumIdentifiableWithDescription.VALOR_01,
-      this.objectMapper.readValue("1", ExemploDataVO.ExampleEnumIdentifiableWithDescription.class));
+    assertEquals(ExemploDataVO.ExampleEnumSimples.VALOR_01, this.objectMapper.readValue("\"VALOR_01\"", ExemploDataVO.ExampleEnumSimples.class));
   }
 
   @Test
   void verifySerializer() throws Exception {
-    assertEquals("{\"id\":1,\"description\":\"Valor 01\"}",
-      this.objectMapper.writeValueAsString(ExemploDataVO.ExampleEnumIdentifiableWithDescription.VALOR_01));
+    assertEquals("\"VALOR_01\"", this.objectMapper.writeValueAsString(ExemploDataVO.ExampleEnumSimples.VALOR_01));
   }
 }
