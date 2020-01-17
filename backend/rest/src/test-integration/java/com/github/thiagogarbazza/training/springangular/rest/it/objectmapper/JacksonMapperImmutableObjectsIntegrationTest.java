@@ -43,10 +43,10 @@ class JacksonMapperImmutableObjectsIntegrationTest {
 
     static ExampleImmutable newExampleImmutable() {
       return ExampleImmutable.builder()
-        .text("Algum texto")
         .condition(Boolean.TRUE)
-        .money(new BigDecimal("3.14"))
         .date(LocalDate.of(2019, 1, 31))
+        .money(new BigDecimal("3.14"))
+        .text("Algum texto")
         .build();
     }
   }

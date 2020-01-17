@@ -7,8 +7,10 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.experimental.UtilityClass;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+@UtilityClass
 public class Jackson2ObjectMapperBuilderCuston {
 
   public static Jackson2ObjectMapperBuilder newJacksonBuilder() {
@@ -32,7 +34,8 @@ public class Jackson2ObjectMapperBuilderCuston {
 
   private static SimpleModule customModule() {
     return new SimpleModule()
-      .addSerializer(new EnumIdentifiableWithDescriptionSerializer())
+      //.addSerializer(new EnumIdentifiableSerializer())
+      //.addSerializer(new EnumIdentifiableWithDescriptionSerializer())
       ;
   }
 }
