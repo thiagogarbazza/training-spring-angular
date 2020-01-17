@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static com.github.thiagogarbazza.training.springangular.rest.it.objectmapper.JacksonMapperImmutableObjectsIntegrationTest.ExampleImmutable.JSON;
-import static com.github.thiagogarbazza.training.springangular.rest.it.objectmapper.JacksonMapperImmutableObjectsIntegrationTest.ExampleImmutable.newExampleImmutable;
 import static lombok.AccessLevel.PRIVATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,12 +20,12 @@ class JacksonMapperImmutableObjectsIntegrationTest {
 
   @Test
   void verifyDeserializer() throws Exception {
-    assertEquals(newExampleImmutable(), this.objectMapper.readValue(JSON, ExampleImmutable.class));
+    assertEquals(ExampleImmutable.newExampleImmutable(), this.objectMapper.readValue(ExampleImmutable.JSON, ExampleImmutable.class));
   }
 
   @Test
   void verifySerializer() throws Exception {
-    assertEquals(JSON, this.objectMapper.writeValueAsString(newExampleImmutable()));
+    assertEquals(ExampleImmutable.JSON, this.objectMapper.writeValueAsString(ExampleImmutable.newExampleImmutable()));
   }
 
   @Value
