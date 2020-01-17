@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JacksonMapperJavaTimeIntegrationTest {
 
-  private ObjectMapper objectMapper = Jackson2ObjectMapperBuilderCuston.newJacksonBuilder().build();
+  private final ObjectMapper objectMapper = Jackson2ObjectMapperBuilderCuston.newJacksonBuilder().build();
 
   @Test
   void verifyLocalDateDeserializer() throws Exception {
