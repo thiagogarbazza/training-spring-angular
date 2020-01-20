@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 class ExemploRestService {
 
   ExemploDataVO get(final ExemploDataVO dataExemploVO) {
-    return ExemploDataVO.getExemploDataVO();
+    return dataExemploVO;
   }
 
   ExemploDataVO post(final ExemploDataVO dataExemploVO) {

@@ -14,6 +14,6 @@ import static lombok.AccessLevel.PRIVATE;
 public class Action {
 
   private boolean doAction;
-  private String name;
+  private String description;
   private String tooltip;
 }

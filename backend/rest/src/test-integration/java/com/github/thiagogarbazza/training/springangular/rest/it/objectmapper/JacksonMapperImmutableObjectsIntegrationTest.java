@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Value;
+import lombok.With;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -20,6 +21,8 @@ class JacksonMapperImmutableObjectsIntegrationTest {
 
   @Test
   void verifyDeserializer() throws Exception {
+    final ExampleImmutable exampleImmutable = ExampleImmutable.newExampleImmutable().withCondition(Boolean.FALSE);
+
     assertEquals(ExampleImmutable.newExampleImmutable(), this.objectMapper.readValue(ExampleImmutable.JSON, ExampleImmutable.class));
   }
 
@@ -29,6 +32,7 @@ class JacksonMapperImmutableObjectsIntegrationTest {
   }
 
   @Value
+  @With
   @Builder
   @AllArgsConstructor(access = PRIVATE)
   @NoArgsConstructor(force = true, access = PRIVATE)

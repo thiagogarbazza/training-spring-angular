@@ -4,17 +4,17 @@
 
   <appender class="ch.qos.logback.core.ConsoleAppender" name="application-logging">
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-      <pattern>%boldMagenta([A]) [%thread] %highlight([%-5level] %d{HH:mm:ss.SSS} [%-40.40logger{40}] -> %msg%n)</pattern>
+      <pattern>%boldMagenta([A]) [%thread] %highlight([%-5level] %d{HH:mm:ss.SSS} [%-40.40logger{40}] %msg%n)</pattern>
     </encoder>
   </appender>
   <appender class="ch.qos.logback.core.ConsoleAppender" name="dependency-logging">
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-      <pattern>[D] [%thread] %highlight([%-5level] %d{HH:mm:ss.SSS} [%-40.40logger{40}] -> %msg%n)</pattern>
+      <pattern>[D] [%thread] %highlight([%-5level] %d{HH:mm:ss.SSS} [%-40.40logger{40}] %msg%n)</pattern>
     </encoder>
   </appender>
   <appender class="ch.qos.logback.core.ConsoleAppender" name="root-logging">
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-      <pattern>[R] [%thread] %highlight([%-5level] %d{HH:mm:ss.SSS} [%-40.40logger{40}] -> %msg%n)</pattern>
+      <pattern>[R] [%thread] %highlight([%-5level] %d{HH:mm:ss.SSS} [%-40.40logger{40}] %msg%n)</pattern>
     </encoder>
   </appender>
 

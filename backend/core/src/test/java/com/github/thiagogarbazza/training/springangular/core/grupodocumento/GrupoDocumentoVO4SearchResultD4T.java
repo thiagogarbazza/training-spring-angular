@@ -15,12 +15,12 @@ public class GrupoDocumentoVO4SearchResultD4T {
     final Actions actions = new Actions();
     actions.put(Actions.ACTION_CAN_DETAIL, Action.builder()
       .doAction(true)
-      .name("Detalhar")
+      .description("Detalhar")
       .tooltip("Clique aqui para detalhar este registro.")
       .build());
     actions.put(Actions.ACTION_CAN_DELETE, Action.builder()
       .doAction(false)
-      .name("Deletar")
+      .description("Deletar")
       .tooltip("Clique aqui para deletar este registro.")
       .build());
 

@@ -1,13 +1,14 @@
 package com.github.thiagogarbazza.training.springangular.rest.it.controller.exemplo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.github.thiagogarbazza.training.springangular.rest.it.controller.ValuesD4T;
 import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiable;
 import com.github.thiagogarbazza.training.springangular.util.persistence.enumeration.EnumIdentifiableWithDescription;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Value;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,16 +16,12 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 import static lombok.AccessLevel.PRIVATE;
 
-@Getter
-@Setter
+@Value
 @Builder
-@ToString
-@NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
+@NoArgsConstructor(force = true, access = PRIVATE)
 public class ExemploDataVO {
 
   private Boolean condition;
@@ -38,28 +35,29 @@ public class ExemploDataVO {
   private Integer numberInteger;
   private Collection<Integer> numberIntegers;
   private String text;
+  private String text2;
   private Collection<String> texts;
 
   static ExemploDataVO getExemploDataVO() {
     return builder()
-      .condition(TRUE)
-      .conditions(Arrays.asList(TRUE, FALSE))
-      .localDate(LocalDate.of(2019, 12, 31))
-      .localDates(Arrays.asList(LocalDate.of(2019, 1, 1), LocalDate.of(2019, 1, 31), LocalDate.of(2019, 12, 1), LocalDate.of(2019, 12, 31)))
-      .localDateTime(LocalDateTime.of(2019, 12, 31, 23, 59, 59))
-      .localDateTimes(
-        Arrays.asList(LocalDateTime.of(2019, 1, 1, 0, 0, 1), LocalDateTime.of(2019, 1, 31, 23, 59, 59), LocalDateTime.of(2019, 12, 1, 0, 1, 2),
-          LocalDateTime.of(2019, 12, 31, 23, 59, 59)))
-      .numberBigDecimal(new BigDecimal("3.14"))
-      .numberBigDecimals(Arrays.asList(new BigDecimal("3"), new BigDecimal("4.1"), new BigDecimal("11.001")))
-      .numberInteger(Integer.valueOf("7727"))
-      .numberIntegers(Arrays.asList(Integer.valueOf("7741"), Integer.valueOf("7753"), Integer.valueOf("7757")))
-      .text("Algum texto grande para exemplo e com acentuação")
-      .texts(Arrays.asList("AA", "AB", "AC", "Aa", "Ab", "Ac", "aa", "ab", "ac"))
+      .condition(ValuesD4T.BOOLEAN)
+      .conditions(Arrays.asList(ValuesD4T.BOOLEAN_ARRAY))
+      .localDate(ValuesD4T.LOCAL_DATE)
+      .localDates(Arrays.asList(ValuesD4T.LOCAL_DATE_ARRAY))
+      .localDateTime(ValuesD4T.LOCAL_DATE_TIME)
+      .localDateTimes(Arrays.asList(ValuesD4T.LOCAL_DATE_TIME_ARRAY))
+      .numberBigDecimal(ValuesD4T.NUMBER_BIG_DECIMAL)
+      .numberBigDecimals(Arrays.asList(ValuesD4T.NUMBER_BIG_DECIMAL_ARRAY))
+      .numberInteger(ValuesD4T.NUMBER_INTEGER)
+      .numberIntegers(Arrays.asList(ValuesD4T.NUMBER_INTEGER_ARRAY))
+      .text(ValuesD4T.TEXT)
+      .text2(ValuesD4T.TEXT_2)
+      .texts(Arrays.asList(ValuesD4T.TEXT_ARRAY))
       .build();
   }
 
   @Getter
+  @JsonFormat(shape = JsonFormat.Shape.OBJECT)
   public enum ExampleEnumIdentifiable implements EnumIdentifiable<Integer> {
     VALOR_01(1, "Valor 01"),
     VALOR_02(2, "Valor 02"),
@@ -75,6 +73,7 @@ public class ExemploDataVO {
   }
 
   @Getter
+  @JsonFormat(shape = JsonFormat.Shape.OBJECT)
   public enum ExampleEnumIdentifiableWithDescription implements EnumIdentifiableWithDescription<Integer> {
     VALOR_01(1, "Valor 01"),
     VALOR_02(2, "Valor 02"),

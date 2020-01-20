@@ -33,12 +33,12 @@ class GrupoDocumentoForSearchingService {
 
     actions.put(Actions.ACTION_CAN_CREATE, Action.builder()
       .doAction(true)
-      .name("Novo grupo de documento")
+      .description("Novo grupo de documento")
       .tooltip("Clique aqui para criar um novo grupo de documento")
       .build());
     actions.put(Actions.ACTION_CAN_REPORT_EXCEL, Action.builder()
       .doAction(true)
-      .name("Relatório excel grupo de documento")
+      .description("Relatório excel grupo de documento")
       .tooltip("Clique aqui para gerar de grupo de documento")
       .build());
 

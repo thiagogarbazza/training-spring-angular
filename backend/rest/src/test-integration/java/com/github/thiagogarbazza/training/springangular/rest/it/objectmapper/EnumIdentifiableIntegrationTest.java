@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EnumIdentifiableIntegrationTest {
 
-  private ObjectMapper objectMapper = Jackson2ObjectMapperBuilderCuston.newJacksonBuilder().build();
+  private final ObjectMapper objectMapper = Jackson2ObjectMapperBuilderCuston.newJacksonBuilder().build();
 
   @Test
   void verifyDeserializer() throws Exception {
@@ -18,6 +18,6 @@ class EnumIdentifiableIntegrationTest {
 
   @Test
   void verifySerializer() throws Exception {
-    assertEquals("{\"id\":1,\"description\":\"VALOR_01\"}", this.objectMapper.writeValueAsString(ExemploDataVO.ExampleEnumIdentifiable.VALOR_01));
+    assertEquals("{\"description\":\"Valor 01\",\"id\":1}", this.objectMapper.writeValueAsString(ExemploDataVO.ExampleEnumIdentifiable.VALOR_01));
   }
 }

@@ -5,14 +5,12 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Situ
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
 import com.github.thiagogarbazza.training.springangular.util.security.Actions;
 import lombok.Builder;
-import lombok.ToString;
 import lombok.Value;
 
 import java.util.Collection;
 
 @Value
 @Builder
-@ToString
 public class GrupoDocumentoForSearchingVO {
 
   private Actions actions;
@@ -22,7 +20,6 @@ public class GrupoDocumentoForSearchingVO {
 
   @Value
   @Builder
-  @ToString
   public static class DataToBuildForm {
 
     private Collection<SituacaoGrupoDocumento> situacaoGrupoDocumentos;
@@ -30,7 +27,6 @@ public class GrupoDocumentoForSearchingVO {
 
   @Value
   @Builder
-  @ToString
   public static class FormData {
 
     private Collection<SituacaoGrupoDocumento> situacaoGrupoDocumentos;
