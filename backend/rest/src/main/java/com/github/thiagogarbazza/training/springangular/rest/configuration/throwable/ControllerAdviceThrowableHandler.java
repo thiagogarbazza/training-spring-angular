@@ -4,12 +4,14 @@ import com.github.thiagogarbazza.violationbuilder.ViolationException;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import static java.text.MessageFormat.format;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.PRECONDITION_FAILED;
 
@@ -34,6 +36,20 @@ class ControllerAdviceThrowableHandler {
       .stackTrace(ThrowableUtil.stackTraceToString(throwable))
       .build();
   } */
+
+  @Order(98)
+  @ResponseBody
+  @ResponseStatus(BAD_REQUEST)
+  @ExceptionHandler(ConversionFailedException.class)
+  public ThrowableResource conversionFailedException(ConversionFailedException throwable) {
+    String mensagem = format(mensageError, "CFE", getIdentificador());
+    log.error(mensagem, throwable);
+
+    return ThrowableResource.builder()
+      .message(mensagem)
+      .stackTrace(ThrowableUtil.stackTraceToString(throwable))
+      .build();
+  }
 
   @Order(4)
   @ResponseBody
