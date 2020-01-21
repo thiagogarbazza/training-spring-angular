@@ -5,8 +5,11 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoCreateService;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.GrupoDocumentoVO4Create;
 import com.github.thiagogarbazza.training.springangular.core.it.CoreIntegrationTestRunner;
+import com.github.thiagogarbazza.training.springangular.utiltest.database.ResetDatabaseService;
+import com.github.thiagogarbazza.training.springangular.utiltest.stub.ResetStubService;
 import com.github.thiagogarbazza.violationbuilder.ViolationException;
 import org.apache.commons.collections4.IterableUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +22,16 @@ class GrupoDocumentoCreateIntegrationTest {
 
   @Autowired
   private GrupoDocumentoCreateService grupoDocumentoCreateService;
+  @Autowired
+  private ResetDatabaseService resetDatabaseService;
+  @Autowired
+  private ResetStubService resetStubService;
+
+  @BeforeEach
+  void beforeEach() {
+    resetDatabaseService.reset();
+    resetStubService.reset();
+  }
 
   @Test
   void verifyCodigoObrigatorio() {

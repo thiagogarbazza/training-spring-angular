@@ -1,6 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.adapter.mail;
 
 import com.github.thiagogarbazza.training.springangular.adapter.AdapterException;
+import com.github.thiagogarbazza.training.springangular.utiltest.stub.ResetStub;
 import com.google.common.collect.ImmutableSet;
 import lombok.Getter;
 import lombok.extern.apachecommons.CommonsLog;
@@ -17,7 +18,7 @@ import static org.apache.commons.collections4.CollectionUtils.containsAny;
 @Primary
 @Service
 @CommonsLog
-public class EmailAdapterStub implements EmailAdapter {
+public class EmailAdapterStub implements EmailAdapter, ResetStub {
 
   private static final Collection<String> DESTINATARIOS_FALHAM = ImmutableSet.of("remetente-falha@gmail.com");
   private static final Collection<String> REMETENTES_FALHAM = ImmutableSet.of("destinatario-falha@gmail.com");
@@ -35,6 +36,7 @@ public class EmailAdapterStub implements EmailAdapter {
     }
 
     log.trace(emailToString(email));
+    this.emails.add(email);
   }
 
   @Override
@@ -44,7 +46,8 @@ public class EmailAdapterStub implements EmailAdapter {
     }
   }
 
-  public void clean() {
-    emails.clear();
+  @Override
+  public void reset() {
+    this.emails.clear();
   }
 }

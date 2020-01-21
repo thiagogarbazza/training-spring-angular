@@ -16,13 +16,13 @@ import static org.springframework.transaction.annotation.Isolation.READ_UNCOMMIT
 
 @Service
 @CommonsLog
-public class TruncateDatabaseService {
+public class ResetDatabaseService {
 
   @Autowired
   private EntityManager entityManager;
 
   @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = READ_UNCOMMITTED, readOnly = false)
-  public void truncate() {
+  public void reset() {
     Collection<String> tableNames = Arrays.asList("cliente.tbl_cliente", "documento.tbl_grupo_documento");
     Session session = entityManager.unwrap(Session.class);
     Metamodel hibernateMetadata = session.getSessionFactory().getMetamodel();

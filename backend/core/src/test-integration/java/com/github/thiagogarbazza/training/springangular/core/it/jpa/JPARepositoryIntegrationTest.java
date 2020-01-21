@@ -4,7 +4,7 @@ import com.github.thiagogarbazza.training.springangular.core.cliente.Cliente;
 import com.github.thiagogarbazza.training.springangular.core.cliente.ClienteConsultaService;
 import com.github.thiagogarbazza.training.springangular.core.cliente.ClienteService;
 import com.github.thiagogarbazza.training.springangular.core.it.CoreIntegrationTestRunner;
-import com.github.thiagogarbazza.training.springangular.utiltest.database.TruncateDatabaseService;
+import com.github.thiagogarbazza.training.springangular.utiltest.database.ResetDatabaseService;
 import org.apache.commons.collections4.IterableUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -30,12 +30,12 @@ class JPARepositoryIntegrationTest {
   private ClienteService clienteService;
 
   @Autowired
-  private TruncateDatabaseService truncateDatabaseService;
+  private ResetDatabaseService resetDatabaseService;
 
   @Test
   @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = READ_UNCOMMITTED, readOnly = false)
   void verificarRepository() {
-    truncateDatabaseService.truncate();
+    resetDatabaseService.reset();
 
     Collection<Cliente> clientes = clienteConsultaService.pesquisar();
     assertEquals(0, clientes.size());

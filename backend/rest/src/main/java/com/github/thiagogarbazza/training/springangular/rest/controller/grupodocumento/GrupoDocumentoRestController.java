@@ -95,7 +95,6 @@ class GrupoDocumentoRestController {
 
   @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
   public void update(@PathVariable("id") final UUID id, @RequestBody final GrupoDocumentoVO4Update grupoDocumentoVO4Update) {
-    grupoDocumentoVO4Update.setId(id);
-    grupoDocumentoUpdateService.update(grupoDocumentoVO4Update);
+    grupoDocumentoUpdateService.update(grupoDocumentoVO4Update.withId(id));
   }
 }
