@@ -17,7 +17,7 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-public class GrupoDocumentoVO4Select implements Identifiable {
+public class GrupoDocumentoVO4Select implements Identifiable<UUID> {
 
   private String codigo;
   private UUID id;

@@ -1,8 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.util.persistence.entity;
 
-import java.util.UUID;
+public interface Identifiable<T> {
 
-public interface Identifiable {
-
-  UUID getId();
+  T getId();
 }

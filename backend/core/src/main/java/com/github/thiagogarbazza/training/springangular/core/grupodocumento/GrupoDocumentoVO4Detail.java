@@ -21,7 +21,7 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-public class GrupoDocumentoVO4Detail implements Identifiable {
+public class GrupoDocumentoVO4Detail implements Identifiable<UUID> {
 
   private final LocalDate data = LocalDate.of(2020, 01, 31);
   private final LocalDateTime dataHora = LocalDateTime.of(2020, 1, 31, 23, 59, 59, 999);
@@ -38,7 +38,7 @@ public class GrupoDocumentoVO4Detail implements Identifiable {
   @ToString
   @NoArgsConstructor(access = PRIVATE)
   @AllArgsConstructor(access = PRIVATE)
-  public static class HistoricoSituacao implements Identifiable {
+  public static class HistoricoSituacao implements Identifiable<UUID> {
 
     private AuditEntity creation;
     private UUID id;

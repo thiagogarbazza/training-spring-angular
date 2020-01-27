@@ -45,8 +45,9 @@ public class EnumIdentifiableType implements DynamicParameterizedType, UserType 
     }
 
     final int id = rs.getInt(names[0]);
+    final Class<? extends Enum> aClass = returnedClass();
 
-    for (Enum value : returnedClass().getEnumConstants()) {
+    for (Enum value : aClass.getEnumConstants()) {
       if (value instanceof EnumIdentifiable) {
         EnumIdentifiable enumComCodigo = (EnumIdentifiable) value;
         if (enumComCodigo.getId().equals(id)) {
@@ -55,7 +56,7 @@ public class EnumIdentifiableType implements DynamicParameterizedType, UserType 
       }
     }
 
-    throw new IllegalStateException(format("Não foi possível achar o item de id {0} em {1}.", id, returnedClass().getName()));
+    throw new IllegalStateException(format("Não foi possível achar o item de id {0} em {1}.", id, aClass.getName()));
   }
 
   @Override
@@ -69,7 +70,7 @@ public class EnumIdentifiableType implements DynamicParameterizedType, UserType 
   }
 
   @Override
-  public Object deepCopy(Object value)  {
+  public Object deepCopy(Object value) {
     return value;
   }
 
@@ -79,17 +80,17 @@ public class EnumIdentifiableType implements DynamicParameterizedType, UserType 
   }
 
   @Override
-  public Serializable disassemble(Object value)  {
+  public Serializable disassemble(Object value) {
     return (Serializable) value;
   }
 
   @Override
-  public Object assemble(Serializable cached, Object owner)  {
+  public Object assemble(Serializable cached, Object owner) {
     return cached;
   }
 
   @Override
-  public Object replace(Object original, Object target, Object owner)  {
+  public Object replace(Object original, Object target, Object owner) {
     return original;
   }
 

@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
-import static com.github.thiagogarbazza.training.springangular.util.persistence.entity.IdentifiableUtil.findIdentifiablesByIds;
+import static com.github.thiagogarbazza.training.springangular.util.persistence.entity.IdentifiableUtil.findAllIdentifiableById;
 import static java.util.Arrays.asList;
 
 @Component
@@ -62,9 +62,9 @@ class DocumentoDispensadoParaPesquisarService {
 
   private DadosFormulario dadosFormularioBuild(final DadosParaFormulario dadosParaFormulario, final DocumentoDispensadoFiltroConsulta filtroConsulta) {
     return DadosFormulario.builder()
-      .clientes(findIdentifiablesByIds(dadosParaFormulario.getClientes(), filtroConsulta.getClientes()))
-      .documentos(findIdentifiablesByIds(dadosParaFormulario.getDocumentos(), filtroConsulta.getDocumentos()))
-      .grupoDocumentos(findIdentifiablesByIds(dadosParaFormulario.getGrupoDocumentos(), filtroConsulta.getGrupoDocumentos()))
+      .clientes(findAllIdentifiableById(dadosParaFormulario.getClientes(), filtroConsulta.getClientes()))
+      .documentos(findAllIdentifiableById(dadosParaFormulario.getDocumentos(), filtroConsulta.getDocumentos()))
+      .grupoDocumentos(findAllIdentifiableById(dadosParaFormulario.getGrupoDocumentos(), filtroConsulta.getGrupoDocumentos()))
       .vigenciaInicio(filtroConsulta.getVigenciaInicio())
       .vigenciaFim(filtroConsulta.getVigenciaFim())
       .situacaoDocumentoDispensados(filtroConsulta.getSituacoes())

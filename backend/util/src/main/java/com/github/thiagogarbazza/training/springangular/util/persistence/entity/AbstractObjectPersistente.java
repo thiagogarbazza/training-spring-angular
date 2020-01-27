@@ -26,7 +26,7 @@ import static lombok.AccessLevel.PROTECTED;
 @FieldNameConstants
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor(access = PROTECTED)
-public abstract class AbstractObjectPersistente implements Identifiable {
+public abstract class AbstractObjectPersistente implements Identifiable<UUID> {
 
   @Id
   @GeneratedValue
