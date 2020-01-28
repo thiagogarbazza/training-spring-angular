@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import static java.util.Objects.isNull;
 import static lombok.AccessLevel.PROTECTED;
 
 @Getter
@@ -30,10 +31,10 @@ public abstract class AbstractObjectPersistente implements Identifiable<UUID> {
 
   @Id
   @GeneratedValue
-  @Column(name = "id", nullable = false, updatable = false)
+  @Column(name = "id", nullable = false, updatable = false, unique = true)
   private UUID id;
 
   public final boolean isNew() {
-    return id == null;
+    return isNull(this.id);
   }
 }

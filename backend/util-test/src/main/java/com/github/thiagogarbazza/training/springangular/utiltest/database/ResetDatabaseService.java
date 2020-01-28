@@ -23,7 +23,7 @@ public class ResetDatabaseService {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = READ_UNCOMMITTED, readOnly = false)
   public void reset() {
-    Collection<String> tableNames = Arrays.asList("cliente.tbl_cliente", "documento.tbl_grupo_documento");
+    Collection<String> tableNames = Arrays.asList("zzt_test.tbl_simple_entity_object_persistence", "zzt_test.tbl_simple_entity_audited");
     Session session = entityManager.unwrap(Session.class);
     Metamodel hibernateMetadata = session.getSessionFactory().getMetamodel();
 

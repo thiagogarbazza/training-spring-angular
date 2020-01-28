@@ -35,8 +35,8 @@
     <dependency.commons-collections4.version>4.4</dependency.commons-collections4.version>
     <dependency.commons-lang3.version>3.9</dependency.commons-lang3.version>
     <dependency.commons-logging.version>1.2</dependency.commons-logging.version>
-    <dependency.h2.version>1.4.200</dependency.h2.version>
-    <dependency.hibernate-core.version>5.4.7.Final</dependency.hibernate-core.version>
+    <dependency.h2.version>1.4.196</dependency.h2.version>
+    <dependency.hibernate-core.version>5.4.10.Final</dependency.hibernate-core.version>
     <dependency.jackson.version>2.10.1</dependency.jackson.version>
     <dependency.javax.persistence-api.version>2.2</dependency.javax.persistence-api.version>
     <dependency.javax.servlet-api.version>4.0.1</dependency.javax.servlet-api.version>
@@ -232,6 +232,11 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
+        <version>${dependency.hibernate-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-envers</artifactId>
         <version>${dependency.hibernate-core.version}</version>
       </dependency>
       <dependency>

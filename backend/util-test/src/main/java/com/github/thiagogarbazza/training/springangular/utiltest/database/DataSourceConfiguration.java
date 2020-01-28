@@ -1,6 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.utiltest.database;
 
 import lombok.extern.apachecommons.CommonsLog;
+import org.hibernate.envers.configuration.EnversSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -66,6 +67,12 @@ class DataSourceConfiguration {
     properties.setProperty("hibernate.use_sql_comments", environment.getProperty("spring.jpa.properties.hibernate.use_sql_comments"));
     properties.setProperty("hibernate.default_schema", environment.getProperty("spring.jpa.properties.hibernate.default_schema"));
     properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
+    properties.setProperty(EnversSettings.AUDIT_TABLE_PREFIX, "aud_");
+    properties.setProperty(EnversSettings.AUDIT_TABLE_SUFFIX, "");
+    properties.setProperty(EnversSettings.REVISION_FIELD_NAME, "revision");
+    properties.setProperty(EnversSettings.REVISION_TYPE_FIELD_NAME, "revision_type");
+
+
 
     return properties;
   }

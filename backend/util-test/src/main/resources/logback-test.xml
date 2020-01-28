@@ -30,7 +30,7 @@
   <logger additivity="false" level="ERROR" name="jdbc.resultset">
     <appender-ref ref="dependency-logging"/>
   </logger>
-  <logger additivity="false" level="ERROR" name="jdbc.sqlonly">
+  <logger additivity="false" level="ALL" name="jdbc.sqlonly">
     <appender-ref ref="dependency-logging"/>
   </logger>
   <logger additivity="false" level="ERROR" name="jdbc.sqltiming">
