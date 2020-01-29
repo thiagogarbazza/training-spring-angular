@@ -69,8 +69,11 @@ class DataSourceConfiguration {
     properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
     properties.setProperty(EnversSettings.AUDIT_TABLE_PREFIX, "aud_");
     properties.setProperty(EnversSettings.AUDIT_TABLE_SUFFIX, "");
-    properties.setProperty(EnversSettings.REVISION_FIELD_NAME, "revision");
+    properties.setProperty(EnversSettings.REVISION_FIELD_NAME, "revision_id");
     properties.setProperty(EnversSettings.REVISION_TYPE_FIELD_NAME, "revision_type");
+
+    properties.setProperty("javax.persistence.schema-generation.scripts.create-target", "target/data-base/create.sql");
+    properties.setProperty("javax.persistence.schema-generation.scripts.drop-target", "target/data-base/drop.sql");
 
 
 

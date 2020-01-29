@@ -26,13 +26,13 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString(callSuper = true, of = {"code"})
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
-@Table(name = "tbl_simple_entity_audited", schema = "zzt_test", indexes = {
-  @Index(name = "idx_tbl_simple_entity_audited_code", columnList = "code", unique = true)
+@Table(name = "tbl_simple_entity_audited_a", schema = "zzt_test", indexes = {
+  @Index(name = "idx_tbl_simple_entity_audited_a_code", columnList = "code", unique = true)
 })
 @AttributeOverrides({ // @formatter:off
   @AttributeOverride(name = AbstractObjectPersistente.Fields.id, column = @Column(name = "id", nullable = false)),
 }) // @formatter:on
-class SimpleEntityAudited extends AbstractObjectPersistente {
+class SimpleEntityAudited_A extends AbstractObjectPersistente {
 
   @Column(name = "code", nullable = false, length = 50)
   private String code;

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-interface SimpleEntityAuditedRepository extends JpaRepository<SimpleEntityAudited, UUID> {
+interface SimpleEntityAudited_BRepository extends JpaRepository<SimpleEntityAudited_B, UUID> {
 }
