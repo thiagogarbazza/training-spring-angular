@@ -17,14 +17,14 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "tbl_revision_information", schema = "zzt_test")
-@RevisionEntity(CustomRevisionInformationListener.class)
-class CustomRevisionInformation {
+@RevisionEntity(RevisionInformationListener.class)
+class RevisionInformation {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @RevisionNumber
   @Column(name = "id")
-  private int id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
   @RevisionTimestamp
   @Column(name = "timestamp")

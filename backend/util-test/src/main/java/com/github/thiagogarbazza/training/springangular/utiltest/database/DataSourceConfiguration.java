@@ -26,29 +26,29 @@ class DataSourceConfiguration {
   @Bean
   public DataSource dataSource() {
     log.trace("Configurando data source.");
-    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 
-    dataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driver-class-name"));
-    dataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
-    dataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
-    dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
+    driverManagerDataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driver-class-name"));
+    driverManagerDataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
+    driverManagerDataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
+    driverManagerDataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
 
-    return dataSource;
+    return driverManagerDataSource;
   }
 
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
     log.trace("Configurando entity manager factory.");
-    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
     JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 
-    factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-    factoryBean.setDataSource(dataSource);
+    localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+    localContainerEntityManagerFactoryBean.setDataSource(dataSource);
 
-    factoryBean.setJpaProperties(aditionalProperties());
-    factoryBean.setPackagesToScan("com.github.thiagogarbazza.training.springangular");
+    localContainerEntityManagerFactoryBean.setJpaProperties(aditionalProperties());
+    localContainerEntityManagerFactoryBean.setPackagesToScan("com.github.thiagogarbazza.training.springangular");
 
-    return factoryBean;
+    return localContainerEntityManagerFactoryBean;
   }
 
   @Bean

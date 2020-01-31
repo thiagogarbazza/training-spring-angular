@@ -24,6 +24,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
@@ -33,7 +34,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AuditTable("his_simple_entity_audited_c_aud")
 @SuperBuilder
 @ToString(callSuper = true, of = {"code"})
-@NoArgsConstructor(access = PRIVATE)
+@NoArgsConstructor(access = PACKAGE)
 @AllArgsConstructor(access = PRIVATE)
 @Table(name = "tbl_simple_entity_audited_c", schema = "zzt_test", indexes = {
   @Index(name = "idx_tbl_simple_entity_audited_c_code", columnList = "code", unique = true)

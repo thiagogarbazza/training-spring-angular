@@ -2,6 +2,7 @@ package com.github.thiagogarbazza.training.springangular.util.it.persistence.ent
 
 import com.github.thiagogarbazza.training.springangular.util.it.UtilIntegrationTestRunner;
 import com.github.thiagogarbazza.training.springangular.utiltest.database.ResetDatabaseService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ class SimpleEntityAudited_CIntegrationTest {
   private SimpleEntityAudited_BRepository simpleEntityAuditedBRepository;
   @Autowired
   private SimpleEntityAudited_CRepository simpleEntityAuditedCRepository;
+
+  @Autowired
+  private RevisionInformationService revisionInformationService;
+
 
   @BeforeEach
   void beforeEach() {
@@ -51,6 +56,8 @@ class SimpleEntityAudited_CIntegrationTest {
       .simpleEntityAuditedA(created_a)
       .simpleEntityAuditedBS(asList(created_b_1, created_b_2))
       .build());
+
+    Assertions.assertEquals(1L, revisionInformationService.count(created_c.getClass(), created_c.getId()));
   }
 
   @Test
@@ -80,6 +87,7 @@ class SimpleEntityAudited_CIntegrationTest {
       .build());
 
     simpleEntityAuditedCRepository.deleteById(created_c.getId());
+    Assertions.assertEquals(2L, revisionInformationService.count(created_c.getClass(), created_c.getId()));
   }
 
   @Test
@@ -118,5 +126,6 @@ class SimpleEntityAudited_CIntegrationTest {
     created_c.setSimpleEntityAuditedA(created_a_2);
 
     simpleEntityAuditedCRepository.save(created_c);
+    Assertions.assertEquals(2L, revisionInformationService.count(created_c.getClass(), created_c.getId()));
   }
 }
