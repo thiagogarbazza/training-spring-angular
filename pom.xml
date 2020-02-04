@@ -18,7 +18,6 @@
   </modules>
 
   <properties>
-
     <java.version>1.8</java.version>
     <java.encoding>UTF-8</java.encoding>
     <maven.build.timestamp.format>dd/MM/yyyy HH:mm:ss</maven.build.timestamp.format>
@@ -41,8 +40,8 @@
     <dependency.javax.persistence-api.version>2.2</dependency.javax.persistence-api.version>
     <dependency.javax.servlet-api.version>4.0.1</dependency.javax.servlet-api.version>
     <dependency.jetty.version>9.4.22.v20191022</dependency.jetty.version>
-    <dependency.junit-jupiter.version>5.5.2</dependency.junit-jupiter.version>
-    <dependency.junit-jupter-platform.version>1.5.2</dependency.junit-jupter-platform.version>
+    <dependency.junit-jupiter.version>5.6.0</dependency.junit-jupiter.version>
+    <dependency.junit-jupter-platform.version>1.6.0</dependency.junit-jupter-platform.version>
     <dependency.json-path.version>2.4.0</dependency.json-path.version>
     <dependency.log4jdbc.version>1.2</dependency.log4jdbc.version>
     <dependency.logback.version>1.2.3</dependency.logback.version>
@@ -62,11 +61,11 @@
     <plugin.lombok.version>1.18.10.0</plugin.lombok.version>
     <plugin.maven-assembly.version>3.1.1</plugin.maven-assembly.version>
     <plugin.maven-compiler.version>3.8.1</plugin.maven-compiler.version>
-    <plugin.maven-failsafe.version>3.0.0-M3</plugin.maven-failsafe.version>
+    <plugin.maven-failsafe.version>3.0.0-M4</plugin.maven-failsafe.version>
     <plugin.maven-jar.version>3.1.2</plugin.maven-jar.version>
     <plugin.maven-release.version>2.5.3</plugin.maven-release.version>
     <plugin.maven-resources.version>3.1.0</plugin.maven-resources.version>
-    <plugin.maven-surefire.version>3.0.0-M3</plugin.maven-surefire.version>
+    <plugin.maven-surefire.version>3.0.0-M4</plugin.maven-surefire.version>
   </properties>
 
   <dependencyManagement>
@@ -368,13 +367,23 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>${plugin.maven-failsafe.version}</version>
+        <configuration>
+          <systemPropertyVariables>
+            <logback.configurationFile>classpath:/logback-test.xml</logback.configurationFile>
+            <cucumber.options>--strict --plugin pretty --tags 'not (@Disabled or @disabled)'</cucumber.options>
+          </systemPropertyVariables>
+        </configuration>
         <executions>
           <execution>
             <id>integration</id>
+            <phase>integration-test</phase>
             <goals>
               <goal>integration-test</goal>
             </goals>
             <configuration>
+              <systemPropertyVariables>
+                <logback.configurationFile>classpath:/logback-test-ci.xml</logback.configurationFile>
+              </systemPropertyVariables>
               <includes>
                 <include>**/*IT.java</include>
                 <include>**/*IntegrationTest.java</include>
@@ -383,10 +392,15 @@
           </execution>
           <execution>
             <id>acceptance</id>
+            <phase>integration-test</phase>
             <goals>
               <goal>integration-test</goal>
             </goals>
             <configuration>
+              <systemPropertyVariables>
+                <logback.configurationFile>classpath:/logback-test-ci.xml</logback.configurationFile>
+                <cucumber.options>--strict --plugin pretty --tags 'not (@Disabled or @disabled)'</cucumber.options>
+              </systemPropertyVariables>
               <includes>
                 <include>**/*AT.java</include>
                 <include>**/*AcceptanceTest.java</include>
@@ -414,7 +428,7 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>${plugin.maven-release.version}</version>
         <configuration>
-          <preparationGoals>clean verify</preparationGoals>
+          <preparationGoals>clean</preparationGoals>
           <tagNameFormat>@{project.version}</tagNameFormat>
           <autoVersionSubmodules>true</autoVersionSubmodules>
           <releaseProfiles>prepare-release</releaseProfiles>
