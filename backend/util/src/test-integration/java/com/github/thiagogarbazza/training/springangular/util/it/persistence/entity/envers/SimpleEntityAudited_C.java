@@ -40,7 +40,7 @@ import static lombok.AccessLevel.PRIVATE;
   @Index(name = "idx_tbl_simple_entity_audited_c_code", columnList = "code", unique = true)
 })
 @AttributeOverrides({ // @formatter:off
-  @AttributeOverride(name = AbstractObjectPersistente.Fields.id, column = @Column(name = "id", nullable = false)),
+  @AttributeOverride(name = AbstractObjectPersistente.Fields.id, column = @Column(name = "id", nullable = false, updatable = false, unique = true, columnDefinition = "CHAR(32)")),
 }) // @formatter:on
 class SimpleEntityAudited_C extends AbstractObjectPersistente {
 

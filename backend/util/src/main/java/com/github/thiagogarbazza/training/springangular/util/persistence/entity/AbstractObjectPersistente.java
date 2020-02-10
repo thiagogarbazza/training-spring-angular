@@ -31,7 +31,7 @@ public abstract class AbstractObjectPersistente implements Identifiable<UUID> {
 
   @Id
   @GeneratedValue
-  @Column(name = "id", nullable = false, updatable = false, unique = true)
+  @Column(name = "id", nullable = false, updatable = false, unique = true, columnDefinition = "CHAR(32)")
   private UUID id;
 
   public final boolean isNew() {

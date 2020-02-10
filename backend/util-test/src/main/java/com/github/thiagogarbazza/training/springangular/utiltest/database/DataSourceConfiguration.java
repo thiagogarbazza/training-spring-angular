@@ -72,6 +72,7 @@ class DataSourceConfiguration {
     properties.setProperty(EnversSettings.REVISION_FIELD_NAME, "revision_id");
     properties.setProperty(EnversSettings.REVISION_TYPE_FIELD_NAME, "revision_type");
 
+//    properties.setProperty("javax.persistence.schema-generation.scripts.action", "drop-and-create");
     properties.setProperty("javax.persistence.schema-generation.scripts.create-target", "target/data-base/create.sql");
     properties.setProperty("javax.persistence.schema-generation.scripts.drop-target", "target/data-base/drop.sql");
 
