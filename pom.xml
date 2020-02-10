@@ -369,7 +369,7 @@
         <version>${plugin.maven-failsafe.version}</version>
         <configuration>
           <systemPropertyVariables>
-            <logback.configurationFile>classpath:/logback-test.xml</logback.configurationFile>
+            <logback.configurationFile>classpath:logback-test.xml</logback.configurationFile>
             <cucumber.options>--strict --plugin pretty --tags 'not (@Disabled or @disabled)'</cucumber.options>
           </systemPropertyVariables>
         </configuration>
@@ -379,10 +379,11 @@
             <phase>integration-test</phase>
             <goals>
               <goal>integration-test</goal>
+              <goal>verify</goal>
             </goals>
             <configuration>
               <systemPropertyVariables>
-                <logback.configurationFile>classpath:/logback-test-ci.xml</logback.configurationFile>
+                <logback.configurationFile>classpath:logback-test-ci.xml</logback.configurationFile>
               </systemPropertyVariables>
               <includes>
                 <include>**/*IT.java</include>
@@ -395,10 +396,11 @@
             <phase>integration-test</phase>
             <goals>
               <goal>integration-test</goal>
+              <goal>verify</goal>
             </goals>
             <configuration>
               <systemPropertyVariables>
-                <logback.configurationFile>classpath:/logback-test-ci.xml</logback.configurationFile>
+                <logback.configurationFile>classpath:logback-test-ci.xml</logback.configurationFile>
                 <cucumber.options>--strict --plugin pretty --tags 'not (@Disabled or @disabled)'</cucumber.options>
               </systemPropertyVariables>
               <includes>
