@@ -2,7 +2,9 @@ package com.github.thiagogarbazza.training.springangular.util.persistence.consul
 
 import com.querydsl.core.types.OrderSpecifier;
 
+import java.util.Collection;
+
 public interface OrderableColumn {
 
-  OrderSpecifier getOrderSpecifier(OrderableDirection direction);
+  Collection<OrderSpecifier> getOrderSpecifier(OrderableDirection direction);
 }

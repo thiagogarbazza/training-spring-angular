@@ -5,12 +5,11 @@ import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import javax.persistence.EntityManagerFactory;
 
-@Component
+//@Component
 @CommonsLog
 class RevisionInformationService {
 

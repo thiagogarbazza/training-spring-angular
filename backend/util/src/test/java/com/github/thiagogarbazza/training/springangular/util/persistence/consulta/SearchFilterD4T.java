@@ -7,6 +7,8 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Collection;
 
+import static java.util.Collections.singletonList;
+
 @UtilityClass
 public class SearchFilterD4T {
 
@@ -25,8 +27,8 @@ public class SearchFilterD4T {
     }
 
     @Override
-    public OrderSpecifier getOrderSpecifier(OrderableDirection direction) {
-      return direction.getOrderSpecifier(expression);
+    public Collection<OrderSpecifier> getOrderSpecifier(OrderableDirection direction) {
+      return singletonList(direction.getOrderSpecifier(expression));
     }
   }
 

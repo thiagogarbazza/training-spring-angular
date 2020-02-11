@@ -31,11 +31,11 @@ class DocumentoDispensadoRepositoryImpl extends CustomQueryDslRepositorySupport<
   }
 
   @Override
-  public CustomPage<DocumentoDispensado> pesquisarPaginando(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
+  public CustomPage<DocumentoDispensado> pesquisarPaginando(final DocumentoDispensadoFiltroConsulta documentoDispensadoFiltroConsulta) {
     final JPQLQuery<DocumentoDispensado> query = from(documentoDispensado);
 
-    query.where(DocumentoDispensadoFiltroConsultaUtil.predicateBuilder(query, filtroConsulta));
+    query.where(DocumentoDispensadoFiltroConsultaUtil.predicateBuilder(query, documentoDispensadoFiltroConsulta));
 
-    return super.readPage(query, documentoDispensado, filtroConsulta);
+    return super.readPage(query, documentoDispensadoFiltroConsulta, documentoDispensado);
   }
 }

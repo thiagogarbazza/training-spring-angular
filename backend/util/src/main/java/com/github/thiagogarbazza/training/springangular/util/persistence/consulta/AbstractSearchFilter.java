@@ -11,7 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QPageRequest;
 
 import java.util.Collection;
+import java.util.Collections;
 
+import static com.github.thiagogarbazza.training.springangular.util.lang.IntegerUtils.defaultInteger;
 import static lombok.AccessLevel.PROTECTED;
 
 @Getter
@@ -32,13 +34,12 @@ public abstract class AbstractSearchFilter<T extends OrderableColumn> {
   protected abstract Collection<OrderSpecifier> defaultOrdering();
 
   public final OrderSpecifier[] ordering() {
-    return OrderingHelper.union(this.possuiOrdenacaoPorCampo() ? this.orderableColumn() : null, this.defaultOrdering());
+    final Collection<OrderSpecifier> sortableColumn = this.possuiOrdenacaoPorCampo() ? this.orderableColumn() : Collections.emptyList();
+    return OrderingUtils.union(sortableColumn, this.defaultOrdering());
   }
 
   final int numeroPagina() {
-    return this.numeroPagina == null || this.numeroPagina < 0
-      ? PAGINA_INICIAL
-      : this.numeroPagina;
+    return defaultInteger(this.numeroPagina, PAGINA_INICIAL);
   }
 
   final boolean possuiOrdenacaoPorCampo() {
@@ -46,12 +47,10 @@ public abstract class AbstractSearchFilter<T extends OrderableColumn> {
   }
 
   final int quantidadePorPagina() {
-    return this.quantidadePorPagina == null || this.quantidadePorPagina < 0
-      ? getQuantidadePorPaginaPadrao()
-      : this.quantidadePorPagina;
+    return defaultInteger(this.quantidadePorPagina, getQuantidadePorPaginaPadrao());
   }
 
-  private OrderSpecifier orderableColumn() {
+  private Collection<OrderSpecifier> orderableColumn() {
     return this.ordenacaoCampo.getOrderSpecifier(ordenacaoDirecao);
   }
 

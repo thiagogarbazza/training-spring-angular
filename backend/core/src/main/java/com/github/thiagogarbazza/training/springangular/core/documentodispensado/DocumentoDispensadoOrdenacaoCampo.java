@@ -5,7 +5,10 @@ import com.github.thiagogarbazza.training.springangular.util.persistence.consult
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.ComparableExpressionBase;
 
+import java.util.Collection;
+
 import static com.github.thiagogarbazza.training.springangular.core.documentodispensado.QDocumentoDispensado.documentoDispensado;
+import static java.util.Collections.singletonList;
 
 public enum DocumentoDispensadoOrdenacaoCampo implements OrderableColumn {
 
@@ -20,7 +23,7 @@ public enum DocumentoDispensadoOrdenacaoCampo implements OrderableColumn {
   }
 
   @Override
-  public OrderSpecifier getOrderSpecifier(OrderableDirection direction) {
-    return direction.getOrderSpecifier(expression);
+  public Collection<OrderSpecifier> getOrderSpecifier(OrderableDirection direction) {
+    return singletonList(direction.getOrderSpecifier(expression));
   }
 }
