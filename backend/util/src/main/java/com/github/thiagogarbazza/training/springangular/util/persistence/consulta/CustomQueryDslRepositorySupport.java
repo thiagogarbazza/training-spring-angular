@@ -5,8 +5,8 @@ import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public abstract class CustomQueryDslRepositorySupport<E> extends QuerydslRepositorySupport {
 
@@ -14,34 +14,26 @@ public abstract class CustomQueryDslRepositorySupport<E> extends QuerydslReposit
     super(domainClass);
   }
 
-  protected <T> CustomPage<T> readPage(JPQLQuery queryCount, JPQLQuery queryContent, Expression<T> expression, AbstractSearchFilter filtro) {
-    Long total = queryCount.fetchCount();
-
-    queryContent.orderBy(filtro.ordering());
-    Pageable pageable = filtro.getPageable();
-    List<T> content = total > pageable.getOffset()
-      ? realizarPesquisaPaginada(queryContent, expression, pageable)
-      : Collections.<T>emptyList();
+  protected <T> CustomPage<T> readPage(JPQLQuery queryCount, JPQLQuery queryContent, AbstractSearchFilter filtro, Expression<T> projection) {
+    final long total = queryCount.fetchCount();
+    final Collection<T> content = search(queryContent, filtro, total, projection);
 
     return new CustomPage<T>(content, total, filtro);
   }
 
-  protected <T> CustomPage<T> readPage(JPQLQuery query, Expression<T> expression, AbstractSearchFilter filtro) {
-    // need to clone to have a second query, otherwise all items would be in the list
-    Long total = query.fetchCount();
+  protected <T> CustomPage<T> readPage(final JPQLQuery query, final AbstractSearchFilter filtro, final Expression<T> projection) {
+    final long total = query.fetchCount();
+    final Collection<T> content = search(query, filtro, total, projection);
 
-    Pageable pageable = filtro.getPageable();
+    return new CustomPage<T>(content, total, filtro);
+  }
+
+  private <T> Collection<T> search(final JPQLQuery query, final AbstractSearchFilter filtro, final long total, final Expression<T> projection) {
     query.orderBy(filtro.ordering());
+    Pageable pageable = filtro.getPageable();
 
-    List<T> content = total > pageable.getOffset()
-      ? realizarPesquisaPaginada(query, expression, pageable)
-      : Collections.<T>emptyList();
-
-    return new CustomPage<T>(content, total, filtro);
-  }
-
-  private <T> List<T> realizarPesquisaPaginada(JPQLQuery query, Expression<T> expression, Pageable pageable) {
-    JPQLQuery pagedQuery = getQuerydsl().applyPagination(pageable, query);
-    return pagedQuery.select(expression).fetch();
+    return total > pageable.getOffset()
+      ? getQuerydsl().applyPagination(pageable, query).select(projection).fetch()
+      : Collections.emptyList();
   }
 }
