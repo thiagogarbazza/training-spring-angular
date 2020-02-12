@@ -90,7 +90,7 @@ class GrupoDocumentoRestController {
   @RequestMapping(method = RequestMethod.GET, path = "/report-excel")
   public ArquivoUploadResource reportExcel(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
     final ArquivoUpload arquivoUpload = grupoDocumentoReportService.excel(grupoDocumentoSearchFilter);
-    return new ArquivoUploadResource(arquivoUpload);
+    return ArquivoUploadResource.of(arquivoUpload);
   }
 
   @RequestMapping(method = RequestMethod.PUT, path = "/{id}")

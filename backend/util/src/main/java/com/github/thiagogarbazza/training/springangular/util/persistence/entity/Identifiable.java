@@ -1,6 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.util.persistence.entity;
 
-public interface Identifiable<T> {
+public interface Identifiable<ID> {
 
-  T getId();
+  ID getId();
 }

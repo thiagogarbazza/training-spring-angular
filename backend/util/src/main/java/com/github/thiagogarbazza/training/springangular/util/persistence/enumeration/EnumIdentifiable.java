@@ -2,6 +2,6 @@ package com.github.thiagogarbazza.training.springangular.util.persistence.enumer
 
 import com.github.thiagogarbazza.training.springangular.util.persistence.entity.Identifiable;
 
-public interface EnumIdentifiable<T> extends Identifiable<T> {
+public interface EnumIdentifiable<ID> extends Identifiable<ID> {
 
 }

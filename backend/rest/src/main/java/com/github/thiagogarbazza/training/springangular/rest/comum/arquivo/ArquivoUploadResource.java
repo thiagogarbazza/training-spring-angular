@@ -9,8 +9,12 @@ import org.springframework.http.ResponseEntity;
 
 public class ArquivoUploadResource extends ResponseEntity<byte[]> {
 
-  public ArquivoUploadResource(final ArquivoUpload arquivoUpload) {
-    super(arquivoUpload.getConteudo(), httpHeadersBuild(arquivoUpload), HttpStatus.OK);
+  private ArquivoUploadResource(final ArquivoUpload arquivoUpload, final byte[] conteudo) {
+    super(conteudo, httpHeadersBuild(arquivoUpload, conteudo), HttpStatus.OK);
+  }
+
+  public static ArquivoUploadResource of(final ArquivoUpload arquivoUpload) {
+    return new ArquivoUploadResource(arquivoUpload, arquivoUpload.getConteudo().toByteArray());
   }
 
   private static ContentDisposition contentDispositionBuild(final ArquivoUpload arquivoUpload) {
@@ -19,10 +23,10 @@ public class ArquivoUploadResource extends ResponseEntity<byte[]> {
       .build();
   }
 
-  private static HttpHeaders httpHeadersBuild(final ArquivoUpload arquivoUpload) {
+  private static HttpHeaders httpHeadersBuild(final ArquivoUpload arquivoUpload, final byte[] conteudo) {
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.valueOf(arquivoUpload.getMimetype()));
-    httpHeaders.setContentLength(arquivoUpload.getConteudo().length);
+    httpHeaders.setContentLength(conteudo.length);
     httpHeaders.setContentDisposition(contentDispositionBuild(arquivoUpload));
 
     return httpHeaders;

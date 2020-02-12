@@ -42,7 +42,7 @@ public abstract class AbstractRelatorioExcel {
       .mimetype(Mimetypes.MIMETYPE_PLANILHA)
       .extensao(Extensoes.EXTENSAO_PLANILHA)
       .nome(this.fileName)
-      .conteudo(workbookToOutputStream(workbook).toByteArray())
+      .conteudo(workbookToOutputStream(workbook))
       .build();
   }
 }

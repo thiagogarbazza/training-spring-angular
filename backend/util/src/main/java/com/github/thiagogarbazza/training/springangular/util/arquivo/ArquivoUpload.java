@@ -4,28 +4,20 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.ToString;
 
-import static org.apache.commons.lang3.builder.ToStringStyle.SIMPLE_STYLE;
+import java.io.ByteArrayOutputStream;
 
 @Getter
 @Builder()
+@ToString(of = {"nome", "mimetype"})
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ArquivoUpload {
 
-  private byte[] conteudo;
+  private ByteArrayOutputStream conteudo;
   private String extensao;
   private String mimetype;
   private String nome;
-
-  @Override
-  public String toString() {
-    return new ToStringBuilder(this, SIMPLE_STYLE)
-      .append(this.nome)
-      .append(this.mimetype)
-      .append(this.conteudo.length)
-      .toString();
-  }
 
   public String filename() {
     return this.nome + "." + this.extensao;

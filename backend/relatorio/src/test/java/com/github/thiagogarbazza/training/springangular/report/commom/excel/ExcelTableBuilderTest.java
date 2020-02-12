@@ -9,11 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static com.github.thiagogarbazza.training.springangular.report.commom.excel.ExcelWorkbook.workbookToOutputStream;
 import static java.util.Arrays.asList;
 
 class ExcelTableBuilderTest {
@@ -35,7 +33,7 @@ class ExcelTableBuilderTest {
 
     final File tempFile = File.createTempFile("excel-table-builder", ".xlsx");
     final Path path = Paths.get(tempFile.toURI());
-    Files.write(path, workbookToOutputStream(workbook).toByteArray());
+    // Files.write(path, workbookToOutputStream(workbook));
   }
 
   @Getter

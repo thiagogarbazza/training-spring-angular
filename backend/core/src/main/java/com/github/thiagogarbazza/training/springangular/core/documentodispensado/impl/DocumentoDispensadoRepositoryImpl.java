@@ -3,7 +3,7 @@ package com.github.thiagogarbazza.training.springangular.core.documentodispensad
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensado;
 import com.github.thiagogarbazza.training.springangular.core.documentodispensado.DocumentoDispensadoFiltroConsulta;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
-import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomQueryDslRepositorySupport;
+import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomQuerydslRepositorySupport;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import java.util.Collection;
 import static com.github.thiagogarbazza.training.springangular.core.documentodispensado.QDocumentoDispensado.documentoDispensado;
 
 @Repository
-class DocumentoDispensadoRepositoryImpl extends CustomQueryDslRepositorySupport<DocumentoDispensado> implements DocumentoDispensadoRepositoryCustom {
+class DocumentoDispensadoRepositoryImpl extends CustomQuerydslRepositorySupport<DocumentoDispensado> implements DocumentoDispensadoRepositoryCustom {
 
   protected DocumentoDispensadoRepositoryImpl() {
     super(DocumentoDispensado.class);

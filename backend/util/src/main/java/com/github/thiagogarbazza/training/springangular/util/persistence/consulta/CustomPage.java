@@ -5,6 +5,7 @@ import com.github.thiagogarbazza.simplemessage.SimpleMessageType;
 import com.github.thiagogarbazza.simplemessage.SimpleMessages;
 import lombok.Getter;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -29,13 +30,13 @@ public class CustomPage<T> {
   private final Long totalElements;
   private final Integer totalPages;
 
-  public CustomPage(final Collection<T> content, final long total, final AbstractSearchFilter abstractSearchFilter) {
+  public CustomPage(final Collection<T> content, final long total, final Pageable pageable) {
     this.content = content;
     this.contentSize = content.size();
     this.totalElements = total;
 
-    this.number = abstractSearchFilter.numeroPagina();
-    this.size = abstractSearchFilter.quantidadePorPagina();
+    this.number = pageable.getPageNumber();
+    this.size = pageable.getPageSize();
     this.totalPages = BigDecimal.valueOf(this.totalElements).divide(BigDecimal.valueOf(this.size), 0).intValue();
 
     this.hasContent = CollectionUtils.isNotEmpty(this.content);

@@ -12,7 +12,7 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 @UtilityClass
 public class PredicateUtil {
 
-  public static Predicate equalsIfNotNull(StringExpression expression, String value) {
+  public static Predicate equalsIfNotNull(final StringExpression expression, final String value) {
     if (isNotBlank(value)) {
       return expression.eq(value);
     }
@@ -20,7 +20,7 @@ public class PredicateUtil {
     return null;
   }
 
-  public static <T> Predicate equalsIfNotNull(SimpleExpression<T> expression, T value) {
+  public static <T> Predicate equalsIfNotNull(final SimpleExpression<T> expression, final T value) {
     if (value != null) {
       return expression.eq(value);
     }
@@ -28,7 +28,7 @@ public class PredicateUtil {
     return null;
   }
 
-  public static <T> Predicate inIfNotNull(SimpleExpression<T> expression, Collection<T> value) {
+  public static <T> Predicate inIfNotNull(final SimpleExpression<T> expression, final Collection<T> value) {
     if (value != null) {
       return expression.in(value);
     }

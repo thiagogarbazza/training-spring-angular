@@ -7,7 +7,7 @@ import com.github.thiagogarbazza.training.springangular.core.grupodocumento.Grup
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.QGrupoDocumentoVO4SearchResult;
 import com.github.thiagogarbazza.training.springangular.core.grupodocumento.QGrupoDocumentoVO4Select;
 import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomPage;
-import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomQueryDslRepositorySupport;
+import com.github.thiagogarbazza.training.springangular.util.persistence.consulta.CustomQuerydslRepositorySupport;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +17,7 @@ import static com.github.thiagogarbazza.training.springangular.core.grupodocumen
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.impl.GrupoDocumentoSearchFilterHelper.grupoDocumentoSearchFilterPredicateBuilder;
 
 @Repository
-class GrupoDocumentoRepositoryImpl extends CustomQueryDslRepositorySupport<GrupoDocumento> implements GrupoDocumentoRepositoryCustom {
+class GrupoDocumentoRepositoryImpl extends CustomQuerydslRepositorySupport<GrupoDocumento> implements GrupoDocumentoRepositoryCustom {
 
   protected GrupoDocumentoRepositoryImpl() {
     super(GrupoDocumento.class);

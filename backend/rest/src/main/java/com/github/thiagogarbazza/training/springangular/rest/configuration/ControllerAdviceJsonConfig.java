@@ -9,6 +9,6 @@ class ControllerAdviceJsonConfig {
 
   @InitBinder
   public void initBinder(WebDataBinder webDataBinder) {
-    webDataBinder.initDirectFieldAccess();
+    //webDataBinder.initDirectFieldAccess();
   }
 }

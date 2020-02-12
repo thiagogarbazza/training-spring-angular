@@ -4,6 +4,8 @@ import com.github.thiagogarbazza.simplemessage.SimpleMessage;
 import com.github.thiagogarbazza.simplemessage.SimpleMessageType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.QPageRequest;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,9 +22,9 @@ class CustomPageTest {
   void verificar01() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 0;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(0, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertEquals(content, page.getContent());
     assertEquals(0, page.getContentSize());
@@ -45,9 +47,9 @@ class CustomPageTest {
   void verificar02() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 1;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(0, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertEquals(content, page.getContent());
     assertEquals(0, page.getContentSize());
@@ -70,9 +72,9 @@ class CustomPageTest {
   void verificar03() {
     final Collection<String> content = Arrays.asList("Item 01");
     final long totalElements = 1;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(0, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertEquals(content, page.getContent());
     assertEquals(1, page.getContentSize());
@@ -95,9 +97,9 @@ class CustomPageTest {
   void verificar04() {
     final Collection<String> content = Arrays.asList("Item 01", "Item 02", "Item 03");
     final long totalElements = 3;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(0, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertEquals(content, page.getContent());
     assertEquals(3, page.getContentSize());
@@ -120,9 +122,9 @@ class CustomPageTest {
   void verificar05() {
     final Collection<String> content = Arrays.asList("Item 01", "Item 02", "Item 03");
     final long totalElements = 11;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(0).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(0, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertEquals(content, page.getContent());
     assertEquals(3, page.getContentSize());
@@ -145,9 +147,9 @@ class CustomPageTest {
   void verificar06() {
     final Collection<String> content = Arrays.asList("Item 07", "Item 08", "Item 09");
     final long totalElements = 11;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(2).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(2, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertEquals(content, page.getContent());
     assertEquals(3, page.getContentSize());
@@ -170,9 +172,9 @@ class CustomPageTest {
   void verificar07() {
     final Collection<String> content = Arrays.asList("Item 10", "Item 11");
     final long totalElements = 11;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(4, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertEquals(content, page.getContent());
     assertEquals(2, page.getContentSize());
@@ -195,9 +197,9 @@ class CustomPageTest {
   void verificar90() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 0;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(4, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     assertTrue(page.getIsEmpty());
     assertEquals(1, page.getMessages().size());
@@ -212,14 +214,12 @@ class CustomPageTest {
   void verificar91() {
     final Collection<String> content = Collections.emptyList();
     final long totalElements = 0;
-    final AbstractSearchFilter abstractSearchFilter = SearchFilterD4T.Filter.builder().numeroPagina(4).quantidadePorPagina(3).build();
+    final Pageable pageable = QPageRequest.of(4, 3);
 
-    CustomPage<String> page = new CustomPage<>(content, totalElements, abstractSearchFilter);
+    CustomPage<String> page = new CustomPage<>(content, totalElements, pageable);
 
     page.addParameter("page.any-key", "page.any-value");
     assertEquals(1, page.getParameters().size());
     assertEquals("page.any-value", page.getParameters().get("page.any-key"));
   }
-
-
 }

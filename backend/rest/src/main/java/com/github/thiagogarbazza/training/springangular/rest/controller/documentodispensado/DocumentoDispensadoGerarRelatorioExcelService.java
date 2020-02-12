@@ -16,6 +16,6 @@ class DocumentoDispensadoGerarRelatorioExcelService {
 
   ArquivoUploadResource gerar(final DocumentoDispensadoFiltroConsulta filtroConsulta) {
     final ArquivoUpload arquivoUpload = documentoDispensadoRelatorioService.gerarRelatorioExcel(filtroConsulta);
-    return new ArquivoUploadResource(arquivoUpload);
+    return ArquivoUploadResource.of(arquivoUpload);
   }
 }
