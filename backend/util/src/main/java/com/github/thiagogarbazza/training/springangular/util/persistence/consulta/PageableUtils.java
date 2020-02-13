@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QPageRequest;
 
-import static com.github.thiagogarbazza.training.springangular.util.lang.IntegerUtils.defaultInteger;
+import static com.github.thiagogarbazza.training.springangular.util.lang.IntegerUtils.defaultPositiveInteger;
 
 @UtilityClass
 class PageableUtils {
@@ -14,8 +14,8 @@ class PageableUtils {
   static Pageable pageableBuild(final AbstractSearchFilter filtro) {
 
     return QPageRequest.of(
-      defaultInteger(filtro.getNumeroPagina(), PAGINA_INICIAL),
-      defaultInteger(filtro.getQuantidadePorPagina(), filtro.getQuantidadePorPaginaPadrao()),
+      defaultPositiveInteger(filtro.getNumeroPagina(), PAGINA_INICIAL),
+      defaultPositiveInteger(filtro.getQuantidadePorPagina(), filtro.getQuantidadePorPaginaPadrao()),
       filtro.ordering()
                           );
   }

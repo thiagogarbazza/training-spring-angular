@@ -21,12 +21,12 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Setter
 @SuperBuilder
-@ToString(of = {"id"})
 @MappedSuperclass
 @EqualsAndHashCode
 @FieldNameConstants
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor(access = PROTECTED)
+@ToString(of = {"id"}, includeFieldNames = false)
 public abstract class AbstractObjectPersistente implements Identifiable<UUID> {
 
   @Id
