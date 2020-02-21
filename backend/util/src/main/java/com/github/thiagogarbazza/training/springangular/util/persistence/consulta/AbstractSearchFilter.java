@@ -1,5 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.util.persistence.consulta;
 
+import com.github.thiagogarbazza.training.springangular.util.lang.FieldUtils;
 import com.querydsl.core.types.OrderSpecifier;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,11 @@ public abstract class AbstractSearchFilter<T extends OrderableColumn> {
     return OrderingUtils.union(this.ordenacaoCampo, this.ordenacaoDirecao, this.defaultOrdering());
   }
 
-  protected int getQuantidadePorPaginaPadrao() {
+  protected int quantidadePorPaginaPadrao() {
     return QUANTIDADE_POR_PAGINA_PADRAO;
+  }
+
+  public final boolean isEmpty() {
+    return FieldUtils.allFieldsIsEmpty(this);
   }
 }

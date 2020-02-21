@@ -15,7 +15,7 @@ class PageableUtils {
 
     return QPageRequest.of(
       defaultPositiveInteger(filtro.getNumeroPagina(), PAGINA_INICIAL),
-      defaultPositiveInteger(filtro.getQuantidadePorPagina(), filtro.getQuantidadePorPaginaPadrao()),
+      defaultPositiveInteger(filtro.getQuantidadePorPagina(), filtro.quantidadePorPaginaPadrao()),
       filtro.ordering()
                           );
   }
