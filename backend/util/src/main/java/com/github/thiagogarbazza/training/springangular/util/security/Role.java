@@ -6,7 +6,8 @@ import lombok.Getter;
 @Getter
 public enum Role implements EnumIdentifiableWithDescription<String> {
 
-  ADMINISTRADOR("STR005", "Administrador");
+  ADMINISTRADOR("ADM_00", "Administrador"),
+  FUNCIONARIO("FUNCI", "Funcionário");
 
   private final String description;
   private final String id;
