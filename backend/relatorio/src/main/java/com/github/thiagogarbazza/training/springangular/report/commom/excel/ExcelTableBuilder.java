@@ -67,8 +67,8 @@ public class ExcelTableBuilder<T> {
   }
 
   private void createBody() {
-    final CellStyle cellStyleOdd = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.excel.style.table.body-row-odd");
-    final CellStyle cellStyleEven = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.excel.style.table.body-row-even");
+    final CellStyle cellStyleOdd = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.report-excel.style.table.body-row-odd");
+    final CellStyle cellStyleEven = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.report-excel.style.table.body-row-even");
 
     this.items.forEach(item -> {
       final Row row = this.sheet.createRow(this.rowIndex++);
@@ -84,7 +84,7 @@ public class ExcelTableBuilder<T> {
 
   private void createHeader() {
     final Row row = this.sheet.createRow(this.rowIndex++);
-    final CellStyle cellStyle = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.excel.style.table.header");
+    final CellStyle cellStyle = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.report-excel.style.table.header");
 
     this.colunas.forEach(coluna -> {
       Cell cell = row.createCell(this.colStart + coluna.getIndex());
@@ -97,7 +97,7 @@ public class ExcelTableBuilder<T> {
 
   private void createTitle() {
     final Row row = this.sheet.createRow(this.rowIndex++);
-    final XSSFCellStyle cellStyle = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.excel.style.table.title");
+    final XSSFCellStyle cellStyle = ExcelStyleCell.excelStyleCell(this.sheet.getWorkbook(), "app.report-excel.style.table.title");
 
     Cell cell = row.createCell(this.colStart);
     cell.setCellValue(this.title);
