@@ -1,8 +1,6 @@
 package com.github.thiagogarbazza.training.springangular.utiltest.database;
 
 import lombok.extern.apachecommons.CommonsLog;
-import org.hibernate.Metamodel;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,19 +21,17 @@ public class ResetDatabaseService {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = READ_UNCOMMITTED, readOnly = false)
   public void reset() {
-    Collection<String> tableNames = Arrays.asList("zzt_test.tbl_simple_entity_object_persistence", "zzt_test.tbl_simple_entity_audited_a",
-      "zzt_test.tbl_simple_entity_audited_b", "zzt_test.tbl_simple_entity_audited_c");
-    Session session = entityManager.unwrap(Session.class);
-    Metamodel hibernateMetadata = session.getSessionFactory().getMetamodel();
-
-    //for (ClassMetadata classMetadata : hibernateMetadata.values()) {
-    // AbstractEntityPersister aep = (AbstractEntityPersister) classMetadata;
-    //tableNames.add(aep.getTableName());
-    // }
-
     entityManager.flush();
     entityManager.createNativeQuery("SET referential_integrity false").executeUpdate();
-    tableNames.forEach(tableName -> entityManager.createNativeQuery("TRUNCATE TABLE " + tableName).executeUpdate());
+    tables().forEach(t -> entityManager.createNativeQuery("TRUNCATE TABLE " + t).executeUpdate());
     entityManager.createNativeQuery("SET referential_integrity true").executeUpdate();
+  }
+
+  private Collection<String> tables() {
+    return Arrays.asList(
+      "zzt_test.tbl_simple_entity_object_persistence",
+      "zzt_test.tbl_simple_entity_audited_a",
+      "zzt_test.tbl_simple_entity_audited_b",
+      "zzt_test.tbl_simple_entity_audited_c");
   }
 }
