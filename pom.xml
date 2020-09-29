@@ -40,12 +40,12 @@
     <dependency.javax.persistence-api.version>2.2</dependency.javax.persistence-api.version>
     <dependency.javax.servlet-api.version>4.0.1</dependency.javax.servlet-api.version>
     <dependency.jetty.version>9.4.22.v20191022</dependency.jetty.version>
-    <dependency.junit-jupiter.version>5.6.0</dependency.junit-jupiter.version>
-    <dependency.junit-jupter-platform.version>1.6.0</dependency.junit-jupter-platform.version>
+    <dependency.junit-jupiter.version>5.7.0</dependency.junit-jupiter.version>
+    <dependency.junit-jupter-platform.version>1.7.0</dependency.junit-jupter-platform.version>
     <dependency.json-path.version>2.4.0</dependency.json-path.version>
     <dependency.log4jdbc.version>1.2</dependency.log4jdbc.version>
     <dependency.logback.version>1.2.3</dependency.logback.version>
-    <dependency.lombok.version>1.18.10</dependency.lombok.version>
+    <dependency.lombok.version>1.18.12</dependency.lombok.version>
     <dependency.mockito.version>3.1.0</dependency.mockito.version>
     <dependency.orika-core.version>1.5.4</dependency.orika-core.version>
     <dependency.querydsl.version>4.2.2</dependency.querydsl.version>
@@ -55,17 +55,17 @@
     <dependency.spring-batch.version>4.2.0.RELEASE</dependency.spring-batch.version>
     <dependency.spring-boot.version>2.2.0.RELEASE</dependency.spring-boot.version>
     <dependency.spring-data.version>2.2.0.RELEASE</dependency.spring-data.version>
-    <dependency.violation-builder.version>1.0.0</dependency.violation-builder.version>
+    <dependency.violation-builder.version>1.1.0-SNAPSHOT</dependency.violation-builder.version>
 
     <plugin.build-helper.version>3.0.0</plugin.build-helper.version>
-    <plugin.lombok.version>1.18.10.0</plugin.lombok.version>
+    <plugin.lombok.version>1.18.12.0</plugin.lombok.version>
     <plugin.maven-assembly.version>3.1.1</plugin.maven-assembly.version>
     <plugin.maven-compiler.version>3.8.1</plugin.maven-compiler.version>
-    <plugin.maven-failsafe.version>3.0.0-M4</plugin.maven-failsafe.version>
+    <plugin.maven-failsafe.version>3.0.0-M5</plugin.maven-failsafe.version>
     <plugin.maven-jar.version>3.1.2</plugin.maven-jar.version>
     <plugin.maven-release.version>2.5.3</plugin.maven-release.version>
     <plugin.maven-resources.version>3.1.0</plugin.maven-resources.version>
-    <plugin.maven-surefire.version>3.0.0-M4</plugin.maven-surefire.version>
+    <plugin.maven-surefire.version>3.0.0-M5</plugin.maven-surefire.version>
   </properties>
 
   <dependencyManagement>

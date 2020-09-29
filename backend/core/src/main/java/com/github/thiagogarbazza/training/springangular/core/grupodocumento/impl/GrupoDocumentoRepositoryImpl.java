@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 
 import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.QGrupoDocumento.grupoDocumento;
-import static com.github.thiagogarbazza.training.springangular.core.grupodocumento.impl.GrupoDocumentoSearchFilterHelper.grupoDocumentoSearchFilterPredicateBuilder;
 
 @Repository
 class GrupoDocumentoRepositoryImpl extends CustomQuerydslRepositorySupport<GrupoDocumento> implements GrupoDocumentoRepositoryCustom {
@@ -26,7 +25,7 @@ class GrupoDocumentoRepositoryImpl extends CustomQuerydslRepositorySupport<Grupo
   @Override
   public Collection<GrupoDocumento> search(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
     return from(grupoDocumento)
-      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter))
+      .where(grupoDocumentoSearchFilter.predicate())
       .orderBy(grupoDocumentoSearchFilter.ordering())
       .fetch();
   }
@@ -37,15 +36,15 @@ class GrupoDocumentoRepositoryImpl extends CustomQuerydslRepositorySupport<Grupo
 
     return from(grupoDocumento)
       .select(projection)
-      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter))
+      .where(grupoDocumentoSearchFilter.predicate())
       .orderBy(grupoDocumentoSearchFilter.ordering())
       .fetch();
   }
 
   @Override
-  public CustomPage<GrupoDocumentoVO4SearchResult> searchPaginating(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
+  public CustomPage<GrupoDocumentoVO4SearchResult> search4Pages(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
     final JPQLQuery query = from(grupoDocumento)
-      .where(grupoDocumentoSearchFilterPredicateBuilder(grupoDocumentoSearchFilter));
+      .where(grupoDocumentoSearchFilter.predicate());
 
     QGrupoDocumentoVO4SearchResult projection = new QGrupoDocumentoVO4SearchResult(grupoDocumento.id, grupoDocumento.codigo, grupoDocumento.nome,
       grupoDocumento.situacao);

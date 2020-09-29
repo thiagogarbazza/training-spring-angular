@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class GrupoDocumentoService4TA {
+public class GrupoDocumentoService4T {
 
   @Autowired
   private GrupoDocumentoRepository grupoDocumentoRepository;

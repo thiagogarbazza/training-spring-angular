@@ -31,14 +31,14 @@ class GrupoDocumentoCreateIntegrationTest {
   @Captor
   private ArgumentCaptor<GrupoDocumentoVO4Create> captor;
   @Autowired
-  private WebApplicationContext context;
+  private WebApplicationContext webApplicationContext;
   @MockBean
   private GrupoDocumentoCreateService grupoDocumentoCreateService;
   private MockMvc mockMvc;
 
   @BeforeEach
   final void beforeEach() {
-    mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
 
   @Test

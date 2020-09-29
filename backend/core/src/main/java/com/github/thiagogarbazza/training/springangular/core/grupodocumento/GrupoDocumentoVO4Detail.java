@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.Value;
+import lombok.With;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,28 +18,28 @@ import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;
 
-@Getter
+@With
+@Value
 @Builder
-@ToString
-@NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
+@NoArgsConstructor(force = true, access = PRIVATE)
 public class GrupoDocumentoVO4Detail implements Identifiable<UUID> {
 
-  private final LocalDate data = LocalDate.of(2020, 01, 31);
-  private final LocalDateTime dataHora = LocalDateTime.of(2020, 1, 31, 23, 59, 59, 999);
-  private String codigo;
-  private AuditEntity creation;
-  private Collection<HistoricoSituacao> historicoSituacaos;
-  private UUID id;
-  private AuditEntity modification;
-  private String nome;
-  private SituacaoGrupoDocumento situacao;
+  private final String codigo;
+  private final AuditEntity creation;
+  private final LocalDate data;
+  private final LocalDateTime dataHora;
+  private final Collection<HistoricoSituacao> historicoSituacaos;
+  private final UUID id;
+  private final AuditEntity modification;
+  private final String nome;
+  private final SituacaoGrupoDocumento situacao;
 
-  @Getter
+  @With
+  @Value
   @Builder
-  @ToString
-  @NoArgsConstructor(access = PRIVATE)
   @AllArgsConstructor(access = PRIVATE)
+  @NoArgsConstructor(force = true, access = PRIVATE)
   public static class HistoricoSituacao implements Identifiable<UUID> {
 
     private AuditEntity creation;

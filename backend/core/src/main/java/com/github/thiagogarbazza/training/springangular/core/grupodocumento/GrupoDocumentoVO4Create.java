@@ -2,21 +2,19 @@ package com.github.thiagogarbazza.training.springangular.core.grupodocumento;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Value;
+import lombok.With;
 
 import static lombok.AccessLevel.PRIVATE;
 
-@Getter
-@Setter
+@With
+@Value
 @Builder
-@ToString
-@NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
+@NoArgsConstructor(force = true, access = PRIVATE)
 public class GrupoDocumentoVO4Create {
 
-  private String codigo;
-  private String nome;
+  private final String codigo;
+  private final String nome;
 }

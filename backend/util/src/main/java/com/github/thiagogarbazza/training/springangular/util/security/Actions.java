@@ -10,4 +10,9 @@ public class Actions extends TreeMap<String, Action> {
   public static final String ACTION_CAN_REPORT_EXCEL = "doReportExcel";
   public static final String ACTION_CAN_SEARCH = "doSearch";
   public static final String ACTION_CAN_UPDATE = "doUpdate";
+
+
+  public static Actions createActions() {
+    return new Actions();
+  }
 }

@@ -14,5 +14,5 @@ interface GrupoDocumentoRepositoryCustom {
 
   Collection<GrupoDocumentoVO4Select> search4Select(GrupoDocumentoSearchFilter grupoDocumentoSearchFilter);
 
-  CustomPage<GrupoDocumentoVO4SearchResult> searchPaginating(GrupoDocumentoSearchFilter grupoDocumentoSearchFilter);
+  CustomPage<GrupoDocumentoVO4SearchResult> search4Pages(GrupoDocumentoSearchFilter grupoDocumentoSearchFilter);
 }

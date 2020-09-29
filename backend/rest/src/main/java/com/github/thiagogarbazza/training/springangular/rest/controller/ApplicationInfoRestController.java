@@ -1,6 +1,7 @@
 package com.github.thiagogarbazza.training.springangular.rest.controller;
 
 import com.github.thiagogarbazza.training.springangular.util.ambiente.AmbienteExecucao;
+import com.github.thiagogarbazza.training.springangular.util.logging.Loggable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import static com.github.thiagogarbazza.training.springangular.util.ambiente.Amb
 import static lombok.AccessLevel.PRIVATE;
 
 @RestController
-public class ApplicationInfoRestController {
+class ApplicationInfoRestController {
 
   @Value("${app.build-info.timestamp}")
   private String buildInfoTimestamp;
@@ -20,7 +21,8 @@ public class ApplicationInfoRestController {
   private String buildInfoVersion;
 
   @GetMapping(value = "/application-info")
-  public ApplicationInfoResourceSupport applicationInfo() {
+  @Loggable(type = Loggable.Type.BLOCK_H1)
+  ApplicationInfoResourceSupport applicationInfo() {
     return ApplicationInfoResourceSupport.builder()
       .acoes(ApplicationInfoResourceSupport.Acoes.builder().podeVerChangeLog(true).build())
       .ambiente(getAmbienteExecucao())

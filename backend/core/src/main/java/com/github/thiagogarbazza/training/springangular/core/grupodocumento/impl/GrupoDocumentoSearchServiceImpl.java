@@ -29,6 +29,6 @@ class GrupoDocumentoSearchServiceImpl implements GrupoDocumentoSearchService {
 
   @Override
   public CustomPage<GrupoDocumentoVO4SearchResult> searchPaginating(final GrupoDocumentoSearchFilter grupoDocumentoSearchFilter) {
-    return grupoDocumentoRepository.searchPaginating(grupoDocumentoSearchFilter);
+    return grupoDocumentoRepository.search4Pages(grupoDocumentoSearchFilter);
   }
 }
