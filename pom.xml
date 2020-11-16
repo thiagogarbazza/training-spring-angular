@@ -39,7 +39,7 @@
     <dependency.jackson.version>2.10.1</dependency.jackson.version>
     <dependency.javax.persistence-api.version>2.2</dependency.javax.persistence-api.version>
     <dependency.javax.servlet-api.version>4.0.1</dependency.javax.servlet-api.version>
-    <dependency.jetty.version>9.4.22.v20191022</dependency.jetty.version>
+    <dependency.jetty.version>9.4.34.v20201102</dependency.jetty.version>
     <dependency.junit-jupiter.version>5.7.0</dependency.junit-jupiter.version>
     <dependency.junit-jupter-platform.version>1.7.0</dependency.junit-jupter-platform.version>
     <dependency.json-path.version>2.4.0</dependency.json-path.version>
