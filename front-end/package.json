@@ -22,7 +22,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
     "file-saver": "^2.0.2",
     "install": "^0.13.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "npm": "^6.10.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
